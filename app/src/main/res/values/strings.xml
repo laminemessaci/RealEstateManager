@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">RealEstateManager</string>
+
+    <!--Navigation Drawer-->
+    <string name="item_estate_loan_simulator">Estate loan simulator</string>
+    <!--Toolbar-->
+    <string name="item_search_title">Search</string>
+    <string name="item_edit_title">Edit</string>
+    <string name="item_create_title">Create</string>
+    <string name="item_prefs_title">Preferences</string>
+    <string name="create_title">Create Property</string>
+    <string name="edit_title">Edit Property</string>
+    <string name="logout_title">Logout</string>
+    <string name="map_title">Maps</string>
+
 </resources>
