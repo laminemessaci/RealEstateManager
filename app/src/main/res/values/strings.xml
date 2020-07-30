@@ -17,4 +17,8 @@
     <string name="logout_title">Logout</string>
     <string name="map_title">Maps</string>
 
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation Drawer</string>
+
 </resources>
