@@ -1,4 +1,4 @@
-package com.lamine.realestatemanager
+package com.lamine.realestatemanager.activities
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -6,10 +6,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.lamine.realestatemanager.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     private lateinit var  drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
@@ -68,6 +69,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
        val navigationView: NavigationView = nav_view
         navigationView.setNavigationItemSelectedListener(this)
     }
+
 
     // Toolbar menu items
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

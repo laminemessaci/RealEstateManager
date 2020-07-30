@@ -1,4 +1,4 @@
-package com.lamine.realestatemanager;
+package com.lamine.realestatemanager.utils;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;

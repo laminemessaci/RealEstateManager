@@ -1,7 +1,8 @@
-package com.lamine.realestatemanager
+package com.lamine.realestatemanager.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.lamine.realestatemanager.R
 
 class CreateEstateActivity : AppCompatActivity() {
 
