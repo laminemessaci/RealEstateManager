@@ -1,4 +1,4 @@
-package com.lamine.realestatemanager
+package com.lamine.realestatemanager.models
 
 import android.content.ContentValues
 import android.os.Parcelable
@@ -37,7 +37,7 @@ data class Property(
         0, false,false,false,false,false,false, true, "", "",
         "",0, 0, null, emptyList()
     )
-    fun fromContentValues(values: ContentValues):Property{
+    fun fromContentValues(values: ContentValues): Property {
         val property = Property()
         if (values.containsKey("id")) property.id= values.getAsLong("id")
         if (values.containsKey("type")) property.type = values.getAsString("type")

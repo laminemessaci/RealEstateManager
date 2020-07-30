@@ -1,4 +1,4 @@
-package com.lamine.realestatemanager
+package com.lamine.realestatemanager.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
