@@ -1,1 +1,4 @@
 /build
+/libs
+/google-services.json
+/build.gradle
