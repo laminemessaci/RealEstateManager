@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity() {
             (R.string.navigation_drawer_open),
             (R.string.navigation_drawer_close))
     drawer.addDrawerListener(toggle)
+    supportActionBar?.setHomeButtonEnabled(true)
+    toggle.isDrawerIndicatorEnabled = true
+    toggle.syncState()
     }
 
     // Toolbar configuration
