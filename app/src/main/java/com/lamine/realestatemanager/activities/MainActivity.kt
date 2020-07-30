@@ -1,6 +1,7 @@
 package com.lamine.realestatemanager.activities
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -62,6 +63,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // Toolbar configuration
     private fun configureToolbar() {
         setSupportActionBar(toolbar)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        //Inflate the menu to use in the action bar
+        val inflater = menuInflater
+        inflater.inflate(R.menu.toolbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     //Navigation view configuration
