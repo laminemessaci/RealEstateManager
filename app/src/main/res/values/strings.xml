@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">RealEstateManager</string>
+
+    <!--App-->
+    <string name="app_name">Real Estate Manager Kt</string>
+    <string name="app_title">Real Estate Manager</string>
+    <string name="image">image</string>
 
     <!--Navigation Drawer-->
     <string name="item_estate_loan_simulator">Estate loan simulator</string>
