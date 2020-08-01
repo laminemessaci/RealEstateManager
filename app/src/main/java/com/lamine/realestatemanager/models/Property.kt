@@ -2,13 +2,17 @@ package com.lamine.realestatemanager.models
 
 import android.content.ContentValues
 import android.os.Parcelable
+import androidx.room.*
 import kotlinx.android.parcel.Parcelize
 
 /**
  *Created by Lamine MESSACI on 30/07/2020.
  */
 @Parcelize
+@Entity
+@SuppressWarnings(RoomWarnings.PRIMARY_KEY_FROM_EMBEDDED_IS_DROPPED)
 data class Property(
+    @PrimaryKey(autoGenerate = true)
     var id: Long,
 
     var type: String,
@@ -28,7 +32,10 @@ data class Property(
     var realtor: String?,
     var numOfBath: Int?,
     var numOfBed: Int?,
+    @Embedded
     var address: Address?,
+
+    @TypeConverters
     var pictures: List<Picture>? = arrayListOf()
 ):Parcelable
 {
