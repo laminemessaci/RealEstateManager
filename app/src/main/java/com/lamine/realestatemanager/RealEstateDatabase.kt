@@ -9,6 +9,7 @@ import com.lamine.realestatemanager.dao.PropertyDao
 import com.lamine.realestatemanager.models.Address
 import com.lamine.realestatemanager.models.Picture
 import com.lamine.realestatemanager.models.Property
+import com.lamine.realestatemanager.utils.Converters
 
 /**
  *Created by Lamine MESSACI on 03/08/2020.
@@ -17,7 +18,7 @@ import com.lamine.realestatemanager.models.Property
 //Configuration of  RealEstateManager Database
 
 @Database(entities = [(Property::class), (Picture::class), (Address::class)], version = 2, exportSchema = false )
-
+@TypeConverters(Converters::class)
 abstract class RealEstateDatabase: RoomDatabase() {
 
     abstract fun  propertyDao(): PropertyDao
