@@ -60,24 +60,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     toggle.syncState()
     }
 
-    // Toolbar configuration
-    private fun configureToolbar() {
-        setSupportActionBar(toolbar)
+    //Navigation view configuration
+    private fun configureNavView(){
+        val navigationView: NavigationView = nav_view
+        navigationView.setNavigationItemSelectedListener(this)
     }
 
+    //Toolbar Menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         //Inflate the menu to use in the action bar
         val inflater = menuInflater
         inflater.inflate(R.menu.toolbar_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
-    //Navigation view configuration
-    private fun configureNavView(){
-       val navigationView: NavigationView = nav_view
-        navigationView.setNavigationItemSelectedListener(this)
-    }
-
 
     // Toolbar menu items
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -89,10 +84,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.menu_search -> {
                 // Open search fragment
+                checkIfLocationIsEnable()
                 return true
             }
             R.id.menu_create -> {
                 // Open create activity
+                launcheCreateActivity()
 
                 return true
             }
@@ -100,9 +97,29 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return super.onOptionsItemSelected(item)
     }
 
+    private fun checkIfLocationIsEnable() {
+
+
+    }
+
+    private fun launcheCreateActivity() {
+        TODO("Not yet implemented")
+    }
+
+    private fun launcheSearchFragment() {
+        TODO("Not yet implemented")
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         TODO("Not yet implemented")
     }
+
+
+    // Toolbar configuration
+    private fun configureToolbar() {
+        setSupportActionBar(toolbar)
+    }
+
 
 
 }
