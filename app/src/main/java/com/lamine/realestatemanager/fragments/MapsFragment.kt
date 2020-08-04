@@ -43,5 +43,5 @@ class MapsFragment : Fragment() {
             return MapsFragment()
         }
     }
-    }
+
 }

@@ -44,5 +44,5 @@ class SettingsFragment : Fragment() {
             return SettingsFragment()
         }
     }
-    }
+
 }

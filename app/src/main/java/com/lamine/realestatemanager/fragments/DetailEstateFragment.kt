@@ -48,5 +48,5 @@ class DetailEstateFragment : Fragment() {
             return fragment
         }
     }
-    }
+
 }

@@ -44,5 +44,5 @@ class SearchFragment : Fragment() {
         }
     }
 
-    }
+
 }
