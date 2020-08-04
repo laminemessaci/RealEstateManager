@@ -1,11 +1,11 @@
-package com.lamine.realestatemanager
+package com.lamine.realestatemanager.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.lamine.realestatemanager.dao.PropertyDao
+import com.lamine.realestatemanager.database.dao.PropertyDao
 import com.lamine.realestatemanager.models.Address
 import com.lamine.realestatemanager.models.Picture
 import com.lamine.realestatemanager.models.Property
@@ -25,7 +25,7 @@ abstract class RealEstateDatabase: RoomDatabase() {
 
     companion object{
         private var INSTANCE: RealEstateDatabase? = null
-        fun getInstance(context: Context): RealEstateDatabase{
+        fun getInstance(context: Context): RealEstateDatabase {
             if (INSTANCE == null){
                 synchronized(this){
                     INSTANCE = Room.databaseBuilder(context.applicationContext, RealEstateDatabase:: class.java, "RealEstateManager.db").build()

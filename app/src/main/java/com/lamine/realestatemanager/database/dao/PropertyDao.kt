@@ -1,4 +1,4 @@
-package com.lamine.realestatemanager.dao
+package com.lamine.realestatemanager.database.dao
 
 import android.database.Cursor
 import androidx.lifecycle.LiveData
