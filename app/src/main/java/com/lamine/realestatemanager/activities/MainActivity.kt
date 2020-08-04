@@ -190,7 +190,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle presses on the action bar menu items
         when (item.itemId) {
             R.id.menu_map -> {
-
+                checkIfLocationIsEnable()
                 return true
             }
             R.id.menu_search -> {
