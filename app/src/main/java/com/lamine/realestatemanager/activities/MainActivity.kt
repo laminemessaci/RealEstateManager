@@ -1,17 +1,22 @@
 package com.lamine.realestatemanager.activities
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.location.LocationManagerCompat.isLocationEnabled
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.lamine.realestatemanager.R
+import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -98,6 +103,58 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             )
         }
     }
+
+    // To show alert dialog
+    private fun checkDeviceServices() {
+        if (!Utils.isInternetAvailable(this)) {
+            showAlertDialog(INTERNET)
+        }
+
+        if (!Utils.isLocationEnabled(this)) {
+            showAlertDialog(LOCATION)
+        }
+    }
+
+    // Alert dialog dispatch and display
+    private fun showAlertDialog(type: String) {
+        var title = ""
+        var text = ""
+        var intent = Intent()
+        lateinit var mAlertDialog: AlertDialog
+        when (type) {
+            LOCATION -> {
+                title = resources.getString(R.string.gps_title)
+                text = resources.getString(R.string.gps_text)
+                intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            }
+            INTERNET -> {
+                title = resources.getString(R.string.internet_title)
+                text = resources.getString(R.string.internet_text)
+                intent = Intent(Settings.ACTION_WIFI_SETTINGS)
+            }
+            DATA -> {
+                title = resources.getString(R.string.welcome_title)
+                text = resources.getString(R.string.welcome_text)
+                intent = Intent(this, CreateEstateActivity::class.java)
+            }
+            OPEN_MAPS -> {
+                title = resources.getString(R.string.open_maps_title)
+                text = resources.getString(R.string.open_maps_text)
+                intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            }
+        }
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(text)
+        builder.setPositiveButton(android.R.string.yes) { _, _ ->
+            startActivity(intent)
+        }
+        builder.setNegativeButton(android.R.string.no) { _, _ ->
+            mAlertDialog.dismiss()
+        }
+        mAlertDialog = builder.show()
+    }
+
 
     // Navigation Drawer Configuration
     private fun configureNavDrawer() {

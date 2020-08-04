@@ -22,5 +22,13 @@
     <string name="navigation_drawer_close">Close navigation Drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gps_title">Location is not enable</string>
+    <string name="gps_text">To start using the app, please turn on location</string>
+    <string name="internet_title">Internet is not available !</string>
+    <string name="internet_text">To have access to all the features of the application, ...</string>
+    <string name="welcome_title">Welcome to Real Estate Manager !</string>
+    <string name="welcome_text"> To start using the app, please register a property !</string>
+    <string name="open_maps_title">Location alert !</string>
+    <string name="open_maps_text">To open map, enable location please!</string>
 
 </resources>

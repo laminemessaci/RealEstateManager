@@ -1,6 +1,7 @@
 package com.lamine.realestatemanager.utils;
 
 import android.content.Context;
+import android.location.LocationManager;
 import android.net.wifi.WifiManager;
 
 import java.text.DateFormat;
@@ -43,5 +44,19 @@ public class Utils {
         WifiManager wifi = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
         return wifi.isWifiEnabled();
     }
+
+    //To check if location is enable
+    public static boolean isLocationEnabled(Context context) {
+        LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        boolean gps_enabled = false;
+        try {
+            assert lm != null;
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gps_enabled;
+    }
+
 }
 
