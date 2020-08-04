@@ -14,10 +14,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.location.LocationManagerCompat.isLocationEnabled
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 import com.lamine.realestatemanager.R
+import com.lamine.realestatemanager.RealEstateManagerApplication
 import com.lamine.realestatemanager.fragments.*
 import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.Utils
@@ -196,18 +198,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.menu_map -> {
                 checkIfLocationIsEnable()
-                Log.i("Location_menu_map", "ok")
                 return true
             }
             R.id.menu_search -> {
                 // Open search fragment
-                checkIfLocationIsEnable()
+                launchSearchFragment()
                 return true
             }
             R.id.menu_create -> {
                 // Open create activity
-                launcheCreateActivity()
-
+                launchCreateActivity()
                 return true
             }
         }
@@ -215,8 +215,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-    private fun launcheCreateActivity() {
-        TODO("Not yet implemented")
+
+    // To launch CreateActivity
+    private fun launchCreateActivity() {
+        val intent = Intent(this, CreateEstateActivity::class.java)
+        startActivity(intent)
     }
 
     // Check if device location is enable
@@ -238,12 +241,69 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-    private fun launcheSearchFragment() {
-        TODO("Not yet implemented")
+    // To launch Search
+    private fun launchSearchFragment() {
+        if (!isDisplaySearch) {
+            if (isTablet) {
+                launchFragment(FRAGMENT_SEARCH, 0, R.id.activity_main_100_frame_layout, null)
+            } else {
+                launchFragment(FRAGMENT_SEARCH, 0, R.id.activity_main_frame_layout, null)
+            }
+            isDisplaySearch = true
+        }
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        TODO("Not yet implemented")
+    // Open settings fragment
+    private fun launchSettingsFragment() {
+        if (isTablet) {
+            launchFragment(FRAGMENT_SETTINGS, 0, R.id.activity_main_100_frame_layout, null)
+        } else {
+            launchFragment(FRAGMENT_SETTINGS, 0, R.id.activity_main_frame_layout, null)
+        }
+    }
+
+    // To launch Loan Simulator
+    private fun launchMortGageSimulator() {
+        launchFragment(FRAGMENT_MORT_GAGE, 0, R.id.activity_main_frame_layout, null)
+    }
+
+
+    // Navigation drawer menu
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        when (menuItem.itemId) {
+            R.id.activity_main_drawer_simulator -> {
+                launchMortGageSimulator()
+            }
+            R.id.activity_main_drawer_create -> {
+                // Open create activity
+                launchCreateActivity()
+            }
+            R.id.activity_main_drawer_search -> {
+                // Open search fragment
+                launchSearchFragment()
+            }
+            R.id.activity_main_drawer_prefs -> {
+                // Open settings fragment
+                launchSettingsFragment()
+            }
+            R.id.activity_main_drawer_logout -> {
+                showAlertDialogCloseApp()
+            }
+        }
+        activity_main_drawer_layout.closeDrawer(GravityCompat.START)
+        return true
+    }
+
+    // Display alert dialog to quit app
+    private fun showAlertDialogCloseApp() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Do you want to quit the app?")
+        builder.setPositiveButton(android.R.string.yes) { _, _ ->
+            RealEstateManagerApplication.setLastItemClicked(0)
+            finishAffinity()
+        }
+        builder.setNegativeButton(android.R.string.no) { _, _ -> }
+        builder.show()
     }
 
 
