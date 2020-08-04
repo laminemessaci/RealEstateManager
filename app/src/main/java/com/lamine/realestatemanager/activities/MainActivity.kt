@@ -1,10 +1,14 @@
 package com.lamine.realestatemanager.activities
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.lamine.realestatemanager.R
@@ -42,6 +46,56 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun defineIsTablet() {
         if(activity_main_detail_frame_layout != null){
             isTablet = true
+        }
+    }
+
+    // Check permissions
+    private fun checkSelfPermissions() {
+        val permissions: ArrayList<String> = ArrayList()
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_PHONE_STATE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            permissions.add(Manifest.permission.READ_PHONE_STATE)
+        }
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION)
+        }
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            permissions.add(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            permissions.add(Manifest.permission.CAMERA)
+        }
+        if (permissions.isNotEmpty()) {
+            val askPermissionsList: Array<String> = arrayOf()
+            val array = arrayOfNulls<String>(permissions.size)
+            askPermissionsList to array
+            ActivityCompat.requestPermissions(
+                this,
+                permissions.toArray(askPermissionsList),
+                1
+            )
         }
     }
 

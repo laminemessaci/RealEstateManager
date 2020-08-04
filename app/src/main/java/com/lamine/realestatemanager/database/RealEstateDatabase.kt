@@ -17,22 +17,23 @@ import com.lamine.realestatemanager.utils.Converters
 
 //Configuration of  RealEstateManager Database
 
-@Database(entities = [(Property::class), (Picture::class), (Address::class)], version = 2, exportSchema = false )
+// RealEstateManager Database configuration
+@Database(entities = [(Property::class), (Picture::class), (Address::class)],version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
-abstract class RealEstateDatabase: RoomDatabase() {
+abstract class RealEstateDatabase : RoomDatabase() {
 
-    abstract fun  propertyDao(): PropertyDao
+    abstract fun propertyDao(): PropertyDao
 
-    companion object{
+    companion object {
         private var INSTANCE: RealEstateDatabase? = null
-        fun getInstance(context: Context): RealEstateDatabase {
+
+        fun getInstance(context: Context):RealEstateDatabase{
             if (INSTANCE == null){
                 synchronized(this){
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, RealEstateDatabase:: class.java, "RealEstateManager.db").build()
+                    INSTANCE = Room.databaseBuilder(context.applicationContext,RealEstateDatabase::class.java,"RealEstateManager.db").build()
                 }
             }
             return INSTANCE as RealEstateDatabase
         }
     }
-
 }
