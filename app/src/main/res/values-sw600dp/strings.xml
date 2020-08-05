@@ -8,4 +8,9 @@
     <string name="welcome_text">To open map, enable location service please !</string>
     <string name="open_maps_title">Location alert !</string>
     <string name="open_maps_text">To open map, enable location please!</string>
+    <string name="validate">validate</string>
+    <string name="nbr_of_bathrooms">nb__of_bathrooms</string>
+    <string name="name_example">name_example</string>
+    <string name="realtor_tv">realtor_tv</string>
+    <string name="sold_date_tv">sold_date_tv</string>
 </resources>
