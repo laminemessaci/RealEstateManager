@@ -17,6 +17,7 @@ import androidx.core.location.LocationManagerCompat.isLocationEnabled
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.navigation.NavigationView
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
@@ -25,15 +26,21 @@ import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
+import java.lang.IllegalStateException
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
-    private lateinit var  drawer: DrawerLayout
+    private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
-    private var isTablet:Boolean = false
+    private lateinit var propertiesList: List<Property>
+    private var propertyId: Long = 0
+    private var isDetail: Boolean = false
+    private var isTablet: Boolean = false
+    private var refreshCount: Int = 0
     private var isDisplaySearch = false
 
-     val FRAGMENT_LIST = "listFragment"
+
+    val FRAGMENT_LIST = "listFragment"
      val FRAGMENT_MAP = "mapsFragment"
      val FRAGMENT_DETAIL = "DetailEstateFragment"
      val FRAGMENT_SETTINGS = "SettingsFragment"
@@ -50,8 +57,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configureToolbar()
         defineIsTablet()
         configureNavDrawer()
-
-
     }
 
     //check if device is a tablet
@@ -214,8 +219,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return super.onOptionsItemSelected(item)
     }
 
-
-
     // To launch CreateActivity
     private fun launchCreateActivity() {
         val intent = Intent(this, CreateEstateActivity::class.java)
@@ -235,6 +238,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             showAlertDialogLocation()
         }
     }
+
     // To display alert dialog location
     private fun showAlertDialogLocation() {
         showAlertDialog(OPEN_MAPS)
@@ -271,24 +275,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // Navigation drawer menu
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            R.id.activity_main_drawer_simulator -> {
-                launchMortGageSimulator()
-            }
-            R.id.activity_main_drawer_create -> {
-                // Open create activity
-                launchCreateActivity()
-            }
-            R.id.activity_main_drawer_search -> {
-                // Open search fragment
-                launchSearchFragment()
-            }
-            R.id.activity_main_drawer_prefs -> {
-                // Open settings fragment
-                launchSettingsFragment()
-            }
-            R.id.activity_main_drawer_logout -> {
-                showAlertDialogCloseApp()
-            }
+            R.id.activity_main_drawer_simulator -> launchMortGageSimulator()
+            R.id.activity_main_drawer_create -> launchCreateActivity()
+            R.id.activity_main_drawer_search -> launchSearchFragment()
+            R.id.activity_main_drawer_prefs -> launchSettingsFragment()
+            R.id.activity_main_drawer_logout -> showAlertDialogCloseApp()
         }
         activity_main_drawer_layout.closeDrawer(GravityCompat.START)
         return true
@@ -318,19 +309,54 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         frameLayout: Int,
         it: List<Property>?
     ) {
-        lateinit var fragment: Fragment
-        when (tag) {
-            FRAGMENT_LIST -> fragment = EstateListFragment.newInstance(it)
-            FRAGMENT_SEARCH -> fragment = SearchFragment.newInstance()
-            FRAGMENT_MAP -> fragment = MapsFragment.newInstance()
-            FRAGMENT_DETAIL -> fragment = DetailEstateFragment.newInstance(propId)
-            FRAGMENT_MORT_GAGE -> fragment = MortGageCalculatorFragment.newInstance()
-            FRAGMENT_SETTINGS -> fragment = SettingsFragment.newInstance()
-        }
+
+      val fragment = when (tag){
+            FRAGMENT_LIST -> EstateListFragment.newInstance(it)
+            FRAGMENT_SEARCH -> SearchFragment.newInstance()
+            FRAGMENT_MAP ->  MapsFragment.newInstance()
+            FRAGMENT_DETAIL ->  DetailEstateFragment.newInstance(propId)
+            FRAGMENT_MORT_GAGE ->  MortGageCalculatorFragment.newInstance()
+            FRAGMENT_SETTINGS ->  SettingsFragment.newInstance()
+            else -> throw IllegalStateException("can't open this fragment !")
+      }
         supportFragmentManager.beginTransaction()
             .replace(frameLayout, fragment)
             .addToBackStack(tag)
             .commit()
+    }
+    // OnBackPressed function
+    override fun onBackPressed() {
+        if (activity_main_drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            activity_main_drawer_layout.closeDrawer(GravityCompat.START)
+        } else {
+            if (isTablet) {
+                if (isDetail) {
+                    isDetail = false
+                    finish()
+                } else checkBackStack(2)
+
+            } else checkBackStack(1)
+        }
+        isDisplaySearch = false
+    }
+
+    // To manage fragment back stack
+    private fun checkBackStack(i: Int) {
+        if (supportFragmentManager.backStackEntryCount <= i) {
+            showAlertDialogCloseApp()
+        } else {
+            if (refreshCount > 0) {
+                while (supportFragmentManager.backStackEntryCount > 2) {
+                    supportFragmentManager.popBackStackImmediate(
+                        supportFragmentManager.backStackEntryCount - 1,
+                        FragmentManager.POP_BACK_STACK_INCLUSIVE
+                    )
+                }
+                refreshCount = 0
+            } else {
+                super.onBackPressed()
+            }
+        }
     }
 
 

@@ -1,4 +1,4 @@
-package com.lamine.realestatemanager.reposirories
+package com.lamine.realestatemanager.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.sqlite.db.SimpleSQLiteQuery
