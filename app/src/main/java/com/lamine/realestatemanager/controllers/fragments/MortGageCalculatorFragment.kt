@@ -1,4 +1,4 @@
-package com.lamine.realestatemanager.fragments
+package com.lamine.realestatemanager.controllers.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

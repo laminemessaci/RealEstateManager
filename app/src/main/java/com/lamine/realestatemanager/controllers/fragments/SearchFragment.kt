@@ -1,4 +1,4 @@
-package com.lamine.realestatemanager.fragments
+package com.lamine.realestatemanager.controllers.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [MapsFragment.newInstance] factory method to
+ * Use the [SearchFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MapsFragment : Fragment() {
+class SearchFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,13 +35,14 @@ class MapsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_maps, container, false)
+        return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     companion object {
-        fun newInstance(): MapsFragment {
-            return MapsFragment()
+        fun newInstance(): SearchFragment {
+            return SearchFragment()
         }
     }
+
 
 }

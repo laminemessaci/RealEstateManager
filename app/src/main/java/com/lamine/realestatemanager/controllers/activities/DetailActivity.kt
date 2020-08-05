@@ -1,4 +1,4 @@
-package com.lamine.realestatemanager.activities
+package com.lamine.realestatemanager.controllers.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
