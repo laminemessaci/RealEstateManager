@@ -14,28 +14,22 @@ import com.lamine.realestatemanager.models.Property
 @Dao
 interface PropertyDao {
 
-    //----------- CRUD FOR PROPERTY -------------//
-    //-------------------------------------------//
 
-    //-----------GETTER-----------------//
-    @Query("SELECT * FROM property")
+    @Query("SELECT * from property")
     fun getAllProperties(): LiveData<List<Property>>
 
-    @Query("SELECT * FROM property WHERE id = :propertyId")
-    fun getProperty(propertyId: Long):LiveData<Property>
+    @Query("SELECT * from property WHERE id = :propertyId")
+    fun getProperty(propertyId:Long): LiveData<Property>
 
-    @RawQuery(observedEntities = [PropertyDao::class])
+    @RawQuery(observedEntities = [Property::class])
     fun getPropertyByArgs(query: SupportSQLiteQuery) : LiveData<List<Property>>
 
-    //------------ADD-------------------//
     @Insert(onConflict = REPLACE)
     fun insertProperty(property: Property): Long
 
-    //------------UPDATE-------------------//
     @Update
     fun updateProperty(property: Property): Int
 
-    //------------DELETE -------------------//
     @Query("DELETE FROM property WHERE id = :index")
     fun deleteProperty(index: Long)
 

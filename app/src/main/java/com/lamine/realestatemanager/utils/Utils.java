@@ -2,11 +2,23 @@ package com.lamine.realestatemanager.utils;
 
 import android.content.Context;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
+
+import com.lamine.realestatemanager.RealEstateManagerApplication;
+import com.lamine.realestatemanager.models.Property;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Philippe on 21/02/2018.
@@ -40,9 +52,25 @@ public class Utils {
      * @param context
      * @return
      */
-    public static Boolean isInternetAvailable(Context context){
-        WifiManager wifi = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
-        return wifi.isWifiEnabled();
+    // return true if network is connected
+    @NotNull
+    public static Boolean isInternetAvailable(@NotNull Context context) {
+        boolean isInternet = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        Network network;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            network = Objects.requireNonNull(connectivityManager).getActiveNetwork();
+            NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
+            if (capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)){
+                isInternet = true;
+            }
+        }else{
+            NetworkInfo activeNetwork = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
+            if (activeNetwork != null && activeNetwork.isConnected()){
+                isInternet = true;
+            }
+        }
+        return isInternet;
     }
 
     //To check if location is enable
@@ -56,6 +84,19 @@ public class Utils {
             e.printStackTrace();
         }
         return gps_enabled;
+    }
+
+
+    // To define last item clicked id
+    public static Long getPropertyId(List<Property> propertiesList) {
+        int propId;
+        int id = RealEstateManagerApplication.getLastItemClicked();
+        if (id == -2) {
+            propId = propertiesList.size();
+        } else {
+            propId = id + 1;
+        }
+        return (long) propId;
     }
 
 }
