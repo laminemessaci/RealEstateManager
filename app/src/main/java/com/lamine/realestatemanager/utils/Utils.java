@@ -13,11 +13,14 @@ import com.lamine.realestatemanager.RealEstateManagerApplication;
 import com.lamine.realestatemanager.models.Property;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -25,6 +28,8 @@ import java.util.Objects;
  */
 
 public class Utils {
+
+    private static final String TEXT_DATE ="dd/MM/yyyy" ;
 
     /**
      * Conversion d'un prix d'un bien immobilier (Dollars vers Euros)
@@ -86,7 +91,6 @@ public class Utils {
         return gps_enabled;
     }
 
-
     // To define last item clicked id
     public static Long getPropertyId(List<Property> propertiesList) {
         int propId;
@@ -99,5 +103,15 @@ public class Utils {
         return (long) propId;
     }
 
+    // Convert date to string
+    @NotNull
+    public static String getStringDate(int year, int dayOfMonth, int monthOfYear) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(0);
+        cal.set(year, monthOfYear, dayOfMonth);
+        Date date = cal.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat(TEXT_DATE, Locale.getDefault());
+        return sdf.format(date);
+    }
 }
 

@@ -14,4 +14,7 @@
     <string name="realtor_tv">realtor_tv</string>
     <string name="sold_date_tv">sold_date_tv</string>
     <string name="add_task">Add Property</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
 </resources>
