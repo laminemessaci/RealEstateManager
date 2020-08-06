@@ -10,6 +10,9 @@ import com.lamine.realestatemanager.models.Property
 /**
  *Created by Lamine MESSACI on 05/08/2020.
  */
+/**
+ * check User input
+ */
 class CreateEstateUtils {
 
     // To check values before storage

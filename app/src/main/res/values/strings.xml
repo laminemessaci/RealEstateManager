@@ -97,6 +97,7 @@
     <string name="country_text">You must enter a country</string>
     <string name="entry_date_text">You must enter an entry date</string>
     <string name="sold_date_text">You must enter an sold date</string>
+    <string name="add_task">Add Property</string>
 
 
 </resources>
