@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gps_title">Location is not enable</string>
+    <string name="gps_text">To start using the app, please turn on location</string>
+    <string name="internet_title">Internet is not available !</string>
+    <string name="internet_text">To have access to all the features of the application, ...</string>
+    <string name="welcome_title">Welcome to Real Estate Manager !</string>
+    <string name="welcome_text">To open map, enable location service please !</string>
+    <string name="open_maps_title">Location alert !</string>
+    <string name="open_maps_text">To open map, enable location please!</string>
+    <string name="validate">validate</string>
+    <string name="nbr_of_bathrooms">nb__of_bathrooms</string>
+    <string name="name_example">name_example</string>
+    <string name="realtor_tv">realtor_tv</string>
+    <string name="sold_date_tv">sold_date_tv</string>
+    <string name="add_task">Add Property</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+</resources>

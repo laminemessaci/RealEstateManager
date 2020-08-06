@@ -1,13 +1,17 @@
 package com.lamine.realestatemanager.models
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 /**
  *Created by Lamine MESSACI on 30/07/2020.
  */
 @Parcelize
-data class Address(var addressId:Long,
+@Entity(tableName = "Address")
+data class Address(@PrimaryKey @ColumnInfo(name = "addressId")var addressId:Long,
                    var address:String?,
                    var sector:String?,
                    var apartmentNumber:Int?,

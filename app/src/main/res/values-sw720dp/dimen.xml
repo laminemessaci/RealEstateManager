@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="my_value">0dp</dimen>
+    <dimen name="small_map_size">200dp</dimen>
+    <dimen name="pictures_detail_size">100dp</dimen>
+    <dimen name="picture_list_size">150dp</dimen>
+    <dimen name="text_type_size">18sp</dimen>
+    <dimen name="text_price_size">22sp</dimen>
+    <dimen name="text_town_size">16sp</dimen>
+</resources>

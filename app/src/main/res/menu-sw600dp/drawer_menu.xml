@@ -1,4 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/activity_main_drawer_simulator"
+            android:icon="@drawable/ic_money_black_18dp"
+            android:title="@string/item_estate_loan_simulator" />
+        <item
+            android:id="@+id/activity_main_drawer_search"
+            android:icon="@drawable/ic_search_black_24dp"
+            android:title="@string/item_search_title" />
+        <item
+            android:id="@+id/activity_main_drawer_create"
+            android:icon="@drawable/ic_add_black_18dp"
+            android:title="@string/item_create_title" />
+
+        <item
+            android:id="@+id/activity_main_drawer_prefs"
+            android:icon="@drawable/ic_settings_black_18dp"
+            android:title="@string/item_prefs_title" />
+        <item
+            android:id="@+id/activity_main_drawer_logout"
+            android:icon="@drawable/ic_logout_black_18dp"
+            android:title="@string/logout_title" />
+
+    </group>
+
 
 </menu>

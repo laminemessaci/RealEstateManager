@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_item"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/picture_list_size"
+    android:elevation="2dp"
+    android:background="@drawable/selector_item_color"
+    tools:targetApi="lollipop">
+
+    <ImageView
+        android:id="@+id/estate_picture"
+        android:layout_width="@dimen/picture_list_size"
+        android:layout_height="@dimen/picture_list_size"
+        android:src="@drawable/no_image_original"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/barrier"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="estate_picture"/>
+
+    <TextView
+        android:id="@+id/estate_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:textSize="@dimen/text_type_size"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toEndOf="@+id/barrier"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/estate_town"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_town_size"
+        app:layout_constraintStart_toEndOf="@+id/barrier"
+        app:layout_constraintTop_toBottomOf="@+id/estate_type" />
+
+    <TextView
+        android:id="@+id/estate_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_price_size"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/barrier"
+        app:layout_constraintTop_toBottomOf="@+id/estate_town" />
+
+    <ImageView
+        android:id="@+id/estate_sold"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:contentDescription="@string/image"
+        android:src="@drawable/sold_png_transparent_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
