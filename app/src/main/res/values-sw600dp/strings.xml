@@ -17,4 +17,6 @@
     <string name="enter_name">Enter Name</string>
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
+    <string name="notification_text_edit">"The property has been successfully edited ! "</string>
+    <string name="notification_text_create">The new property has been successfully added !</string>
 </resources>

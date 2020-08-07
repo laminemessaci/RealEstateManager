@@ -30,7 +30,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+                                          EstateListFragment.OnFragmentInteractionListener{
 
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
@@ -438,6 +439,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .addToBackStack(tag)
             .commit()
     }
+
+    // ListFragment interface
+    override fun onFragmentListInteraction(property: Property) {
+        this.propertyId = property.id
+        configureAndShowFragmentDetail(property)
+    }
+
 
 
 }

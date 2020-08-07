@@ -26,17 +26,22 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
+import com.lamine.realestatemanager.BuildConfig
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.Address
+import com.lamine.realestatemanager.models.GeocodeInfo
 import com.lamine.realestatemanager.models.Picture
 import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.CreateEstateUtils
+import com.lamine.realestatemanager.utils.NotificationClass
+import com.lamine.realestatemanager.utils.RealEstateStream
 import com.lamine.realestatemanager.utils.Utils
 import com.lamine.realestatemanager.view.DetailPictureAdapter
 import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableObserver
 import kotlinx.android.synthetic.main.activity_create_estate.*
 import kotlinx.android.synthetic.main.picture_title_dialogue.view.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -45,10 +50,12 @@ import java.util.*
 class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
     val listOfTypes = arrayOf("Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
+
     // 1 - FOR DATA
     private var isEdit: Boolean = false
     private var propertyId: Long = 0
     private lateinit var disposable: Disposable
+    private lateinit var geoLocation: GeocodeInfo
     private lateinit var propertyViewModel: PropertyViewModel
     private lateinit var typeOfProperty: String
     private var surface: Int = 0
@@ -84,12 +91,34 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     private var lng: Double = 0.0
     private lateinit var alertDialog: AlertDialog
     private val checkClass = CreateEstateUtils()
-  
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_estate)
-
+        checkDeviceServices()
+        initViewModelFactory()
+        getTheBundle()
+        configureToolbar()
+        configureSpinner()
+        configureSurface()
+        configureNumRooms()
+        configureNumBed()
+        configureNumBath()
+        configureNumApart()
+        configureAddress()
+        configureCity()
+        configurePostalCode()
+        configureCountry()
+        configureEditAddress()
+        configureDescription()
+        configurePrice()
+        configureRealtorName()
+        configureDatePickerEntry()
+        configureDatePickerSold()
+        configureCheckBoxClick()
+        configureButtons()
+        configureButtonValidate()
     }
 
     // To check internet and location
@@ -151,13 +180,13 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
             checkbox_available.isChecked = true
         }
     }
+
     // Request selected property
     private fun getSelectProperty() {
         propertyViewModel.getProperty(propertyId).observe(this, androidx.lifecycle.Observer { property ->
             property?.let { initVars(it) }
         })
     }
-
 
     // Variables initialisation to edit property
     private fun initVars(property: Property) {
@@ -196,6 +225,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         }
         initWidgets()
     }
+
     // Views initialisation
     private fun initWidgets() {
         configureRecyclerView()
@@ -228,20 +258,6 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         configureRecyclerView()
     }
 
-    // RecyclerView config
-    @SuppressLint("WrongConstant")
-    private fun configureRecyclerView() {
-        create_picture_recycler_view.apply {
-            layoutManager =
-                LinearLayoutManager(applicationContext, OrientationHelper.HORIZONTAL, false)
-            adapter = DetailPictureAdapter(pictures) { position: Int -> onItemClicked(position) }
-        }
-    }
-    // Listener to remove pictures
-    private fun onItemClicked(position: Int) {
-        pictures.remove(pictures[position])
-        configureRecyclerView()
-    }
 
     // To init checkbox
     private fun initCheckbox() {
@@ -266,6 +282,25 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     }
 
+    // Buttons configuration
+    private fun configureButtons() {
+        button_gallery.setOnClickListener {
+            checkPermissionToReadStorage()
+        }
+        button_take_picture.setOnClickListener {
+            checkPermissionToAccessCamera()
+        }
+    }
+
+    // RecyclerView config
+    @SuppressLint("WrongConstant")
+    private fun configureRecyclerView() {
+        create_picture_recycler_view.apply {
+            layoutManager =
+                LinearLayoutManager(applicationContext, OrientationHelper.HORIZONTAL, false)
+            adapter = DetailPictureAdapter(pictures) { position: Int -> onItemClicked(position) }
+        }
+    }
 
     // Date picker to sold date
     private fun configureDatePickerSold() {
@@ -318,6 +353,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         }
 
     }
+
 
     // Realtor name configuration
     private fun configureRealtorName() {
@@ -613,6 +649,22 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         type_spinner!!.adapter = aa
     }
 
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        typeOfProperty = "Manor"
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        typeOfProperty = listOfTypes[position]
+        if (typeOfProperty == "Apartment") {
+            apart_number.isVisible = true
+            edit_apart_nbr.isVisible = true
+        } else {
+            apart_number.isVisible = false
+            edit_apart_nbr.isVisible = false
+            apartNumber = 0
+        }
+    }
+
     // Checkbox clicks
     private fun configureCheckBoxClick() {
         checkbox_airport.setOnClickListener { airport = checkbox_airport.isChecked }
@@ -763,6 +815,44 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         }
     }
 
+    // To save geolocation in database
+    private fun storeLocationToDatabase() {
+        progressBar_create.visibility = View.VISIBLE
+        val addressStr = checkClass.checksAddressElements(address, city, postalCode)
+        if (addressStr.isNotEmpty()) {
+            val realEstateStream = RealEstateStream()
+            disposable =
+                realEstateStream.streamFetchGeocodeInfo(addressStr, BuildConfig.GoogleSecAPIKEY)
+                    .subscribeWith(object : DisposableObserver<GeocodeInfo?>() {
+                        override fun onNext(t: GeocodeInfo) {
+                            geoLocation = t
+                        }
+
+                        override fun onError(e: Throwable) {
+                            showAlertDialog()
+                            progressBar_create.visibility = View.GONE
+                        }
+
+                        override fun onComplete() {
+                            setValuesInProperty()
+                        }
+                    })
+        }
+    }
+
+    // To set values in object
+    private fun setValuesInProperty() {
+        progressBar_create.visibility = View.GONE
+        lat = geoLocation.results?.get(0)?.geometry?.location?.lat!!
+        lng = geoLocation.results?.get(0)?.geometry?.location?.lng!!
+        property = checkClass.setValuesInProperty(
+            lat, lng, airport, school, subway, shops, trainStation, park, additionalAddress,
+            pictures, address, description, entryDate, apartNumber, sold, soldDate, property
+        )
+        propertyViewModel.createProperty(property)
+        showNotification()
+        returnToHome()
+    }
 
     // Show alertDialog if internet is not available
     private fun showAlertDialog() {
@@ -801,9 +891,20 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 numberOfBath, address, price, realtorName, entryDate, soldDate, sold, property,
                 city, postalCode, country
             )
-            //TO DO
-            //storeLocationToDatabase()
+            storeLocationToDatabase()
         }
+    }
+
+    // Listener to remove pictures
+    private fun onItemClicked(position: Int) {
+        pictures.remove(pictures[position])
+        configureRecyclerView()
+    }
+
+    //To display notification
+    private fun showNotification() {
+        val notificationClass = NotificationClass()
+        notificationClass.showNotification(this, isEdit)
     }
 
     //To display list with new or updated property
@@ -814,21 +915,4 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        typeOfProperty = "Manor"
-    }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-        typeOfProperty = listOfTypes[position]
-        if (typeOfProperty == "Apartment") {
-            apart_number.isVisible = true
-            edit_apart_nbr.isVisible = true
-        } else {
-            apart_number.isVisible = false
-            edit_apart_nbr.isVisible = false
-            apartNumber = 0
-        }
-    }
-
 }

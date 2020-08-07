@@ -29,34 +29,39 @@ import java.util.Objects;
 
 public class Utils {
 
-    private static final String TEXT_DATE ="dd/MM/yyyy" ;
+    private static final String TEXT_DATE = "dd/MM/yyyy" ;
 
     /**
      * Conversion d'un prix d'un bien immobilier (Dollars vers Euros)
      * NOTE : NE PAS SUPPRIMER, A MONTRER DURANT LA SOUTENANCE
-     * @param dollars
-     * @return
+     *
+     * @param dollars <-- to convert dollar to euro
      */
-    public static int convertDollarToEuro(int dollars){
-        return (int) Math.round(dollars * 0.812);
+    public static double convertDollarToEuro(double dollars) {
+        return Math.round(dollars * 0.812);
+    }
+
+    // Euros to dollars conversion
+    public static double convertEuroToDollar(double euros) {
+        return Math.round(euros / 0.812);
     }
 
     /**
      * Conversion de la date d'aujourd'hui en un format plus approprié
      * NOTE : NE PAS SUPPRIMER, A MONTRER DURANT LA SOUTENANCE
-     * @return
      */
-    public static String getTodayDate(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+    // return today date
+    @NotNull
+    public static String getTodayDate() {
+        DateFormat dateFormat = new SimpleDateFormat(TEXT_DATE, Locale.FRANCE);
         return dateFormat.format(new Date());
     }
 
     /**
      * Vérification de la connexion réseau
      * NOTE : NE PAS SUPPRIMER, A MONTRER DURANT LA SOUTENANCE
-     * @param context
-     * @return
      */
+
     // return true if network is connected
     @NotNull
     public static Boolean isInternetAvailable(@NotNull Context context) {
@@ -91,6 +96,17 @@ public class Utils {
         return gps_enabled;
     }
 
+    // Convert date to string
+    @NotNull
+    public static String getStringDate(int year, int dayOfMonth, int monthOfYear) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(0);
+        cal.set(year, monthOfYear, dayOfMonth);
+        Date date = cal.getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat(TEXT_DATE, Locale.getDefault());
+        return sdf.format(date);
+    }
+
     // To define last item clicked id
     public static Long getPropertyId(List<Property> propertiesList) {
         int propId;
@@ -103,15 +119,18 @@ public class Utils {
         return (long) propId;
     }
 
-    // Convert date to string
-    @NotNull
-    public static String getStringDate(int year, int dayOfMonth, int monthOfYear) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTimeInMillis(0);
-        cal.set(year, monthOfYear, dayOfMonth);
-        Date date = cal.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat(TEXT_DATE, Locale.getDefault());
-        return sdf.format(date);
+    // To define last item clicked position
+    public static int getPropertyPosition(List<Property> propertiesList) {
+        int propPosition;
+        int position = RealEstateManagerApplication.getLastItemClicked();
+        if (position == -2) {
+            propPosition = propertiesList.size() - 1;
+            RealEstateManagerApplication.setLastItemClicked(propPosition);
+        } else if (position == -1) {
+            propPosition = 0;
+        } else {
+            propPosition = position;
+        }
+        return propPosition;
     }
 }
-
