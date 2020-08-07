@@ -7,7 +7,9 @@ import android.app.DatePickerDialog
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
@@ -19,6 +21,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -26,15 +29,13 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
+import com.google.android.gms.maps.model.LatLng
 import com.lamine.realestatemanager.BuildConfig
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
-import com.lamine.realestatemanager.models.Address
-import com.lamine.realestatemanager.models.GeocodeInfo
-import com.lamine.realestatemanager.models.Picture
-import com.lamine.realestatemanager.models.Property
+import com.lamine.realestatemanager.models.*
 import com.lamine.realestatemanager.utils.CreateEstateUtils
 import com.lamine.realestatemanager.utils.NotificationClass
 import com.lamine.realestatemanager.utils.RealEstateStream
@@ -47,7 +48,7 @@ import kotlinx.android.synthetic.main.picture_title_dialogue.view.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
-class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
+class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, Runnable{
 
     val listOfTypes = arrayOf("Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 
@@ -91,6 +92,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     private var lng: Double = 0.0
     private lateinit var alertDialog: AlertDialog
     private val checkClass = CreateEstateUtils()
+    private val location: Location = Location()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -840,11 +842,39 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         }
     }
 
+    // Get latitude/longitude from address input
+    private fun getLocationFromAddress(strAddress: String?): LatLng? {
+
+        val coder = Geocoder(this)
+        val address: List<android.location.Address>?
+        val latlng: LatLng?
+
+        address = coder.getFromLocationName(strAddress, 3)
+        return if (address.isEmpty()) {
+
+            null
+        } else {
+
+            val location = address[0]
+            latlng = LatLng(location.latitude, location.longitude)
+
+            latlng
+        }
+    }
+
     // To set values in object
     private fun setValuesInProperty() {
         progressBar_create.visibility = View.GONE
-        lat = geoLocation.results?.get(0)?.geometry?.location?.lat!!
-        lng = geoLocation.results?.get(0)?.geometry?.location?.lng!!
+        //Log.e("restls.get(0) est :  ${geoLocation.results?.indexOf(0)}","Results !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" )
+        //lat = geoLocation.results?.get(0)?.geometry?.location?.lat!!
+        //lng = geoLocation.results?.get(0)?.geometry?.location?.lng!!
+       //lat = 49.52267
+       //lng = 0.091310
+        val latLng: LatLng
+        latLng = this!!.getLocationFromAddress(address.toString())!!
+        lat = latLng.latitude
+        lng = latLng.longitude
+
         property = checkClass.setValuesInProperty(
             lat, lng, airport, school, subway, shops, trainStation, park, additionalAddress,
             pictures, address, description, entryDate, apartNumber, sold, soldDate, property
@@ -915,4 +945,10 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
+
+    override fun run() {
+        TODO("Not yet implemented")
+    }
+
+
 }
