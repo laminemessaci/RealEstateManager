@@ -13,8 +13,7 @@
         android:layout_height="match_parent"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintTop_toTopOf="parent"
-        tools:context=".controllers.activities.MainActivity"
-        tools:layout="@layout/fragment_maps" />
+        tools:context=".controllers.activities.MainActivity" />
 
     <ProgressBar
         android:id="@+id/progressBar"

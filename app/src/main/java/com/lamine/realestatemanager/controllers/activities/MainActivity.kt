@@ -31,7 +31,8 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-                                          EstateListFragment.OnFragmentInteractionListener{
+                                          EstateListFragment.OnFragmentInteractionListener,
+                                          MapsFragment.OnMapsFragmentListener{
 
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
@@ -446,6 +447,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configureAndShowFragmentDetail(property)
     }
 
-
-
+    // MapsFragment interface
+    override fun onMapsInteraction(idProperty: Long) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra(DetailActivity.PROPERTY, idProperty)
+        startActivity(intent)
+        Handler().postDelayed({
+            onBackPressed()
+        }, 400)
+    }
 }
