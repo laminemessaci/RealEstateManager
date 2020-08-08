@@ -69,6 +69,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configureNavDrawer()
         configureNavView()
         getTheBundle()
+
+        fab_add_property.setOnClickListener(){
+            // Open create activity
+            launchCreateActivity()
+        }
     }
 
     //Get intent bundle
@@ -258,7 +263,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 launchSearchFragment()
                 return true
             }
-            R.id.menu_create -> {
+            R.id.fab_add_property -> {
                 // Open create activity
                 launchCreateActivity()
                 return true
@@ -457,4 +462,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             onBackPressed()
         }, 400)
     }
+
 }

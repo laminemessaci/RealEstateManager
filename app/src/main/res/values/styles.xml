@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#2AA57A</item>
         <item name="colorPrimaryDark">#15616D</item>
@@ -11,9 +11,9 @@
 
 
     <!-- TOOLBAR THEME -->
-    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="ToolbarTheme" parent="AppTheme">
         <!-- Color of the title text in the Toolbar -->
-        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorGreen</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     </style>
 

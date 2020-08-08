@@ -43,6 +43,7 @@
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/add_task"
             app:srcCompat="@drawable/ic_add"
+            android:backgroundTint="@color/colorGreen"
             tools:visibility="visible" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

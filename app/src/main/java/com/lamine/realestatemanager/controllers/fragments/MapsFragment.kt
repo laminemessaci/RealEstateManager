@@ -1,5 +1,6 @@
 package com.lamine.realestatemanager.controllers.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
 import android.os.Bundle
@@ -71,6 +72,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_maps, container, false)
     }
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -246,6 +248,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         stopLocationUpdates()
     }
 
+
     // To stop locations callback
     private fun stopLocationUpdates() {
         fusedLocationClient.removeLocationUpdates(mLocationCallback)
@@ -255,4 +258,5 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     interface OnMapsFragmentListener {
         fun onMapsInteraction(idProperty: Long)
     }
+
 }

@@ -640,6 +640,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         }
     }
 
+
     // Spinner to select typ of properties
     private fun configureSpinner() {
         type_spinner!!.onItemSelectedListener = this
@@ -806,9 +807,9 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         configureRecyclerView()
     }
 
-    // Button valid configuration
+    // Floatin Action Button valid configuration
     private fun configureButtonValidate() {
-        button_validate.setOnClickListener {
+        fab_save_property.setOnClickListener {
             if (Utils.isInternetAvailable(this)) {
                 checkValues()
             } else {
