@@ -29,6 +29,7 @@ import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
+import java.lang.IllegalStateException
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
@@ -44,8 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var refreshCount: Int = 0
     private var isDisplaySearch = false
 
-
-    val FRAGMENT_LIST = "listFragment"
+     val FRAGMENT_LIST = "listFragment"
      val FRAGMENT_MAP = "mapsFragment"
      val FRAGMENT_DETAIL = "DetailEstateFragment"
      val FRAGMENT_SETTINGS = "SettingsFragment"
@@ -272,7 +272,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return super.onOptionsItemSelected(item)
     }
 
-
     // To launch CreateActivity
     private fun launchCreateActivity() {
         val intent = Intent(this, CreateEstateActivity::class.java)
@@ -313,24 +312,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // Navigation drawer menu
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
-            R.id.activity_main_drawer_simulator -> {
-                launchMortGageSimulator()
-            }
-            R.id.activity_main_drawer_create -> {
-                // Open create activity
-                launchCreateActivity()
-            }
-            R.id.activity_main_drawer_search -> {
-                // Open search fragment
-                launchSearchFragment()
-            }
-            R.id.activity_main_drawer_prefs -> {
-                // Open settings fragment
-                launchSettingsFragment()
-            }
-            R.id.activity_main_drawer_logout -> {
-                showAlertDialogCloseApp()
-            }
+            R.id.activity_main_drawer_simulator -> launchMortGageSimulator()
+            R.id.activity_main_drawer_create -> launchCreateActivity()
+            R.id.activity_main_drawer_search -> launchSearchFragment()
+            R.id.activity_main_drawer_prefs -> launchSettingsFragment()
+            R.id.activity_main_drawer_logout ->showAlertDialogCloseApp()
         }
         activity_main_drawer_layout.closeDrawer(GravityCompat.START)
         return true
@@ -432,14 +418,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         frameLayout: Int,
         it: List<Property>?
     ) {
-        lateinit var fragment: Fragment
-        when (tag) {
-            FRAGMENT_LIST -> fragment = EstateListFragment.newInstance(it)
-            FRAGMENT_SEARCH -> fragment = SearchFragment.newInstance()
-            FRAGMENT_MAP -> fragment = MapsFragment.newInstance()
-            FRAGMENT_DETAIL -> fragment = DetailEstateFragment.newInstance(propId)
-            FRAGMENT_MORT_GAGE -> fragment = MortGageCalculatorFragment.newInstance()
-            FRAGMENT_SETTINGS -> fragment = SettingsFragment.newInstance()
+
+        var fragment: Fragment = when (tag) {
+            FRAGMENT_LIST ->      EstateListFragment.newInstance(it)
+            FRAGMENT_SEARCH ->    SearchFragment.newInstance()
+            FRAGMENT_MAP ->       MapsFragment.newInstance()
+            FRAGMENT_DETAIL ->    DetailEstateFragment.newInstance(propId)
+            FRAGMENT_MORT_GAGE -> MortGageCalculatorFragment.newInstance()
+            FRAGMENT_SETTINGS ->  SettingsFragment.newInstance()
+            else -> throw IllegalStateException("The fragment is not valid !! ")
         }
         supportFragmentManager.beginTransaction()
             .replace(frameLayout, fragment)
