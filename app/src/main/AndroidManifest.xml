@@ -27,9 +27,7 @@
 
         <activity android:name="com.lamine.realestatemanager.controllers.activities.DetailActivity"></activity>
 
-        <activity android:name="com.lamine.realestatemanager.controllers.activities.CreateEstateActivity"
-                   android:parentActivityName=".controllers.activities.MainActivity">
-
+        <activity android:name="com.lamine.realestatemanager.controllers.activities.CreateEstateActivity">
         </activity>
         <activity android:name="com.lamine.realestatemanager.controllers.activities.MainActivity">
             <intent-filter>

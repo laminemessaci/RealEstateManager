@@ -1,19 +1,19 @@
 package com.lamine.realestatemanager.controllers.fragments
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.location.*
@@ -53,6 +53,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     private var initPosition: Boolean = false
     private var mLocationRequest = LocationRequest()
 
+    //lateinit var myLocationButton: ImageButton
+
     companion object {
         fun newInstance(): MapsFragment {
             return MapsFragment()
@@ -75,7 +77,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_maps, container, false)
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -173,6 +174,28 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     override fun onMapReady(googleMap: GoogleMap?) {
         if (googleMap != null) {
             map = googleMap
+            if (activity?.let {
+                    ActivityCompat.checkSelfPermission(
+                        it,
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    )
+                } != PackageManager.PERMISSION_GRANTED && activity?.let {
+                    ActivityCompat.checkSelfPermission(
+                        it,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
+                } != PackageManager.PERMISSION_GRANTED
+            ) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return
+            }
+            map.setMyLocationEnabled(true);
         }
     }
 
@@ -202,6 +225,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             initPosition = true
         }
     }
+
 
     // Request new location
     private fun requestNewLocationData() {

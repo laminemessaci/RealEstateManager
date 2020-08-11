@@ -33,17 +33,13 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_add_property"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+           android:layout_margin="16dp"
             android:backgroundTint="@color/colorGreen"
             android:contentDescription="@string/add_task"
-            app:srcCompat="@drawable/ic_add"
-            tools:visibility="visible" />
+            app:srcCompat="@drawable/ic_add" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
