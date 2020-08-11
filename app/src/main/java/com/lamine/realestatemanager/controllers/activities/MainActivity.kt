@@ -29,12 +29,11 @@ import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
-import java.lang.IllegalStateException
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-                                          EstateListFragment.OnFragmentInteractionListener,
-                                          MapsFragment.OnMapsFragmentListener{
+    EstateListFragment.OnFragmentInteractionListener,
+    MapsFragment.OnMapsFragmentListener {
 
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
@@ -45,18 +44,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var refreshCount: Int = 0
     private var isDisplaySearch = false
 
-     val FRAGMENT_LIST = "listFragment"
-     val FRAGMENT_MAP = "mapsFragment"
-     val FRAGMENT_DETAIL = "DetailEstateFragment"
-     val FRAGMENT_SETTINGS = "SettingsFragment"
-     val FRAGMENT_SEARCH = "SearchFragment"
-     val DATA = "data"
-     val LOCATION = "location"
-     val INTERNET = "internet"
-     val OPEN_MAPS = "open_maps"
-     val FRAGMENT_MORT_GAGE = "mortGageCalculatorFragment"
-     val LIST_PROPERTY = "properties"
-     val IS_DETAIL_CALLING_YOU = "detail_call"
+    val FRAGMENT_LIST = "listFragment"
+    val FRAGMENT_MAP = "mapsFragment"
+    val FRAGMENT_DETAIL = "DetailEstateFragment"
+    val FRAGMENT_SETTINGS = "SettingsFragment"
+    val FRAGMENT_SEARCH = "SearchFragment"
+    val DATA = "data"
+    val LOCATION = "location"
+    val INTERNET = "internet"
+    val OPEN_MAPS = "open_maps"
+    val FRAGMENT_MORT_GAGE = "mortGageCalculatorFragment"
+    val LIST_PROPERTY = "properties"
+    val IS_DETAIL_CALLING_YOU = "detail_call"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configureNavView()
         getTheBundle()
 
-        fab_add_property.setOnClickListener(){
+        fab_add_property.setOnClickListener() {
             // Open create activity
             launchCreateActivity()
         }
@@ -316,7 +315,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.activity_main_drawer_create -> launchCreateActivity()
             R.id.activity_main_drawer_search -> launchSearchFragment()
             R.id.activity_main_drawer_prefs -> launchSettingsFragment()
-            R.id.activity_main_drawer_logout ->showAlertDialogCloseApp()
+            R.id.activity_main_drawer_logout -> showAlertDialogCloseApp()
         }
         activity_main_drawer_layout.closeDrawer(GravityCompat.START)
         return true
@@ -420,12 +419,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     ) {
 
         var fragment: Fragment = when (tag) {
-            FRAGMENT_LIST ->      EstateListFragment.newInstance(it)
-            FRAGMENT_SEARCH ->    SearchFragment.newInstance()
-            FRAGMENT_MAP ->       MapsFragment.newInstance()
-            FRAGMENT_DETAIL ->    DetailEstateFragment.newInstance(propId)
+            FRAGMENT_LIST -> EstateListFragment.newInstance(it)
+            FRAGMENT_SEARCH -> SearchFragment.newInstance()
+            FRAGMENT_MAP -> MapsFragment.newInstance()
+            FRAGMENT_DETAIL -> DetailEstateFragment.newInstance(propId)
             FRAGMENT_MORT_GAGE -> MortGageCalculatorFragment.newInstance()
-            FRAGMENT_SETTINGS ->  SettingsFragment.newInstance()
+            FRAGMENT_SETTINGS -> SettingsFragment.newInstance()
             else -> throw IllegalStateException("The fragment is not valid !! ")
         }
         supportFragmentManager.beginTransaction()

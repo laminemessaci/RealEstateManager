@@ -9,7 +9,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
@@ -21,7 +20,6 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -48,7 +46,7 @@ import kotlinx.android.synthetic.main.picture_title_dialogue.view.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
-class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, Runnable{
+class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, Runnable {
 
     val listOfTypes = arrayOf("Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 
@@ -185,9 +183,10 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     // Request selected property
     private fun getSelectProperty() {
-        propertyViewModel.getProperty(propertyId).observe(this, androidx.lifecycle.Observer { property ->
-            property?.let { initVars(it) }
-        })
+        propertyViewModel.getProperty(propertyId)
+            .observe(this, androidx.lifecycle.Observer { property ->
+                property?.let { initVars(it) }
+            })
     }
 
     // Variables initialisation to edit property
@@ -473,6 +472,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         })
     }
 
+
     // Country config
     private fun configureCountry() {
         edit_country.addTextChangedListener(object : TextWatcher {
@@ -633,6 +633,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     // Toolbar configuration
     private fun configureToolbar() {
+
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         if (isEdit) {
@@ -869,8 +870,8 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         //Log.e("restls.get(0) est :  ${geoLocation.results?.indexOf(0)}","Results !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" )
         //lat = geoLocation.results?.get(0)?.geometry?.location?.lat!!
         //lng = geoLocation.results?.get(0)?.geometry?.location?.lng!!
-       //lat = 49.52267
-       //lng = 0.091310
+        //lat = 49.52267
+        //lng = 0.091310
         val latLng: LatLng
         latLng = this!!.getLocationFromAddress(address.toString())!!
         lat = latLng.latitude
@@ -940,7 +941,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     //To display list with new or updated property
     private fun returnToHome() {
-        if(!isEdit){
+        if (!isEdit) {
             RealEstateManagerApplication.setLastItemClicked(-2)
         }
         val intent = Intent(this, MainActivity::class.java)
