@@ -15,6 +15,43 @@
         android:layout_height="match_parent"
         tools:ignore="MissingClass">
 
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize">
+
+    <FrameLayout
+        android:id="@+id/activity_main_frame_layout"
+        android:layout_width="0px"
+        android:background="@color/colorRed"
+        android:layout_height="wrap_content"
+        android:layout_weight="40"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="?attr/actionBarSize"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <FrameLayout
+        android:id="@+id/activity_main_detail_frame_layout"
+        android:layout_width="0px"
+        android:background="@color/colorGreen"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_weight="60"
+        app:layout_constraintTop_toBottomOf="?attr/actionBarSize"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <FrameLayout
+        android:id="@+id/activity_main_frame_100_layout"
+
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="?attr/actionBarSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content" />
+
+
+</LinearLayout>
         <!--Toolbar -->
         <include
             layout="@layout/toolbar"
@@ -22,32 +59,19 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"/>
 
-        <FrameLayout
-            android:id="@+id/activity_main_frame_layout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintWidth_percent=".35"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <FrameLayout
-            android:id="@+id/activity_main_detail_frame_layout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent=".65"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <FrameLayout
-            android:id="@+id/activity_main_100_frame_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="48dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_property"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/add_task"
+            app:srcCompat="@drawable/ic_add"
+            android:backgroundTint="@color/colorGreen"
+            tools:visibility="visible" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

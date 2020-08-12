@@ -101,6 +101,14 @@
     <string name="enter_name">Enter Name</string>
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
+    <string name="notification_text_edit">"The property has been successfully edited ! "</string>
+    <string name="notification_text_create">The new property has been successfully added !</string>
+    <string name="media_title">Media</string>
+    <string name="detail_description">Description</string>
+    <string name="detail_surface">detail surface</string>
+    <string name="price_title">Price</string>
+    <string name="location">Location</string>
+    <string name="type_title">Type of property</string>
 
 
 </resources>

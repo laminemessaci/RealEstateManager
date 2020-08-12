@@ -2,17 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/menu_map"
-        android:icon="@drawable/ic_map_white"
+        android:icon="@drawable/ic_map_black"
         android:title="@string/map_title"
         app:showAsAction="always"/>
 
-    <item android:id="@+id/menu_create"
-        android:icon="@drawable/ic_add_white_18dp"
-        android:title="@string/item_create_title"
-        app:showAsAction="always"/>
-
     <item android:id="@+id/menu_search"
-        android:icon="@drawable/ic_search_white_24dp"
+        android:icon="@drawable/ic_search_black"
         android:title="@string/item_search_title"
         app:showAsAction="ifRoom"/>
 

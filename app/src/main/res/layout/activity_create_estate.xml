@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#64DD17"
+    android:background="@color/light_grey"
     tools:context=".controllers.activities.CreateEstateActivity">
+    <!--Toolbar -->
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
@@ -103,7 +109,7 @@
                 app:layout_constraintStart_toEndOf="@id/tvSurface"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_surface"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -494,7 +500,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorGreen"
                 android:contentDescription="@string/image"
                 android:gravity="start"
                 android:src="@drawable/ic_collections_white_36dp"
@@ -508,7 +514,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorGreen"
                 android:contentDescription="@string/image"
                 android:gravity="start"
                 android:src="@drawable/ic_add_a_photo_white_36dp"
@@ -531,7 +537,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_end="205dp" />
+                app:layout_constraintGuide_percent="0.50121653" />
 
 
             <TextView
@@ -725,18 +731,6 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_create"
         tools:ignore="UnusedAttribute" />
 
-    <Button
-        android:id="@+id/button_validate"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_margin="10dp"
-        android:textSize="13sp"
-        android:text="@string/validate"
-        android:textColor="@android:color/white"
-        android:background="@drawable/bg_button_radius"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar_create"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scrollView" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_create"
@@ -749,4 +743,18 @@
         app:title="@string/create_title"
         app:titleTextColor="@android:color/white" />
 
-</androidx.constraintlayout.widget.ConstraintLayout >
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_save_property"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/add_task"
+        app:srcCompat="@drawable/ic_save_white"
+        android:backgroundTint="@color/colorGreen"
+         />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout >

@@ -8,9 +8,9 @@ import android.content.Context;
  */
 public class RealEstateManagerApplication extends Application {
 
-    public static Boolean searchCalls =false;
+
+    private static Boolean searchCalls = false;
     private static int lastItemClicked = 0;
-    private static  Application sApplication;
 
     @Override
     public void onCreate() {
@@ -18,20 +18,21 @@ public class RealEstateManagerApplication extends Application {
         sApplication = this;
     }
 
-    public static Application getsApplication() {
+    private static Application sApplication;
+
+    public static Application getApplication() {
         return sApplication;
     }
 
-    public static Application getApplication(){return sApplication;}
+    public static Context getContext() {
+        return getApplication().getApplicationContext();
+    }
 
-    public static Context getContext(){return getApplication().getApplicationContext(); }
-
-    public static  boolean isSearchCalls(Boolean search){return searchCalls; }
-
-    public static int getLastItemClicked () { return lastItemClicked; }
-
-    public static void setLastItemClicked(int itemClicked) { lastItemClicked = itemClicked; }
+    public static boolean isSearch() { return searchCalls; }
 
     public static void setSearchCalls(Boolean search) { searchCalls = search; }
 
+    public static int getLastItemClicked() { return lastItemClicked; }
+
+    public static void setLastItemClicked(int item) { lastItemClicked = item; }
 }

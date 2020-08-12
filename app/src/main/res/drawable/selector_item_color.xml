@@ -15,5 +15,10 @@
             <solid android:color="@color/white" />
         </shape>
     </item>
+    <item android:state_selected="false">
+        <shape>
+            <solid android:color="#5C5A5A" />
+        </shape>
+    </item>
 
 </selector>

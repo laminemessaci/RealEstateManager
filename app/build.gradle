@@ -31,7 +31,7 @@ android {
     }
 
     buildTypes.each {
-        it.buildConfigField 'String', 'GoogleSecAPIKEY', "\"AIzaSyCq_7AN7V3wjoAGlIgmgMkbzbZilR2Zhd4\""
+        it.buildConfigField 'String', 'GoogleSecAPIKEY', "\"AIzaSyCQf9o-W_fvzL2AS29ouCa5TCMSKCtI9LY\""
     }
 }
 
@@ -84,5 +84,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
+    //GOOGLE PLAY SERVICES
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 
 }
