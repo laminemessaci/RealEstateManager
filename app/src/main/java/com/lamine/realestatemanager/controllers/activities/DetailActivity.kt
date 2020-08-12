@@ -27,7 +27,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun configureToolbar() {
         setSupportActionBar(toolbar)
-        supportActionBar?.title = "Create"
+        supportActionBar?.title = "Edit Property"
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationOnClickListener{

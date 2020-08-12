@@ -281,7 +281,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun launchSearchFragment() {
         if (!isDisplaySearch) {
             if (isTablet) {
-                launchFragment(FRAGMENT_SEARCH, 0, R.id.activity_main_100_frame_layout, null)
+                launchFragment(FRAGMENT_SEARCH, 0, R.id.activity_main_frame_100_layout, null)
             } else {
                 launchFragment(FRAGMENT_SEARCH, 0, R.id.activity_main_frame_layout, null)
             }
@@ -294,7 +294,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (Utils.isLocationEnabled(this)) {
             // Open search fragment
             if (isTablet) {
-                launchFragment(FRAGMENT_MAP, 0, R.id.activity_main_100_frame_layout, null)
+                launchFragment(FRAGMENT_MAP, 0, R.id.activity_main_frame_100_layout, null)
             } else {
                 launchFragment(FRAGMENT_MAP, 0, R.id.activity_main_frame_layout, null)
             }
@@ -324,7 +324,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // Open settings fragment
     private fun launchSettingsFragment() {
         if (isTablet) {
-            launchFragment(FRAGMENT_SETTINGS, 0, R.id.activity_main_100_frame_layout, null)
+            launchFragment(FRAGMENT_SETTINGS, 0, R.id.activity_main_frame_100_layout, null)
         } else {
             launchFragment(FRAGMENT_SETTINGS, 0, R.id.activity_main_frame_layout, null)
         }
