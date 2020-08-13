@@ -279,6 +279,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         return true
     }
 
+    // Get propertyId from Marker
     private fun getPropertyId(marker: Marker) {
         marker.showInfoWindow()
         map.moveCamera(CameraUpdateFactory.newLatLng(marker.position))

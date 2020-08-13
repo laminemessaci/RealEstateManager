@@ -16,22 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/constraint_type">
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/text_view_detail_title"
@@ -90,7 +80,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint3"
+                android:id="@+id/fab_edit_property"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/constraint2"
@@ -614,7 +604,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraint3">
+                app:layout_constraintTop_toBottomOf="@id/fab_edit_property">
 
                 <com.google.android.gms.maps.MapView
                     android:id="@+id/detail_lite_map"
@@ -639,12 +629,15 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/create_note-fab"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_edit_property"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="24dp"
         android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/colorGreen"
-        app:srcCompat="@drawable/ic_edit" />
+        android:contentDescription="fab edit propety"
+        android:text="Save Changes"
+        app:icon="@drawable/ic_edit"
+        tools:ignore="DuplicateIds" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
