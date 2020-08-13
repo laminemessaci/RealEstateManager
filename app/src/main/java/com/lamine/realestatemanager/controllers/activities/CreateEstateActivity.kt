@@ -46,7 +46,8 @@ import kotlinx.android.synthetic.main.picture_title_dialogue.view.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
-class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, Runnable {
+
+class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     val listOfTypes = arrayOf("Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 
@@ -121,6 +122,19 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         configureButtonValidate()
     }
 
+    // Toolbar configuration
+    private fun configureToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "Edit Property"
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.custom_indicator)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        //toolbar.setNavigationOnClickListener{
+         //   onBackPressed()
+       // }
+    }
+
+
     // To check internet and location
     private fun checkDeviceServices() {
         if (!Utils.isInternetAvailable(this)) {
@@ -171,7 +185,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     //To request intent data
     private fun getTheBundle() {
-        propertyId = intent.getLongExtra(DetailActivity.PROPERTY, 0)
+        propertyId = intent.getLongExtra("property", 0)
         if (propertyId != 0L) {
             getSelectProperty()
             isEdit = true
@@ -631,16 +645,6 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         })
     }
 
-    // Toolbar configuration
-    private fun configureToolbar() {
-
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        if (isEdit) {
-            toolbar_create.title = resources.getString(R.string.edit_title)
-        }
-    }
-
 
     // Spinner to select typ of properties
     private fun configureSpinner() {
@@ -810,7 +814,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     // Floatin Action Button valid configuration
     private fun configureButtonValidate() {
-        fab_save_property.setOnClickListener {
+        extended_fab.setOnClickListener {
             if (Utils.isInternetAvailable(this)) {
                 checkValues()
             } else {
@@ -947,10 +951,5 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-
-    override fun run() {
-        TODO("Not yet implemented")
-    }
-
 
 }

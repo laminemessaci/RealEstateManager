@@ -23,13 +23,13 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
 import com.lamine.realestatemanager.controllers.activities.CreateEstateActivity
-import com.lamine.realestatemanager.controllers.activities.DetailActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.Prefs
 import com.lamine.realestatemanager.view.DetailPictureAdapter
 import kotlinx.android.synthetic.main.fragment_detail_estate.*
+import kotlinx.android.synthetic.main.toolbar.*
 import java.text.NumberFormat
 import java.util.*
 
@@ -43,6 +43,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var mListener: OnFragmentDetailListener? = null
     private lateinit var currencyFormat: NumberFormat
+
 
     companion object {
         private const val ARG_PARAM = "property"
@@ -71,7 +72,9 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         initViewModelFactory()
         getTheBundle()
         getForeign()
+
     }
+
 
     // Get intent data
     private fun getTheBundle() {
@@ -91,7 +94,9 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private fun getForeign() {
         val prefs: Prefs = Prefs.get(RealEstateManagerApplication.getContext())
         currencyFormat =
-            if(prefs.foreignCurrency) NumberFormat.getCurrencyInstance(Locale.FRANCE) else NumberFormat.getCurrencyInstance(Locale.US)
+            if (prefs.foreignCurrency) NumberFormat.getCurrencyInstance(Locale.FRANCE) else NumberFormat.getCurrencyInstance(
+                Locale.US
+            )
     }
 
     // To set data in views
@@ -100,14 +105,17 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         this.property = property
         text_type.text = property.type
         if (property.description != null) tv_description_text.text = property.description
-        if (property.livingSpace != null)text_surface.text = property.livingSpace.toString()
+        if (property.livingSpace != null) text_surface.text = property.livingSpace.toString()
         if (property.rooms != null) text_nbr_of_rooms.text = property.rooms.toString()
-        if (property.numOfBath != null)text_nbr_bathrooms.text = property.numOfBath.toString()
-        if (property.numOfBed != null)text_nbr_bedrooms.text = property.numOfBed.toString()
-        if (property.address?.address != null)text_location_num_street.text = property.address?.address
-        if (property.address?.city != null)text_location_town.text = property.address?.city
-        if (property.address?.country != null)text_location_country.text = property.address?.country
-        if (property.address?.postalCode != null)text_location_cp.text = property.address?.postalCode
+        if (property.numOfBath != null) text_nbr_bathrooms.text = property.numOfBath.toString()
+        if (property.numOfBed != null) text_nbr_bedrooms.text = property.numOfBed.toString()
+        if (property.address?.address != null) text_location_num_street.text =
+            property.address?.address
+        if (property.address?.city != null) text_location_town.text = property.address?.city
+        if (property.address?.country != null) text_location_country.text =
+            property.address?.country
+        if (property.address?.postalCode != null) text_location_cp.text =
+            property.address?.postalCode
         text_price.text = currencyFormat.format(property.price)
         if (property.address?.apartmentNumber != 0) {
             text_location_num_type.text =
@@ -115,12 +123,12 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         } else {
             text_location_num_type.visibility = View.GONE
         }
-        if(property.address?.additionalAddress?.isNotEmpty()!!){
+        if (property.address?.additionalAddress?.isNotEmpty()!!) {
             text_location_additional.text = property.address?.additionalAddress
-        }else{
+        } else {
             text_location_additional.visibility = View.GONE
         }
-        if (property.realtor != null)text_realtor.text = property.realtor
+        if (property.realtor != null) text_realtor.text = property.realtor
         initCheckbox()
         initStatus()
         configureButtonEdit()
@@ -129,9 +137,9 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     }
 
     private fun initStatus() {
-        if(property.status!!){
+        if (property.status!!) {
             checkboxAvailable.isChecked = true
-        }else{
+        } else {
             checkboxSold.isChecked = true
             tv_soldDate.visibility = View.VISIBLE
             picker_soldDate.visibility = View.VISIBLE
@@ -171,7 +179,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     }
 
     private fun configureButtonEdit() {
-        fab_edit_property.setOnClickListener {
+        extended_fab_edit.setOnClickListener {
             launchCreateActivity(propertyId)
         }
     }
@@ -180,7 +188,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private fun launchCreateActivity(id: Long?) {
         val intent = Intent(activity, CreateEstateActivity::class.java)
         if (id != null) {
-            intent.putExtra(DetailActivity.PROPERTY, propertyId)
+            intent.putExtra("property", propertyId)
         }
         startActivity(intent)
     }
@@ -190,7 +198,8 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private fun configureRecyclerView() {
         detail_picture_recycler_view.apply {
             layoutManager = LinearLayoutManager(context, OrientationHelper.HORIZONTAL, false)
-            adapter = DetailPictureAdapter(property.pictures!!){position: Int -> onItemClicked(position)}
+            adapter =
+                DetailPictureAdapter(property.pictures!!) { position: Int -> onItemClicked(position) }
         }
     }
 
@@ -199,7 +208,9 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         this.propertyViewModel = ViewModelProviders.of(this,
             activity?.applicationContext?.let {
                 DataInjection.Injection.provideViewModelFactory(
-                    it) }).get(PropertyViewModel::class.java)
+                    it
+                )
+            }).get(PropertyViewModel::class.java)
     }
 
     // Update adapter with default value

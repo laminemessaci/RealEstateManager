@@ -7,10 +7,45 @@
     android:background="?android:attr/colorBackground"
     android:fitsSystemWindows="true">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_launcher"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/pictureNeighbour"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:src="@drawable/maisonbois"
+                tools:srcCompat="#69adb7" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -629,15 +664,16 @@
 
     </androidx.core.widget.NestedScrollView>
 
+
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_edit_property"
+        android:id="@+id/extended_fab_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
+        android:layout_margin="16dp"
         android:layout_gravity="bottom|right"
-        android:contentDescription="fab edit propety"
-        android:text="Save Changes"
-        app:icon="@drawable/ic_edit"
-        tools:ignore="DuplicateIds" />
+        android:contentDescription="fabs to edit property"
+        android:text="Edit"
+        app:icon="@drawable/ic_edit"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

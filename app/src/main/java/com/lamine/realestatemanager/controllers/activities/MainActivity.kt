@@ -404,10 +404,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_detail_frame_layout, detailFragment)
                 .commit()
+            fab_add_property.hide()
         } else {
-            val intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.PROPERTY, property.id)
-            startActivity(intent)
+           // val intent = Intent(this, DetailActivity::class.java)
+            //intent.putExtra(DetailActivity.PROPERTY, property.id)
+            //startActivity(intent)
+            val detailFragment = DetailEstateFragment.newInstance(property.id)
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.activity_main_frame_layout, detailFragment)
+                .commit()
+            fab_add_property.hide()
+            toolbar.clearDisappearingChildren()
         }
     }
 
@@ -441,8 +448,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // MapsFragment interface
     override fun onMapsInteraction(idProperty: Long) {
-        val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.PROPERTY, idProperty)
+        val intent = Intent(this, DetailEstateFragment::class.java)
+        intent.putExtra("property", idProperty)
         startActivity(intent)
         Handler().postDelayed({
             onBackPressed()
