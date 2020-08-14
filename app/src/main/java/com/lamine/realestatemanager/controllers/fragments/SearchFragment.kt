@@ -207,6 +207,7 @@ class SearchFragment : Fragment(){
         check_subway.setOnClickListener { subway = true }
         check_train_station.setOnClickListener { trainStation = true }
         check_park.setOnClickListener { park = true }
+
         check_available.setOnClickListener {
             available = check_available.isChecked
             check_sold.isChecked = false
@@ -215,5 +216,24 @@ class SearchFragment : Fragment(){
             check_available.isChecked = false
             sold = check_sold.isChecked
         }
+    }
+
+    // To configure country editText
+    private fun configureCountry() {
+        edt_country.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+                country = edt_country.text.toString().replace(" ", "")
+            }
+        })
     }
 }
