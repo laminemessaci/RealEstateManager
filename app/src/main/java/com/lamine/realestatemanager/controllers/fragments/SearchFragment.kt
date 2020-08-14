@@ -168,4 +168,25 @@ class SearchFragment : Fragment(){
         }
     }
 
+    // To configure asked entry date
+    private fun configureDateEntry() {
+        picker_entry.text = Utils.getTodayDate()
+        picker_entry.setOnClickListener {
+            val dpd = context?.let { it1 ->
+                DatePickerDialog(
+                    it1,
+                    DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                        // Display Selected date in TextView
+                        picker_entry.text = Utils.getStringDate(year, dayOfMonth, monthOfYear)
+                        entryDate = picker_entry.text.toString()
+                    },
+                    year,
+                    month,
+                    day
+                )
+            }
+            dpd?.show()
+        }
+    }
+
 }
