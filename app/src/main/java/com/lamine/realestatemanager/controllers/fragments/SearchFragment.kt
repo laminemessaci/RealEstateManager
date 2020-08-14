@@ -244,9 +244,7 @@ class SearchFragment : Fragment(){
             override fun beforeTextChanged(
                 s: CharSequence, start: Int,
                 count: Int, after: Int
-            ) {
-            }
-
+            ) {}
             override fun onTextChanged(
                 s: CharSequence, start: Int,
                 before: Int, count: Int
@@ -254,5 +252,14 @@ class SearchFragment : Fragment(){
                 postalCode = edit_postl_code.text.toString().replace(" ", "")
             }
         })
+    }
+
+    // To configure Price SeekBar
+    private fun configureSeekBarPrice() {
+        seekBar_price.setOnRangeSeekbarChangeListener { minValue, maxValue ->
+            getEditTextFocus()
+            price_min.text = minValue.toString()
+            price_max.text = maxValue.toString()
+        }
     }
 }
