@@ -1,5 +1,6 @@
 package com.lamine.realestatemanager.controllers.fragments
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
+import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.util.*
 
@@ -23,7 +25,7 @@ import java.util.*
  * Use the [SearchFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class SearchFragment : Fragment(){
 
     private lateinit var propertyViewModel: PropertyViewModel
     private var typeOfProperty: String = "ALL"
@@ -146,6 +148,24 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
         })
     }
-
+    // To configure asked sold date
+    private fun configureDateSold() {
+        picker_sold.setOnClickListener {
+            val dpd = context?.let { it1 ->
+                DatePickerDialog(
+                    it1,
+                    DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                        /* Display Selected date in TextView */
+                        picker_sold.text = Utils.getStringDate(year, dayOfMonth, monthOfYear)
+                        maxDate = picker_sold.text.toString()
+                    },
+                    year,
+                    month,
+                    day
+                )
+            }
+            dpd?.show()
+        }
+    }
 
 }
