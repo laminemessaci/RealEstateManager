@@ -7,11 +7,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
+import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -28,6 +32,7 @@ import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.Prefs
 import com.lamine.realestatemanager.view.DetailPictureAdapter
+import kotlinx.android.synthetic.main.detail_picture_item.view.*
 import kotlinx.android.synthetic.main.fragment_detail_estate.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.text.NumberFormat
@@ -43,6 +48,8 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var mListener: OnFragmentDetailListener? = null
     private lateinit var currencyFormat: NumberFormat
+
+
 
 
     companion object {
@@ -62,6 +69,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     ): View? =
         // Inflate the layout for this fragment
         inflater.inflate(R.layout.fragment_detail_estate, container, false)
+
 
 
     // populate the views now that the layout has been inflated
@@ -103,6 +111,9 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     @SuppressLint("SetTextI18n")
     private fun initVars(property: Property) {
         this.property = property
+        if (property.pictures != null) {
+
+        }
         text_type.text = property.type
         if (property.description != null) tv_description_text.text = property.description
         if (property.livingSpace != null) text_surface.text = property.livingSpace.toString()

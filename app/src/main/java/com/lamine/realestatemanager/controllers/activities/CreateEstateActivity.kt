@@ -129,11 +129,10 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.custom_indicator)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        //toolbar.setNavigationOnClickListener{
-         //   onBackPressed()
-       // }
+        toolbar.setNavigationOnClickListener{
+            onBackPressed()
+       }
     }
-
 
     // To check internet and location
     private fun checkDeviceServices() {

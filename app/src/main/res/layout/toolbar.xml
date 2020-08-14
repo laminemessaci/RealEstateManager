@@ -8,7 +8,6 @@
     android:minHeight="?attr/actionBarSize"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:navigationIcon="?attr/homeAsUpIndicator"
     android:background="?attr/colorPrimary"
     app:title="@string/app_title"
     app:titleTextColor="@android:color/white"

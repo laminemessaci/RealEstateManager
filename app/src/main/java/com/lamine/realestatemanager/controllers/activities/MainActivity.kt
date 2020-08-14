@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // Check if device is a tablet
     private fun defineIsTablet() {
-        if (activity_main_detail_frame_layout != null) {
+        if (activity_main_detail_frame_layout != null || activity_main_frame_100_layout != null || activity_main_detail_frame_layout != null) {
             isTablet = true
         }
     }
@@ -347,6 +347,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 } else checkBackStack(2)
 
             } else checkBackStack(1)
+
         }
         isDisplaySearch = false
     }
@@ -414,16 +415,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .replace(R.id.activity_main_frame_layout, detailFragment)
                 .commit()
             fab_add_property.hide()
-            toolbar.clearDisappearingChildren()
         }
     }
 
-    private fun launchFragment(
-        tag: String,
-        propId: Long,
-        frameLayout: Int,
-        it: List<Property>?
-    ) {
+    private fun launchFragment(tag: String, propId: Long, frameLayout: Int, it: List<Property>?) {
 
         var fragment: Fragment = when (tag) {
             FRAGMENT_LIST -> EstateListFragment.newInstance(it)
