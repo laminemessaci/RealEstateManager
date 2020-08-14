@@ -262,4 +262,23 @@ class SearchFragment : Fragment(){
             price_max.text = maxValue.toString()
         }
     }
+    // To configure town editText
+    private fun configureEditTown() {
+        edit_town.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+                city = edit_town.text.toString().replace(" ", "")
+            }
+        })
+    }
+
 }
