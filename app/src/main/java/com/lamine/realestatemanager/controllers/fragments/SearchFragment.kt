@@ -303,4 +303,13 @@ class SearchFragment : Fragment(){
         })
     }
 
+    // To configure rooms SeekBar
+    private fun configureSeekBarNumbRooms() {
+        seekBar_nbr_rooms.setOnRangeSeekbarChangeListener { minValue, maxValue ->
+            getEditTextFocus()
+            room_min.text = minValue.toString()
+            room_max.text = maxValue.toString()
+        }
+    }
+
 }
