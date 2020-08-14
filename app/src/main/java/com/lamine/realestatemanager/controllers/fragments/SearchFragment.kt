@@ -189,4 +189,13 @@ class SearchFragment : Fragment(){
         }
     }
 
+
+    // To configure asked bed number
+    private fun configureSeekBarBeds() {
+        seekBar_nbr_bed.setOnRangeSeekbarChangeListener { minValue, maxValue ->
+            getEditTextFocus()
+            bedroom_min.text = minValue.toString()
+            bedroom_max.text = maxValue.toString()
+        }
+    }
 }
