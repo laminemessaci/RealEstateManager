@@ -198,4 +198,22 @@ class SearchFragment : Fragment(){
             bedroom_max.text = maxValue.toString()
         }
     }
+
+    // To configure asked CheckBox
+    private fun configureCheckBox() {
+        check_airport.setOnClickListener { airport = true }
+        check_school.setOnClickListener { school = true }
+        check_shops.setOnClickListener { shops = true }
+        check_subway.setOnClickListener { subway = true }
+        check_train_station.setOnClickListener { trainStation = true }
+        check_park.setOnClickListener { park = true }
+        check_available.setOnClickListener {
+            available = check_available.isChecked
+            check_sold.isChecked = false
+        }
+        check_sold.setOnClickListener {
+            check_available.isChecked = false
+            sold = check_sold.isChecked
+        }
+    }
 }
