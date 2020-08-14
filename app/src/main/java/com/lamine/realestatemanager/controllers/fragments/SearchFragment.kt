@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.lamine.realestatemanager.R
+import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
+import kotlinx.android.synthetic.main.fragment_search.*
 import java.util.*
 
 
@@ -74,6 +77,29 @@ class SearchFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false)
+    }
+    // ViewModel initialisation
+    private fun initViewModel() {
+        propertyViewModel = ViewModelProviders.of(
+            this,
+            context?.let { DataInjection.Injection.provideViewModelFactory(it) }
+        ).get(PropertyViewModel::class.java)
+    }
+    // To configure asked surface
+    private fun configureSeekBarSurface() {
+        seekBar_surface.setOnRangeSeekbarChangeListener { minValue, maxValue ->
+            getEditTextFocus()
+            tvSurfaceResultMin.text = minValue.toString()
+            tvSurfaceResultMax.text = maxValue.toString()
+        }
+    }
+    private fun getEditTextFocus() {
+        when{
+            edit_town.hasFocus() -> edit_town.clearFocus()
+            edit_postl_code.hasFocus() -> edit_postl_code.clearFocus()
+            edt_country.hasFocus() -> edt_country.clearFocus()
+        }
+
     }
 
 
