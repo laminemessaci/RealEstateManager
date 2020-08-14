@@ -25,7 +25,9 @@ import java.util.*
  * Use the [SearchFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SearchFragment : Fragment(){
+class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
+
+    val listOfSearchTypes = arrayOf("ALL", "Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 
     private lateinit var propertyViewModel: PropertyViewModel
     private var typeOfProperty: String = "ALL"
@@ -312,4 +314,29 @@ class SearchFragment : Fragment(){
         }
     }
 
+    // To configure spinner Types
+    private fun configureTypes() {
+        type_spinner!!.onItemSelectedListener = this
+        // Create an ArrayAdapter using a simple spinner layout and languages array
+        val aa =
+            activity?.let {
+                ArrayAdapter(
+                    it,
+                    android.R.layout.simple_spinner_item,
+                    listOfSearchTypes
+                )
+            }
+        // Set layout to use when the list of choices appear
+        aa?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        // Set Adapter to Spinner
+        type_spinner!!.adapter = aa
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        typeOfProperty = listOfSearchTypes[position]
+    }
 }
