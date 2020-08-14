@@ -128,4 +128,24 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
         })
     }
 
+    // To configure asked realtor name
+    private fun configureRealtorName() {
+        edt_realtor.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+                realtorName = edt_realtor.text.toString().replace(" ", "")
+            }
+        })
+    }
+
+
 }
