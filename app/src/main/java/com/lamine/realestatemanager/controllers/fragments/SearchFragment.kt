@@ -339,4 +339,25 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         typeOfProperty = listOfSearchTypes[position]
     }
+
+    // Search Button config
+    private fun configureButtonSearch() {
+        button_search.setOnClickListener {
+            getEntryValues()
+        }
+    }
+
+    // get values
+    private fun getEntryValues() {
+        surfaceMin = Integer.decode(tvSurfaceResultMin.text.toString())
+        surfaceMax = Integer.decode(tvSurfaceResultMax.text.toString())
+        roomMin = Integer.decode(room_min.text.toString())
+        roomMax = Integer.decode(room_max.text.toString())
+        priceMin = price_min.text.toString().toDouble()
+        priceMax = price_max.text.toString().toDouble()
+        bedRoomsMin = Integer.decode(bedroom_min.text.toString())
+        bedRoomsMax = Integer.decode(bedroom_max.text.toString())
+    }
+
+
 }
