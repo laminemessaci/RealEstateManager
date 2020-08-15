@@ -856,7 +856,6 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
         address = coder.getFromLocationName(strAddress, 3)
         return if (address.isEmpty()) {
-
             null
         } else {
 
@@ -875,8 +874,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         //lng = geoLocation.results?.get(0)?.geometry?.location?.lng!!
         //lat = 49.52267
         //lng = 0.091310
-        val latLng: LatLng
-        latLng = this!!.getLocationFromAddress(address.toString())!!
+        val latLng: LatLng = this!!.getLocationFromAddress(address.toString())!!
         lat = latLng.latitude
         lng = latLng.longitude
 

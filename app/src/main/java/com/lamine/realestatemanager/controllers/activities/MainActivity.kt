@@ -17,6 +17,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.navigation.NavigationView
@@ -404,8 +405,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val detailFragment = DetailEstateFragment.newInstance(property.id)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_detail_frame_layout, detailFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .addToBackStack(null)
                 .commit()
-            fab_add_property.hide()
+           // fab_add_property.hide()
         } else {
            // val intent = Intent(this, DetailActivity::class.java)
             //intent.putExtra(DetailActivity.PROPERTY, property.id)
@@ -413,8 +416,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val detailFragment = DetailEstateFragment.newInstance(property.id)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_frame_layout, detailFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .addToBackStack(null)
                 .commit()
-            fab_add_property.hide()
+           // fab_add_property.hide()
         }
     }
 
@@ -431,6 +436,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         supportFragmentManager.beginTransaction()
             .replace(frameLayout, fragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .addToBackStack(tag)
             .commit()
     }
