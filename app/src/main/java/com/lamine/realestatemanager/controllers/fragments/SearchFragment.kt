@@ -5,17 +5,21 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.lamine.realestatemanager.R
+import com.lamine.realestatemanager.RealEstateManagerApplication
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.Property
+import com.lamine.realestatemanager.utils.SearchUtils
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.util.*
@@ -28,8 +32,10 @@ import java.util.*
  */
 class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    val listOfSearchTypes = arrayOf("ALL", "Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
+    val listOfSearchTypes =
+        arrayOf("ALL", "Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 
+    private var mListener: OnSearchFragmentListener? = null
     private lateinit var propertyViewModel: PropertyViewModel
     private var typeOfProperty: String = "ALL"
     private var roomMin: Int = 0
@@ -77,8 +83,12 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        if (context is OnSearchFragmentListener) {
+            mListener = context
+        } else {
+            throw RuntimeException("$context must implement OnSearchFragmentListener")
+        }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -115,6 +125,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             context?.let { DataInjection.Injection.provideViewModelFactory(it) }
         ).get(PropertyViewModel::class.java)
     }
+
     // To configure asked surface
     private fun configureSeekBarSurface() {
         seekBar_surface.setOnRangeSeekbarChangeListener { minValue, maxValue ->
@@ -123,29 +134,24 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             tvSurfaceResultMax.text = maxValue.toString()
         }
     }
+
     private fun getEditTextFocus() {
-        when{
+        when {
             edit_town.hasFocus() -> edit_town.clearFocus()
             edit_postl_code.hasFocus() -> edit_postl_code.clearFocus()
             edt_country.hasFocus() -> edt_country.clearFocus()
         }
     }
+
     // To configure asked bathrooms number
     private fun configureNbrBathrooms() {
         edit_bath.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
 
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 val nbrBathStr: String = edit_bath.text.toString()
                 if (nbrBathStr.isNotEmpty()) {
                     numberOfBath = nbrBathStr.toInt()
@@ -172,6 +178,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
         })
     }
+
     // To configure asked sold date
     private fun configureDateSold() {
         picker_sold.setOnClickListener {
@@ -268,7 +275,9 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             override fun beforeTextChanged(
                 s: CharSequence, start: Int,
                 count: Int, after: Int
-            ) {}
+            ) {
+            }
+
             override fun onTextChanged(
                 s: CharSequence, start: Int,
                 before: Int, count: Int
@@ -286,6 +295,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             price_max.text = maxValue.toString()
         }
     }
+
     // To configure town editText
     private fun configureEditTown() {
         edit_town.addTextChangedListener(object : TextWatcher {
@@ -379,7 +389,62 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
         priceMax = price_max.text.toString().toDouble()
         bedRoomsMin = Integer.decode(bedroom_min.text.toString())
         bedRoomsMax = Integer.decode(bedroom_max.text.toString())
+
+        makeSearchQuery()
     }
+
+    // --- Make Search -- //
+    private fun makeSearchQuery() {
+        val searchUtils = SearchUtils()
+        val query = searchUtils.makeQuery(
+            typeOfProperty,
+            surfaceMin,
+            surfaceMax,
+            roomMin,
+            roomMax,
+            city,
+            postalCode,
+            country,
+            shops,
+            airport,
+            park,
+            subway,
+            school,
+            trainStation,
+            sold,
+            available,
+            priceMin,
+            priceMax,
+            bedRoomsMin,
+            bedRoomsMax,
+            entryDate,
+            maxDate,
+            realtorName,
+            numberOfBath,
+            numberOfImages
+        )
+
+        Log.e("***test args: ", query)
+        propertyViewModel.getPropertyByArgs(query).observe(this, androidx.lifecycle.Observer {
+            if (it!!.isNotEmpty()) {
+                getResult(it)
+            } else {
+                Toast.makeText(
+                    this.context!!,
+                    resources.getString(R.string.result_is_empty),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+        })
+    }
+
+    // Get search result
+    private fun getResult(it: List<Property>) {
+        RealEstateManagerApplication.setSearchCalls(true)
+        mListener?.onSearchInteraction(it)
+    }
+
     // Search interface
     interface OnSearchFragmentListener {
         fun onSearchInteraction(it: List<Property>)

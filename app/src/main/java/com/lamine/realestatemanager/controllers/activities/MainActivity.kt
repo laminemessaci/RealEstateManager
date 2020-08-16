@@ -34,7 +34,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     EstateListFragment.OnFragmentInteractionListener,
-    MapsFragment.OnMapsFragmentListener, SearchFragment.OnSearchFragmentListener{
+    MapsFragment.OnMapsFragmentListener, SearchFragment.OnSearchFragmentListener {
 
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
@@ -408,9 +408,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .addToBackStack(null)
                 .commit()
-           // fab_add_property.hide()
+            // fab_add_property.hide()
         } else {
-           // val intent = Intent(this, DetailActivity::class.java)
+            // val intent = Intent(this, DetailActivity::class.java)
             //intent.putExtra(DetailActivity.PROPERTY, property.id)
             //startActivity(intent)
             val detailFragment = DetailEstateFragment.newInstance(property.id)
@@ -419,7 +419,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .addToBackStack(null)
                 .commit()
-           // fab_add_property.hide()
+            // fab_add_property.hide()
         }
     }
 
@@ -458,7 +458,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onSearchInteraction(it: List<Property>) {
-       configureAndShowFragmentList(it)
+        onBackPressed()
+        configureAndShowFragmentList(it)
         isDisplaySearch = false
     }
 
