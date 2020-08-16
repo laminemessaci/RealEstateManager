@@ -34,7 +34,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     EstateListFragment.OnFragmentInteractionListener,
-    MapsFragment.OnMapsFragmentListener {
+    MapsFragment.OnMapsFragmentListener, SearchFragment.OnSearchFragmentListener{
 
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
@@ -456,5 +456,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             onBackPressed()
         }, 400)
     }
+
+    override fun onSearchInteraction(it: List<Property>) {
+       configureAndShowFragmentList(it)
+        isDisplaySearch = false
+    }
+
 
 }

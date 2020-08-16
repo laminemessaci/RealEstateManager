@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
+import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.util.*
@@ -86,6 +87,27 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViewModel()
+        configureTypes()
+        configureEditTown()
+        configurePostalCode()
+        configureCountry()
+        configureCheckBox()
+        configureDateEntry()
+        configureDateSold()
+        configureRealtorName()
+        configureNbrBathrooms()
+        configureNbrOfImages()
+        configureSeekBarSurface()
+        configureSeekBarNumbRooms()
+        configureSeekBarPrice()
+        configureButtonSearch()
+        configureSeekBarBeds()
+    }
+
     // ViewModel initialisation
     private fun initViewModel() {
         propertyViewModel = ViewModelProviders.of(
@@ -358,6 +380,9 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
         bedRoomsMin = Integer.decode(bedroom_min.text.toString())
         bedRoomsMax = Integer.decode(bedroom_max.text.toString())
     }
-
+    // Search interface
+    interface OnSearchFragmentListener {
+        fun onSearchInteraction(it: List<Property>)
+    }
 
 }

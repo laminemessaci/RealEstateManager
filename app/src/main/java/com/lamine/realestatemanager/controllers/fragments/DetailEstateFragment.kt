@@ -185,6 +185,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private fun configureButtonEdit() {
         extended_fab_edit.setOnClickListener {
             launchCreateActivity(propertyId)
+
         }
     }
 

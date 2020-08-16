@@ -31,7 +31,7 @@ android {
     }
 
     buildTypes.each {
-        it.buildConfigField 'String', 'GoogleSecAPIKEY', "\"AIzaSyCQf9o-W_fvzL2AS29ouCa5TCMSKCtI9LY\""
+        it.buildConfigField 'String', 'GoogleSecAPIKEY', "\"AIzaSyCKwrtdKDwmBwAGKLMCE-KZjJSKafkZplI\""
     }
 }
 

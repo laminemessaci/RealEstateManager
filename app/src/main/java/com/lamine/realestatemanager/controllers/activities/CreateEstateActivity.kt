@@ -43,7 +43,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import kotlinx.android.synthetic.main.activity_create_estate.*
 import kotlinx.android.synthetic.main.picture_title_dialogue.view.*
-import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
 
@@ -100,7 +99,6 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         checkDeviceServices()
         initViewModelFactory()
         getTheBundle()
-        configureToolbar()
         configureSpinner()
         configureSurface()
         configureNumRooms()
@@ -122,17 +120,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         configureButtonValidate()
     }
 
-    // Toolbar configuration
-    private fun configureToolbar() {
-        setSupportActionBar(toolbar)
-        supportActionBar?.title = "Edit Property"
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.custom_indicator)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.setNavigationOnClickListener{
-            onBackPressed()
-       }
-    }
+
 
     // To check internet and location
     private fun checkDeviceServices() {
