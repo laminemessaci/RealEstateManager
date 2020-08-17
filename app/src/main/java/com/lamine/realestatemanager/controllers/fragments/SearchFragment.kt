@@ -21,6 +21,7 @@ import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.SearchUtils
 import com.lamine.realestatemanager.utils.Utils
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.util.*
 

@@ -137,5 +137,8 @@ Do you want to access the wifi settings?</string>
     <string name="euros">€</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_property">add property</string>
+    <string name="your_title">Property Details</string>
+    <string name="edit_property">Edit Property</string>
 
 </resources>

@@ -31,6 +31,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.lamine.realestatemanager.BuildConfig
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
+import com.lamine.realestatemanager.controllers.fragments.DetailEstateFragment
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.*
@@ -42,11 +43,12 @@ import com.lamine.realestatemanager.view.DetailPictureAdapter
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import kotlinx.android.synthetic.main.activity_create_estate.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.picture_title_dialogue.view.*
 import java.util.*
 
 
-class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
     val listOfTypes = arrayOf("Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 
@@ -118,6 +120,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         configureCheckBoxClick()
         configureButtons()
         configureButtonValidate()
+
     }
 
 
@@ -857,7 +860,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     // To set values in object
     private fun setValuesInProperty() {
         progressBar_create.visibility = View.GONE
-        //Log.e("restls.get(0) est :  ${geoLocation.results?.indexOf(0)}","Results !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" )
+        //Log.e("restls.get(0) est :  ${geoLocation.results?.indexOf(0)}","Results !" )
         //lat = geoLocation.results?.get(0)?.geometry?.location?.lat!!
         //lng = geoLocation.results?.get(0)?.geometry?.location?.lng!!
         //lat = 49.52267

@@ -1,29 +1,144 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="gps_title">Location is not enable</string>
-    <string name="gps_text">To start using the app, please turn on location</string>
-    <string name="internet_title">Internet is not available !</string>
-    <string name="internet_text">To have access to all the features of the application, ...</string>
+    <!--App-->
+    <string name="app_name">Real Estate Manager Kt</string>
+    <string name="app_title">Real Estate Manager</string>
+    <string name="image">image</string>
+
+    <!--Toolbar-->
+    <string name="item_search_title">Search</string>
+    <string name="item_edit_title">Edit</string>
+    <string name="item_create_title">Create</string>
+    <string name="item_prefs_title">Preferences</string>
+    <string name="create_title">Create Property</string>
+    <string name="edit_title">Edit Property</string>
+    <string name="logout_title">Logout</string>
+    <string name="map_title">Maps</string>
+
+    <!--Navigation Drawer-->
+    <string name="item_estate_loan_simulator">Estate loan simulator</string>
+
+    <!-- Used in NavigationDrawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!--Main-->
     <string name="welcome_title">Welcome to Real Estate Manager !</string>
-    <string name="welcome_text">To open map, enable location service please !</string>
-    <string name="open_maps_title">Location alert !</string>
-    <string name="open_maps_text">To open map, enable location please!</string>
-    <string name="validate">validate</string>
-    <string name="nbr_of_bathrooms">nb__of_bathrooms</string>
-    <string name="name_example">name_example</string>
-    <string name="realtor_tv">realtor_tv</string>
-    <string name="sold_date_tv">sold_date_tv</string>
-    <string name="add_task">Add Property</string>
-    <string name="enter_name">Enter Name</string>
-    <string name="ok">OK</string>
-    <string name="cancel">CANCEL</string>
-    <string name="notification_text_edit">"The property has been successfully edited ! "</string>
-    <string name="notification_text_create">The new property has been successfully added !</string>
+    <string name="welcome_text">To start using the app, please register a property.</string>
+    <string name="gps_title">Location is not enable !</string>
+    <string name="gps_text">To start using the app, turn on location.</string>
+    <string name="internet_title">Internet is not available !</string>
+    <string name="close_app_title">Do you want to quit the app ?</string>
+    <string name="internet_text">To have access to all the features of the application, an internet connection is necessary.
+Do you want to access the wifi settings?</string>
+    <string name="open_maps_title">Location Alert</string>
+    <string name="open_maps_text">To open map, enable location please.</string>
+
+    <!--Detail fragment-->
     <string name="media_title">Media</string>
     <string name="detail_description">Description</string>
-    <string name="detail_surface">detail surface</string>
-    <string name="price_title">Price</string>
+    <string name="surface">Surface</string>
     <string name="location">Location</string>
+    <string name="nbr_of_rooms">Number of rooms</string>
+    <string name="nbr_of_rooms_min">Rooms min: </string>
+    <string name="nbr_of_rooms_max">Rooms max: </string>
+    <string name="nbr_of_bathrooms">Number of bathrooms</string>
+    <string name="nbr_of_bedrooms">Number of bedrooms</string>
+    <string name="bedrooms_min">Bedrooms min</string>
+    <string name="bedrooms_max">Bedrooms max</string>
+    <string name="images_min">Min Number of Images</string>
+    <string name="nbr_of_apart">apart N°</string>
+    <string name="price_title">Price</string>
     <string name="type_title">Type of property</string>
+
+    <!--    Create Activity-->
+    <string name="type_choice_tv">Choose a type</string>
+    <string name="surface_tv">Surface: </string>
+    <string name="surface_tv_min">Surface min: </string>
+    <string name="surface_tv_max">Surface max: </string>
+    <string name="address_tv">Address</string>
+    <string name="additional_address_tv">Additional Address</string>
+    <string name="additional_address_example">Staten Island road</string>
+    <string name="address_tv_detail">Street N°, name of the street…</string>
+    <string name="points_of_interest">points of interest</string>
+    <string name="school">School</string>
+    <string name="shops">Shops</string>
+    <string name="subway">Subway</string>
+    <string name="parc">Park</string>
+    <string name="train_station">Train station</string>
+    <string name="airport">Airport</string>
+    <string name="status">Status</string>
+    <string name="available">Available</string>
+    <string name="sold">Sold</string>
+    <string name="description_tv">Description</string>
+    <string name="description_example">" Magnificent house of 350m ² "</string>
+    <string name="pictures_tv">Pictures</string>
+    <string name="pictures_gallery">Gallery</string>
+    <string name="pictures_camera">Camera</string>
+    <string name="surface_m">m2</string>
+    <string name="price_tv">Price</string>
+    <string name="price_min">Price min</string>
+    <string name="price_max">Price max</string>
+    <string name="price">10 000 000$</string>
+    <string name="entry_date_tv">Entry date</string>
+    <string name="sold_date_tv">Sold date</string>
+    <string name="max_date_tv">Max date</string>
+    <string name="realtor_tv">Realtor name</string>
+    <string name="city_tv">City</string>
+    <string name="post_code_tv">Postal Code</string>
+    <string name="country_tv">Country</string>
+    <string name="country_example">United-States</string>
+    <string name="name_example">John Smith</string>
+    <string name="post_code_example">15000</string>
+    <string name="city_example">New York</string>
+    <string name="validate">VALIDATE</string>
+    <string name="valid_search">SEARCHING</string>
+    <string name="dialogTitle">Network not available!</string>
+    <string name="dialog_not_internet_text">Sorry but the internet does not allow us to record the location of this property. Do you want to save the property anyway? Its location will be recorded from the map if the network allows it.</string>
+    <!--CreateActivity Toast text-->
+    <string name="type_text">You must choose a type</string>
+    <string name="price_text">You must enter a price</string>
+    <string name="room_text">You must enter a number of rooms</string>
+    <string name="numBed_text">You must enter a number of bedrooms</string>
+    <string name="bath_text">You must enter a number of bathrooms</string>
+    <string name="space_text">You must enter a livingSpace value</string>
+    <string name="realtor_text">You must enter a realtor name</string>
+    <string name="address_text">You must enter an address</string>
+    <string name="city_text">You must enter a city</string>
+    <string name="postal_text">You must enter a postal code</string>
+    <string name="country_text">You must enter a country</string>
+    <string name="entry_date_text">You must enter an entry date</string>
+    <string name="sold_date_text">You must enter an sold date</string>
+    <!--SEARCH-->
+    <string name="result_is_empty">Sorry but no property matches your search</string>
+    <!--Notification-->
+    <string name="notification_text_create">The new property has been successfully added !</string>
+    <string name="notification_text_edit">The property has been successfully edited !</string>
+    <!--Mortgage Calculator-->
+    <string name="purchase_price">Enter purchase price</string>
+    <string name="Enter_contribution">Enter your contribution</string>
+    <string name="interest_rate">Enter interest rate</string>
+    <string name="duration">Duration (year) </string>
+    <string name="duration1">1</string>
+    <string name="calculate">Calculate</string>
+    <string name="ok">OK</string>
+    <string name="convertEuro">Convert to €</string>
+    <string name="convertDollar">Convert to $</string>
+    <string name="total_payment">Total Payment</string>
+    <string name="_0">0</string>
+    <string name="_200">200</string>
+    <string name="monthly_payment">Monthly Payment</string>
+    <string name="detail_surface">detail surface</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Settings Fragment -->
+    <string name="foreign_choice">Choose your app foreign :</string>
+    <string name="dollars">$</string>
+    <string name="euros">€</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_property">add property</string>
+    <string name="your_title">Property Details</string>
+    <string name="edit_property">Edit Property</string>
 
 </resources>

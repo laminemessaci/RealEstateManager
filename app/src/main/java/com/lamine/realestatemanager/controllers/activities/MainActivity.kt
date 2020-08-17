@@ -8,6 +8,7 @@ import android.os.Handler
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
+import android.view.SearchEvent
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -70,10 +71,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configureNavView()
         getTheBundle()
 
-        fab_add_property.setOnClickListener() {
-            // Open create activity
-            launchCreateActivity()
-        }
     }
 
     //Get intent bundle
@@ -263,20 +260,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 launchSearchFragment()
                 return true
             }
-            R.id.fab_add_property -> {
-                // Open create activity
-                launchCreateActivity()
-                return true
-            }
+
         }
         return super.onOptionsItemSelected(item)
     }
 
-    // To launch CreateActivity
-    private fun launchCreateActivity() {
-        val intent = Intent(this, CreateEstateActivity::class.java)
-        startActivity(intent)
-    }
+
 
     // To launch Search
     private fun launchSearchFragment() {
@@ -313,8 +302,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.activity_main_drawer_simulator -> launchMortGageSimulator()
-            R.id.activity_main_drawer_create -> launchCreateActivity()
-            R.id.activity_main_drawer_search -> launchSearchFragment()
+           // R.id.activity_main_drawer_create -> launchCreateActivity()
+            //R.id.activity_main_drawer_search -> launchSearchFragment()
             R.id.activity_main_drawer_prefs -> launchSettingsFragment()
             R.id.activity_main_drawer_logout -> showAlertDialogCloseApp()
         }
@@ -461,6 +450,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         onBackPressed()
         configureAndShowFragmentList(it)
         isDisplaySearch = false
+
     }
 
 

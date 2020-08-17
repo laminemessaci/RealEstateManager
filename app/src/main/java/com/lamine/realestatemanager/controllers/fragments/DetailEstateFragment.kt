@@ -23,13 +23,13 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
 import com.lamine.realestatemanager.controllers.activities.CreateEstateActivity
+import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.Prefs
 import com.lamine.realestatemanager.view.DetailPictureAdapter
 import kotlinx.android.synthetic.main.fragment_detail_estate.*
-import kotlinx.android.synthetic.main.toolbar.*
 import java.text.NumberFormat
 import java.util.*
 
@@ -43,8 +43,6 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var mListener: OnFragmentDetailListener? = null
     private lateinit var currencyFormat: NumberFormat
-
-
 
 
     companion object {
@@ -69,13 +67,13 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     // populate the views now that the layout has been inflated
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.your_title)
         detail_lite_map.onCreate(savedInstanceState)
         detail_lite_map.getMapAsync(this)
         initViewModelFactory()
         getTheBundle()
         getForeign()
     }
-
 
     // Get intent data
     private fun getTheBundle() {
@@ -99,6 +97,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
                 Locale.US
             )
     }
+
 
     // To set data in views
     @SuppressLint("SetTextI18n")

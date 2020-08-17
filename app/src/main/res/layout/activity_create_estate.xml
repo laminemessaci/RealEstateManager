@@ -121,7 +121,7 @@
                 android:inputType="number"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSurface"
-                tools:targetApi="lollipop" />
+                tools:targetApi="lollipop"/>
 
             <View
                 android:id="@+id/line2"
@@ -748,10 +748,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_gravity="bottom|center_horizontal"
+        android:layout_gravity="bottom|right"
         android:contentDescription="fabs to edit property"
         android:text="Save"
-        android:backgroundTint="@color/colorGreen"
         app:icon="@drawable/ic_validate"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout >
