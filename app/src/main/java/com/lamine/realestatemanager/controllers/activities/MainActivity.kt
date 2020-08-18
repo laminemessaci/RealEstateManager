@@ -331,9 +331,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             activity_main_drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             if (isTablet) {
+
                 if (isDetail) {
+                    showAlertDialogCloseApp()
                     isDetail = false
-                    finish()
+                    //finish()
                 } else checkBackStack(2)
 
             } else  checkBackStack(1)
@@ -395,7 +397,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (isTablet) {
             val detailFragment = DetailEstateFragment.newInstance(property.id)
             supportFragmentManager.beginTransaction()
-                .add(R.id.activity_main_detail_frame_layout, detailFragment)
+                .replace(R.id.activity_main_detail_frame_layout, detailFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .addToBackStack(null)
                 .commit()
@@ -406,11 +408,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             //startActivity(intent)
             val detailFragment = DetailEstateFragment.newInstance(property.id)
             supportFragmentManager.beginTransaction()
-                .add(R.id.activity_main_frame_layout, detailFragment)
+                .replace(R.id.activity_main_frame_layout, detailFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .addToBackStack(null)
                 .commit()
-
         }
     }
 
@@ -453,6 +454,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configureAndShowFragmentList(it)
         isDisplaySearch = false
     }
-
-
 }
