@@ -19,6 +19,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -844,7 +845,6 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         val coder = Geocoder(this)
         val address: List<android.location.Address>?
         val latlng: LatLng?
-
         address = coder.getFromLocationName(strAddress, 3)
         return if (address.isEmpty()) {
             null

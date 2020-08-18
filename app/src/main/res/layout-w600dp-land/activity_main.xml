@@ -25,7 +25,6 @@
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="35"
-                android:background="@color/colorRed"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="?attr/actionBarSize" />
@@ -55,20 +54,6 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_add_property"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom|right"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/colorGreen"
-            android:contentDescription="@string/add_property"
-            app:srcCompat="@drawable/ic_add"
-            tools:visibility="visible" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

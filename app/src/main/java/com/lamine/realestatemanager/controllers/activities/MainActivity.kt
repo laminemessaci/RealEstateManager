@@ -336,7 +336,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     finish()
                 } else checkBackStack(2)
 
-            } else checkBackStack(1)
+            } else  checkBackStack(1)
 
         }
         isDisplaySearch = false
@@ -346,7 +346,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun checkBackStack(i: Int) {
         if (supportFragmentManager.backStackEntryCount <= i) {
             showAlertDialogCloseApp()
-        } else {
+        }
+        else {
             if (refreshCount > 0) {
                 while (supportFragmentManager.backStackEntryCount > 2) {
                     supportFragmentManager.popBackStackImmediate(
@@ -378,6 +379,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val id: Long
         launchFragment(FRAGMENT_LIST, 0, R.id.activity_main_frame_layout, it)
         if (isTablet) {
+
             if (it != null) {
                 id = it[0].id
                 refreshCount = +1
@@ -393,22 +395,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (isTablet) {
             val detailFragment = DetailEstateFragment.newInstance(property.id)
             supportFragmentManager.beginTransaction()
-                .replace(R.id.activity_main_detail_frame_layout, detailFragment)
+                .add(R.id.activity_main_detail_frame_layout, detailFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .addToBackStack(null)
                 .commit()
-            // fab_add_property.hide()
+
         } else {
             // val intent = Intent(this, DetailActivity::class.java)
             //intent.putExtra(DetailActivity.PROPERTY, property.id)
             //startActivity(intent)
             val detailFragment = DetailEstateFragment.newInstance(property.id)
             supportFragmentManager.beginTransaction()
-                .replace(R.id.activity_main_frame_layout, detailFragment)
+                .add(R.id.activity_main_frame_layout, detailFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
                 .addToBackStack(null)
                 .commit()
-            // fab_add_property.hide()
+
         }
     }
 
@@ -450,7 +452,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         onBackPressed()
         configureAndShowFragmentList(it)
         isDisplaySearch = false
-
     }
 
 
