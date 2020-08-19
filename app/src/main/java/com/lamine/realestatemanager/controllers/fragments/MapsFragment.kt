@@ -27,6 +27,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.lamine.realestatemanager.BuildConfig
 import com.lamine.realestatemanager.R
+import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.GeocodeInfo
@@ -81,6 +82,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.property_location)
         getLocationClient()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val map =

@@ -67,7 +67,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     // populate the views now that the layout has been inflated
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).supportActionBar?.title = getString(R.string.your_title)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.property_detail)
         detail_lite_map.onCreate(savedInstanceState)
         detail_lite_map.getMapAsync(this)
         initViewModelFactory()

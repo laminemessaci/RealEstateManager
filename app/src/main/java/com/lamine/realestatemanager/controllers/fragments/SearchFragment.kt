@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
+import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.Property
@@ -101,6 +102,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.property_search)
         initViewModel()
         configureTypes()
         configureEditTown()

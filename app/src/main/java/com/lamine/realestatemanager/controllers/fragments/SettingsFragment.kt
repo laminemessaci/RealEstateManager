@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lamine.realestatemanager.R
+import com.lamine.realestatemanager.controllers.activities.MainActivity
 
 
 /**
@@ -40,5 +41,10 @@ class SettingsFragment : Fragment() {
 
                 }
             }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.property_setting)
     }
 }

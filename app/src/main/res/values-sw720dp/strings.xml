@@ -140,5 +140,9 @@ Do you want to access the wifi settings?</string>
     <string name="add_property">add property</string>
     <string name="your_title">Property Details</string>
     <string name="edit_property">Edit Property</string>
+    <string name="property_list">Properties List</string>
+    <string name="property_location">Properties Location</string>
+    <string name="property_search">Search Properties</string>
+    <string name="property_setting">Setting</string>
 
 </resources>
