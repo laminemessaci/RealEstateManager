@@ -8,7 +8,6 @@ import android.os.Handler
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
-import android.view.SearchEvent
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
