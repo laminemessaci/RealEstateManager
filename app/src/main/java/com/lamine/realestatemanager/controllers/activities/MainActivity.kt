@@ -27,6 +27,18 @@ import com.lamine.realestatemanager.controllers.fragments.*
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.Property
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.DATA
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.FRAGMENT_DETAIL
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.FRAGMENT_LIST
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.FRAGMENT_MAP
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.FRAGMENT_MORT_GAGE
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.FRAGMENT_SEARCH
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.FRAGMENT_SETTINGS
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.INTERNET
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.IS_DETAIL_CALLING_YOU
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.LIST_PROPERTY
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.LOCATION
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.OPEN_MAPS
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -44,20 +56,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var isTablet: Boolean = false
     private var refreshCount: Int = 0
     private var isDisplaySearch = false
-
-    val FRAGMENT_LIST = "listFragment"
-    val FRAGMENT_MAP = "mapsFragment"
-    val FRAGMENT_DETAIL = "DetailEstateFragment"
-    val FRAGMENT_SETTINGS = "SettingsFragment"
-    val FRAGMENT_SEARCH = "SearchFragment"
-    val DATA = "data"
-    val LOCATION = "location"
-    val INTERNET = "internet"
-    val OPEN_MAPS = "open_maps"
-    val FRAGMENT_MORT_GAGE = "mortGageCalculatorFragment"
-    val LIST_PROPERTY = "properties"
-    val IS_DETAIL_CALLING_YOU = "detail_call"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -332,9 +330,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             if (isTablet) {
 
                 if (isDetail) {
-                    showAlertDialogCloseApp()
+                    //showAlertDialogCloseApp()
                     isDetail = false
-                    //finish()
+                    this.finish()
                 } else checkBackStack(2)
 
             } else  checkBackStack(1)
@@ -397,8 +395,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val detailFragment = DetailEstateFragment.newInstance(property.id)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_detail_frame_layout, detailFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
-                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                //.addToBackStack(null)
                 .commit()
 
         } else {
@@ -408,7 +406,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val detailFragment = DetailEstateFragment.newInstance(property.id)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_frame_layout, detailFragment)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit()
         }
