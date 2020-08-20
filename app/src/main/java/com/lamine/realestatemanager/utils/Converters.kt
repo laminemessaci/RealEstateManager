@@ -21,7 +21,7 @@ class Converters {
         if(data == null){
             return Collections.emptyList()
         }
-        val listType: Type =object : TypeToken<List<Picture?>?>(){}.type
+        val listType: Type = object : TypeToken<List<Picture?>?>(){}.type
         return  gson.fromJson(data, listType)
     }
      @TypeConverter

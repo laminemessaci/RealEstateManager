@@ -437,13 +437,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     // MapsFragment interface
-    override fun onMapsInteraction(idProperty: Long) {
-        val intent = Intent(this, DetailEstateFragment::class.java)
-        intent.putExtra("property", idProperty)
-        startActivity(intent)
-        Handler().postDelayed({
-            onBackPressed()
-        }, 400)
+    override fun onMapsInteraction(property: Property) {
+       // val intent = Intent(this, DetailEstateFragment::class.java)
+       // intent.putExtra("property", idProperty)
+       // startActivity(intent)
+       // Handler().postDelayed({
+       //     onBackPressed()
+       // }, 400)
+
+        configureAndShowFragmentDetail(property)
     }
 
     override fun onSearchInteraction(it: List<Property>) {

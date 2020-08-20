@@ -182,5 +182,4 @@ class EstateListFragment : Fragment() {
     interface OnFragmentInteractionListener {
         fun onFragmentListInteraction(property: Property)
     }
-
 }

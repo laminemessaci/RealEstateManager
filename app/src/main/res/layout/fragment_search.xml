@@ -82,7 +82,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="120dp"
                 android:hint="@string/_0"
-                android:textColor="@color/orange_red"
+                android:textStyle="bold"
+                android:textColor="@color/colorGreen"
                 app:layout_constraintStart_toEndOf="@id/tvSurfaceMin"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
 
@@ -117,7 +118,8 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginTop="20dp"
                 android:hint="@string/_0"
-                android:textColor="@color/orange_red"
+                android:textStyle="bold"
+                android:textColor="@color/colorGreen"
                 app:layout_constraintEnd_toStartOf="@+id/tvSurfaceM2Max"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
 
@@ -141,10 +143,10 @@
                 app:max_value="1000"
                 app:steps="5"
                 app:bar_color="@color/colorGreen"
-                app:bar_highlight_color="@color/orange_red"
-                app:right_thumb_color="@color/colorRed"
-                app:left_thumb_color="@color/colorRed"
-                app:left_thumb_color_pressed="#4C2D1A"
+                app:bar_highlight_color="@color/white"
+                app:right_thumb_color="@color/colorPrimary"
+                app:left_thumb_color="@color/colorPrimary"
+                app:left_thumb_color_pressed="@color/colorPrimaryDark"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"

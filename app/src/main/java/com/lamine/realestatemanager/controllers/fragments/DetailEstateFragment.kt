@@ -34,7 +34,7 @@ import java.text.NumberFormat
 import java.util.*
 
 
-class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener{
 
     private lateinit var property: Property
     private var propertyId: Long = 0
@@ -258,5 +258,13 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private fun onItemClicked(position: Int) {
         Log.d("test", position.toString())
     }
+
+   // override fun onMapsInteraction(idProperty: Long) {
+   //     //val intent = Intent (t, DetailEstateFragment::class.java)
+   // }
+
+   // override fun onMapsInteraction(property: Property) {
+//
+   // }
 
 }
