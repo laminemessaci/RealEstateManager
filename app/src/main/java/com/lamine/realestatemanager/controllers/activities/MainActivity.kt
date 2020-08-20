@@ -400,9 +400,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .commit()
 
         } else {
-            // val intent = Intent(this, DetailActivity::class.java)
-            //intent.putExtra(DetailActivity.PROPERTY, property.id)
-            //startActivity(intent)
+
             val detailFragment = DetailEstateFragment.newInstance(property.id)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_frame_layout, detailFragment)
@@ -438,14 +436,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // MapsFragment interface
     override fun onMapsInteraction(property: Property) {
-       // val intent = Intent(this, DetailEstateFragment::class.java)
-       // intent.putExtra("property", idProperty)
-       // startActivity(intent)
-       // Handler().postDelayed({
-       //     onBackPressed()
-       // }, 400)
-
-        configureAndShowFragmentDetail(property)
+        this.propertyId = property.id
+        val detailFragment = DetailEstateFragment.newInstance(property.id)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.activity_main_frame_100_layout, detailFragment)
+            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            //.addToBackStack(null)
+            .commit()
     }
 
     override fun onSearchInteraction(it: List<Property>) {

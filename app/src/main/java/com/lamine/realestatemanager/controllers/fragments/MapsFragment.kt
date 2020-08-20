@@ -299,7 +299,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         stopLocationUpdates()
     }
 
-
     // To stop locations callback
     private fun stopLocationUpdates() {
         fusedLocationClient.removeLocationUpdates(mLocationCallback)
