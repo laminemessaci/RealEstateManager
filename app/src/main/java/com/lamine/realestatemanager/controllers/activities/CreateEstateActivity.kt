@@ -46,6 +46,7 @@ import io.reactivex.observers.DisposableObserver
 import kotlinx.android.synthetic.main.activity_create_estate.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.picture_title_dialogue.view.*
+import java.io.IOException
 import java.util.*
 
 
@@ -841,20 +842,24 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     // Get latitude/longitude from address input
     private fun getLocationFromAddress(strAddress: String?): LatLng? {
+        val ERROR_GEOCODER_ADDRESS : LatLng? = null
 
-        val coder = Geocoder(this)
-        val address: List<android.location.Address>?
-        val latlng: LatLng?
-        address = coder.getFromLocationName(strAddress, 3)
-        return if (address.isEmpty()) {
-            null
-        } else {
+        return try{
+            val coder = Geocoder(this)
+            val address: List<android.location.Address>?
+            val latlng: LatLng?
+            address = coder.getFromLocationName(strAddress, 3)
 
-            val location = address[0]
-            latlng = LatLng(location.latitude, location.longitude)
+                val location = address[0]
+                latlng = LatLng(location.latitude, location.longitude)
 
-            latlng
+                latlng
+
+        }catch (e: IOException){
+            e.printStackTrace()
+            ERROR_GEOCODER_ADDRESS
         }
+
     }
 
     // To set values in object

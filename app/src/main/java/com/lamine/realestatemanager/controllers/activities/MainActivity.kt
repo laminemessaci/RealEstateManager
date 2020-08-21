@@ -436,13 +436,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // MapsFragment interface
     override fun onMapsInteraction(property: Property) {
-        this.propertyId = property.id
-        val detailFragment = DetailEstateFragment.newInstance(property.id)
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.activity_main_frame_100_layout, detailFragment)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            //.addToBackStack(null)
-            .commit()
+        if (isTablet) {
+            val detailFragment = DetailEstateFragment.newInstance(property.id)
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.activity_main_frame_100_layout, detailFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit()
+
+        } else {
+
+            val detailFragment = DetailEstateFragment.newInstance(property.id)
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.activity_main_frame_layout, detailFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     override fun onSearchInteraction(it: List<Property>) {

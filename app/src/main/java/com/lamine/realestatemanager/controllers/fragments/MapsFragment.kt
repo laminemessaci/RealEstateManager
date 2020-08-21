@@ -54,8 +54,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     private var initPosition: Boolean = false
     private var mLocationRequest = LocationRequest()
 
-    //lateinit var myLocationButton: ImageButton
-
     companion object {
         fun newInstance(): MapsFragment {
             return MapsFragment()
