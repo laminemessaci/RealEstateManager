@@ -2,6 +2,7 @@ package com.lamine.realestatemanager.controllers.fragments
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
+import com.lamine.realestatemanager.controllers.activities.CreateEstateActivity
+import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.Property
@@ -22,6 +25,7 @@ import com.lamine.realestatemanager.utils.Utils
 import com.lamine.realestatemanager.view.EstateListAdapter
 import com.lamine.realestatemanager.view.ListPaddingDecoration
 import kotlinx.android.synthetic.main.fragment_estate_list.*
+import kotlinx.android.synthetic.main.fragment_estate_list.fab_add_property
 
 
 class EstateListFragment : Fragment() {
@@ -71,7 +75,17 @@ class EstateListFragment : Fragment() {
     // populate the views now that the layout has been inflated
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.property_list)
         getTheBundleIfExist()
+        fab_add_property.setOnClickListener() {
+            // Open create activity
+            launchCreateActivity()
+        }
+    }
+    // To launch CreateActivity
+    private fun launchCreateActivity() {
+        val intent = Intent(activity, CreateEstateActivity::class.java)
+        startActivity(intent)
     }
 
     // Get intent data
@@ -168,5 +182,4 @@ class EstateListFragment : Fragment() {
     interface OnFragmentInteractionListener {
         fun onFragmentListInteraction(property: Property)
     }
-
 }

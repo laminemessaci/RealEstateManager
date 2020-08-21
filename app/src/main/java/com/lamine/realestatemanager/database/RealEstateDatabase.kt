@@ -15,7 +15,6 @@ import com.lamine.realestatemanager.utils.Converters
  *Created by Lamine MESSACI on 03/08/2020.
  */
 
-//Configuration of  RealEstateManager Database
 
 // RealEstateManager Database configuration
 @Database(entities = [(Property::class), (Picture::class), (Address::class)],version = 2, exportSchema = false)

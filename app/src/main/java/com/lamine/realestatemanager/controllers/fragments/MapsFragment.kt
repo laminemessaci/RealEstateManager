@@ -27,6 +27,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.lamine.realestatemanager.BuildConfig
 import com.lamine.realestatemanager.R
+import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.GeocodeInfo
@@ -52,8 +53,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
     private lateinit var marker: Marker
     private var initPosition: Boolean = false
     private var mLocationRequest = LocationRequest()
-
-    //lateinit var myLocationButton: ImageButton
 
     companion object {
         fun newInstance(): MapsFragment {
@@ -81,6 +80,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.property_location)
         getLocationClient()
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val map =
@@ -287,7 +287,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             val latLng: LatLng =
                 p.address?.lat?.let { p.address!!.lng?.let { it1 -> LatLng(it, it1) } }!!
             if (marker.position == latLng) {
-                mListener?.onMapsInteraction(p.id)
+                mListener?.onMapsInteraction(p)
             }
         }
     }
@@ -297,7 +297,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         stopLocationUpdates()
     }
 
-
     // To stop locations callback
     private fun stopLocationUpdates() {
         fusedLocationClient.removeLocationUpdates(mLocationCallback)
@@ -305,7 +304,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     // Maps interface
     interface OnMapsFragmentListener {
-        fun onMapsInteraction(idProperty: Long)
+        fun onMapsInteraction(property: Property)
     }
 
 }

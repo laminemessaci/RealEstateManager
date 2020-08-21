@@ -26,6 +26,7 @@
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
+
             <ImageView
                 android:id="@+id/picture_home"
                 android:layout_width="match_parent"
@@ -43,6 +44,7 @@
                 android:textSize="25sp"
                 android:layout_marginTop="220dp"
                 android:textStyle="bold" />
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -78,8 +80,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/media_title"
-                    android:textSize="@dimen/my_value"
-                    android:textStyle="bold"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,8 +107,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/detail_description"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/my_value"
+                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,7 +116,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:textColor="@color/color_black"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="8dp"
                     android:textSize="@dimen/mini_size"
@@ -155,7 +154,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="-2dp"
                     android:text="@string/surface"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/icon_surface"
                     app:layout_constraintTop_toTopOf="@+id/icon_surface" />
@@ -167,8 +166,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:text="@string/detail_surface"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/tv_surface"
                     app:layout_constraintTop_toBottomOf="@id/tv_surface" />
 
@@ -192,7 +190,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="-2dp"
                     android:text="@string/nbr_of_rooms"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/icon_nbr_of_rooms"
                     app:layout_constraintTop_toTopOf="@+id/icon_nbr_of_rooms" />
@@ -202,7 +200,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:textColor="@color/color_black"
                     android:layout_marginTop="4dp"
                     android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/tv_surface"
@@ -228,7 +225,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="-2dp"
                     android:text="@string/nbr_of_bathrooms"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/icon_nbr_bathrooms"
                     app:layout_constraintTop_toTopOf="@+id/icon_nbr_bathrooms" />
@@ -238,9 +235,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:textColor="@color/color_black"
                     android:layout_marginTop="4dp"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/tv_surface"
                     app:layout_constraintTop_toBottomOf="@+id/tv_nbr_bathrooms" />
 
@@ -265,7 +261,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="-2dp"
                     android:text="@string/nbr_of_bedrooms"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/icon_nbr_bedrooms"
                     app:layout_constraintTop_toTopOf="@+id/icon_nbr_bedrooms" />
@@ -276,8 +272,7 @@
                     android:layout_height="14dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/tv_surface"
                     app:layout_constraintTop_toBottomOf="@+id/tv_nbr_bedrooms" />
 
@@ -299,7 +294,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="-2dp"
                     android:text="@string/price_title"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/icon_price"
                     app:layout_constraintTop_toTopOf="@+id/icon_price" />
@@ -310,8 +305,7 @@
                     android:layout_height="14dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/tv_surface"
                     app:layout_constraintTop_toBottomOf="@+id/tv_price" />
 
@@ -332,7 +326,6 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/points_of_interest"
-                    android:textStyle="bold"
                     android:textColor="@android:color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/line4" />
@@ -443,7 +436,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/location"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/text_location_num_street"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -455,7 +448,6 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/color_black"
                     android:layout_marginEnd="48dp"
                     android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -466,8 +458,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="48dp"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_location_num_street" />
 
@@ -476,7 +467,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="60dp"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/text_location_num_street"
                     app:layout_constraintTop_toBottomOf="@id/text_location_additional" />
 
@@ -485,8 +476,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="60dp"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/text_location_num_type"
                     app:layout_constraintTop_toBottomOf="@id/text_location_num_type" />
 
@@ -495,8 +485,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="60dp"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/text_location_town"
                     app:layout_constraintTop_toBottomOf="@id/text_location_town" />
 
@@ -506,8 +495,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="60dp"
                     android:textAllCaps="true"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/text_location_cp"
                     app:layout_constraintTop_toBottomOf="@id/text_location_cp" />
 
@@ -528,7 +516,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="-2dp"
                     android:text="@string/type_title"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/icon_type"
                     app:layout_constraintTop_toTopOf="@+id/icon_type" />
@@ -539,8 +527,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/tv_location"
                     app:layout_constraintTop_toBottomOf="@+id/tv_type" />
 
@@ -551,7 +538,6 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/status"
-                    android:textStyle="bold"
                     android:textColor="@android:color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/line5" />
@@ -620,7 +606,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@android:color/white"
                     android:gravity="center"
-                    android:textColor="@color/color_black"
+                    android:textColor="@android:color/black"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@+id/checkboxSold"
                     app:layout_constraintTop_toBottomOf="@+id/tv_soldDate" />
@@ -642,7 +628,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="@string/realtor_tv"
-                    android:textSize="@dimen/mini_size"
+                    android:textSize="13sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/icon_realtor"
                     app:layout_constraintTop_toTopOf="@+id/icon_realtor" />
@@ -653,8 +639,8 @@
                     android:layout_height="14dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
+                    android:textSize="13sp"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/mini_size"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_realtor"
                     app:layout_constraintTop_toBottomOf="@+id/tv_realtor" />
@@ -699,6 +685,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/colorGreen"
         android:contentDescription="fabs to edit property"
         android:text="Edit"
         app:icon="@drawable/ic_edit" />

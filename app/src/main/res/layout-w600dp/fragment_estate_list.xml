@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
+        android:visibility="gone"
         android:contentDescription="@string/add_property"
         app:srcCompat="@drawable/ic_add" />
 

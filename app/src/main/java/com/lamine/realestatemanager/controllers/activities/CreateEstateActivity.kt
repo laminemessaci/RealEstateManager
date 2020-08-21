@@ -19,6 +19,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +32,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.lamine.realestatemanager.BuildConfig
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
+import com.lamine.realestatemanager.controllers.fragments.DetailEstateFragment
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.*
@@ -42,11 +44,13 @@ import com.lamine.realestatemanager.view.DetailPictureAdapter
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import kotlinx.android.synthetic.main.activity_create_estate.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.picture_title_dialogue.view.*
-import kotlinx.android.synthetic.main.toolbar.*
+import java.io.IOException
 import java.util.*
 
-class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, Runnable {
+
+class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
     val listOfTypes = arrayOf("Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 
@@ -99,7 +103,6 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         checkDeviceServices()
         initViewModelFactory()
         getTheBundle()
-        configureToolbar()
         configureSpinner()
         configureSurface()
         configureNumRooms()
@@ -119,7 +122,10 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         configureCheckBoxClick()
         configureButtons()
         configureButtonValidate()
+
     }
+
+
 
     // To check internet and location
     private fun checkDeviceServices() {
@@ -171,7 +177,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     //To request intent data
     private fun getTheBundle() {
-        propertyId = intent.getLongExtra(DetailActivity.PROPERTY, 0)
+        propertyId = intent.getLongExtra("property", 0)
         if (propertyId != 0L) {
             getSelectProperty()
             isEdit = true
@@ -631,16 +637,6 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         })
     }
 
-    // Toolbar configuration
-    private fun configureToolbar() {
-
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        if (isEdit) {
-            toolbar_create.title = resources.getString(R.string.edit_title)
-        }
-    }
-
 
     // Spinner to select typ of properties
     private fun configureSpinner() {
@@ -810,7 +806,7 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     // Floatin Action Button valid configuration
     private fun configureButtonValidate() {
-        fab_save_property.setOnClickListener {
+        extended_fab.setOnClickListener {
             if (Utils.isInternetAvailable(this)) {
                 checkValues()
             } else {
@@ -846,34 +842,35 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
 
     // Get latitude/longitude from address input
     private fun getLocationFromAddress(strAddress: String?): LatLng? {
+        val ERROR_GEOCODER_ADDRESS : LatLng? = null
 
-        val coder = Geocoder(this)
-        val address: List<android.location.Address>?
-        val latlng: LatLng?
+        return try{
+            val coder = Geocoder(this)
+            val address: List<android.location.Address>?
+            val latlng: LatLng?
+            address = coder.getFromLocationName(strAddress, 3)
 
-        address = coder.getFromLocationName(strAddress, 3)
-        return if (address.isEmpty()) {
+                val location = address[0]
+                latlng = LatLng(location.latitude, location.longitude)
 
-            null
-        } else {
+                latlng
 
-            val location = address[0]
-            latlng = LatLng(location.latitude, location.longitude)
-
-            latlng
+        }catch (e: IOException){
+            e.printStackTrace()
+            ERROR_GEOCODER_ADDRESS
         }
+
     }
 
     // To set values in object
     private fun setValuesInProperty() {
         progressBar_create.visibility = View.GONE
-        //Log.e("restls.get(0) est :  ${geoLocation.results?.indexOf(0)}","Results !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" )
+        //Log.e("restls.get(0) est :  ${geoLocation.results?.indexOf(0)}","Results !" )
         //lat = geoLocation.results?.get(0)?.geometry?.location?.lat!!
         //lng = geoLocation.results?.get(0)?.geometry?.location?.lng!!
         //lat = 49.52267
         //lng = 0.091310
-        val latLng: LatLng
-        latLng = this!!.getLocationFromAddress(address.toString())!!
+        val latLng: LatLng = this?.getLocationFromAddress(address.toString())!!
         lat = latLng.latitude
         lng = latLng.longitude
 
@@ -947,10 +944,5 @@ class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
-
-    override fun run() {
-        TODO("Not yet implemented")
-    }
-
 
 }
