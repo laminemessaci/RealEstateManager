@@ -47,6 +47,7 @@ class SettingsFragment : Fragment() {
         (activity as MainActivity).supportActionBar?.title = getString(R.string.property_setting)
         getPrefs()
         initCheckBoxForeign()
+        configureValidBtn()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,6 +86,13 @@ class SettingsFragment : Fragment() {
                 dollars_box.isChecked = false
                 foreign = true
             }
+        }
+    }
+    //Button to valid preferences
+    private  fun configureValidBtn(){
+        valid_foreign_btn.setOnClickListener{
+            prefs.storeForeignCurrency(foreign)
+           activity?.onBackPressed()
         }
     }
 
