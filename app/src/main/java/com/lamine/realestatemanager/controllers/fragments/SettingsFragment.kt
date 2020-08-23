@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.utils.Prefs
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 
 /**
@@ -44,6 +46,7 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).supportActionBar?.title = getString(R.string.property_setting)
         getPrefs()
+        initCheckBoxForeign()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,15 +57,36 @@ class SettingsFragment : Fragment() {
     }
 
     //Request preferences
-    private fun getPrefs(){
-    prefs = Prefs.get(activity)
-    foreign = prefs.foreignCurrency
-}
-    //Checkbox foreign choice configuration
-    private fun initCheckBoxForeign(){
-        if(foreign){
+    private fun getPrefs() {
+        prefs = Prefs.get(activity)
+        foreign = prefs.foreignCurrency
+    }
 
+    //Checkbox foreign choice configuration
+    private fun initCheckBoxForeign() {
+        if (foreign) {
+            euros_box.isChecked = true
+            dollars_box.isChecked = false
+
+        }else{
+            dollars_box.isChecked = true
+            euros_box.isChecked = false
+        }
+        dollars_box.setOnCheckedChangeListener{ _, b ->
+            if(b){
+                dollars_box.isChecked = true
+                euros_box.isChecked = false
+                foreign = false
+            }
+        }
+        euros_box.setOnCheckedChangeListener{_, b ->
+            if(b){
+                euros_box.isChecked = true
+                dollars_box.isChecked = false
+                foreign = true
+            }
         }
     }
 
 }
+
