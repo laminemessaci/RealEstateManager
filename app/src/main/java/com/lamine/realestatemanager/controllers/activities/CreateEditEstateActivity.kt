@@ -44,13 +44,12 @@ import com.lamine.realestatemanager.view.DetailPictureAdapter
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import kotlinx.android.synthetic.main.activity_create_estate.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.picture_title_dialogue.view.*
 import java.io.IOException
 import java.util.*
 
 
-class CreateEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
+class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
     val listOfTypes = arrayOf("Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 

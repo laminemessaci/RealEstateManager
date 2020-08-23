@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".controllers.fragments.SearchFragment"
-    android:background="@color/light_grey">
+    android:background="@color/light_grey"
+    tools:context=".controllers.fragments.SearchFragment">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusable="true"
-        android:descendantFocusability="beforeDescendants">
+        android:descendantFocusability="beforeDescendants"
+        android:focusable="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_detail"
@@ -82,8 +82,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="120dp"
                 android:hint="@string/_0"
-                android:textStyle="bold"
                 android:textColor="@color/colorGreen"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/tvSurfaceMin"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
 
@@ -104,8 +104,8 @@
                 android:id="@+id/tvSurfaceMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
                 android:text="@string/surface_tv_max"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toStartOf="@+id/tvSurfaceResultMax"
@@ -115,11 +115,11 @@
                 android:id="@+id/tvSurfaceResultMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
                 android:hint="@string/_0"
-                android:textStyle="bold"
                 android:textColor="@color/colorGreen"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/tvSurfaceM2Max"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
 
@@ -138,22 +138,22 @@
                 android:id="@+id/seekBar_surface"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:corner_radius="10"
-                app:min_value="0"
-                app:max_value="1000"
-                app:steps="5"
-                app:bar_color="@color/colorGreen"
-                app:bar_highlight_color="@color/white"
-                app:right_thumb_color="@color/colorPrimary"
-                app:left_thumb_color="@color/colorPrimary"
-                app:left_thumb_color_pressed="@color/colorPrimaryDark"
-                android:layout_marginTop="12dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="25dp"
                 android:inputType="number"
+                app:bar_color="@color/colorGreen"
+                app:bar_highlight_color="@color/white"
+                app:corner_radius="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSurfaceM2"
+                app:left_thumb_color="@color/colorPrimary"
+                app:left_thumb_color_pressed="#00C853"
+                app:max_value="1000"
+                app:min_value="0"
+                app:right_thumb_color="@color/colorPrimary"
+                app:steps="5"
                 tools:targetApi="lollipop" />
 
             <View
@@ -168,8 +168,8 @@
                 android:id="@+id/tv_rooms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/nbr_of_rooms_min"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
@@ -183,7 +183,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="120dp"
                 android:hint="@string/_0"
-                android:textColor="@color/orange_red"
+                android:textColor="@color/colorGreen"
                 app:layout_constraintStart_toEndOf="@id/tv_rooms"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_surface" />
 
@@ -202,10 +202,10 @@
                 android:id="@+id/room_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:hint="@string/_0"
-                android:textColor="@color/orange_red"
+                android:textColor="@color/colorGreen"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_surface" />
 
@@ -213,21 +213,21 @@
                 android:id="@+id/seekBar_nbr_rooms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:corner_radius="10"
-                app:min_value="1"
-                app:max_value="40"
-                app:bar_color="@color/colorGreen"
-                app:bar_highlight_color="@color/orange_red"
-                app:right_thumb_color="@color/colorRed"
-                app:left_thumb_color="@color/colorRed"
-                app:left_thumb_color_pressed="#4C2D1A"
-                android:layout_marginTop="12dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="25dp"
                 android:inputType="number"
+                app:bar_color="@color/colorGreen"
+                app:bar_highlight_color="@color/white"
+                app:corner_radius="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_rooms" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_rooms"
+                app:left_thumb_color="@color/colorPrimary"
+                app:left_thumb_color_pressed="#00C853"
+                app:max_value="40"
+                app:min_value="1"
+                app:right_thumb_color="@color/colorPrimaryDark" />
 
 
             <TextView
@@ -248,14 +248,14 @@
                 android:layout_marginTop="20dp"
                 android:background="@android:color/white"
                 android:gravity="center"
-                android:inputType="textCapWords"
                 android:hint="@string/city_example"
+                android:importantForAutofill="no"
+                android:inputType="textCapWords"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_city"
-                app:layout_constraintWidth_percent="0.4"
-                android:importantForAutofill="no" />
+                app:layout_constraintWidth_percent="0.4" />
 
             <TextView
                 android:id="@+id/tv_postal_code"
@@ -276,13 +276,13 @@
                 android:background="@android:color/white"
                 android:gravity="center"
                 android:hint="@string/post_code_example"
+                android:importantForAutofill="no"
                 android:inputType="textPostalAddress"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/tv_postal_code"
-                app:layout_constraintWidth_percent="0.4"
-                android:importantForAutofill="no" />
+                app:layout_constraintWidth_percent="0.4" />
 
             <TextView
                 android:id="@+id/tv_country"
@@ -303,13 +303,13 @@
                 android:background="@android:color/white"
                 android:gravity="center"
                 android:hint="@string/country_example"
+                android:importantForAutofill="no"
                 android:inputType="textCapWords"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_country"
-                app:layout_constraintWidth_percent="0.4"
-                android:importantForAutofill="no" />
+                app:layout_constraintWidth_percent="0.4" />
 
 
             <View
@@ -500,8 +500,8 @@
                 android:id="@+id/price_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:hint="@string/_0"
                 android:textColor="@color/orange_red"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -511,30 +511,30 @@
                 android:id="@+id/seekBar_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:corner_radius="10"
-                app:min_value="0"
-                app:max_value="20000000"
-                app:steps="1000"
-                app:bar_color="@color/colorGreen"
-                app:bar_highlight_color="@color/orange_red"
-                app:left_thumb_color="@color/colorRed"
-                app:right_thumb_color="@color/colorRed"
-                app:left_thumb_color_pressed="#4C2D1A"
-                android:layout_marginTop="12dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="25dp"
                 android:inputType="number"
+                app:bar_color="@color/colorGreen"
+                app:bar_highlight_color="@color/orange_red"
+                app:corner_radius="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_price_min" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_price_min"
+                app:left_thumb_color="@color/colorRed"
+                app:left_thumb_color_pressed="#4C2D1A"
+                app:max_value="20000000"
+                app:min_value="0"
+                app:right_thumb_color="@color/colorRed"
+                app:steps="1000" />
 
             <TextView
                 android:id="@+id/tv_nbr_bed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/bedrooms_min"
-                android:layout_marginStart="20dp"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_price" />
@@ -567,8 +567,8 @@
                 android:id="@+id/bedroom_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:hint="@string/_0"
                 android:textColor="@color/orange_red"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -578,21 +578,21 @@
                 android:id="@+id/seekBar_nbr_bed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:corner_radius="10"
-                app:min_value="1"
-                app:max_value="20"
-                app:bar_color="@color/colorGreen"
-                app:bar_highlight_color="@color/orange_red"
-                app:left_thumb_color="@color/colorRed"
-                app:right_thumb_color="@color/colorRed"
-                app:left_thumb_color_pressed="#4C2D1A"
-                android:layout_marginTop="12dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="25dp"
                 android:inputType="number"
+                app:bar_color="@color/colorGreen"
+                app:bar_highlight_color="@color/orange_red"
+                app:corner_radius="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nbr_bed" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_nbr_bed"
+                app:left_thumb_color="@color/colorRed"
+                app:left_thumb_color_pressed="#4C2D1A"
+                app:max_value="20"
+                app:min_value="1"
+                app:right_thumb_color="@color/colorRed" />
 
             <View
                 android:id="@+id/line9"
@@ -676,12 +676,12 @@
                 android:layout_marginTop="20dp"
                 android:background="@android:color/white"
                 android:gravity="center"
-                android:inputType="textPersonName"
                 android:hint="@string/name_example"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_realtor"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_realtor" />
 
             <TextView
                 android:id="@+id/tv_nbr_bath"
@@ -702,11 +702,11 @@
                 android:layout_marginTop="20dp"
                 android:background="@android:color/white"
                 android:hint="@string/_0"
+                android:importantForAutofill="no"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nbr_bath"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_nbr_bath" />
 
             <View
                 android:id="@+id/line11"
@@ -735,11 +735,11 @@
                 android:layout_marginTop="20dp"
                 android:background="@android:color/white"
                 android:hint="@string/_0"
+                android:importantForAutofill="no"
                 android:inputType="number"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nbr_images"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_nbr_images" />
 
             <View
                 android:id="@+id/line12"

@@ -26,7 +26,7 @@
             android:authorities="com.lamine.openclassrooms.realestatemanager.provider"
             android:exported="false" />
 
-        <activity android:name="com.lamine.realestatemanager.controllers.activities.CreateEstateActivity">
+        <activity android:name="com.lamine.realestatemanager.controllers.activities.CreateEditEstateActivity">
         </activity>
 
         <activity android:name="com.lamine.realestatemanager.controllers.activities.MainActivity">

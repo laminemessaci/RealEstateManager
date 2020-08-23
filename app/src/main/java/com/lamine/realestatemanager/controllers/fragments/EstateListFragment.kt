@@ -16,7 +16,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
-import com.lamine.realestatemanager.controllers.activities.CreateEstateActivity
+import com.lamine.realestatemanager.controllers.activities.CreateEditEstateActivity
 import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
@@ -84,7 +84,7 @@ class EstateListFragment : Fragment() {
     }
     // To launch CreateActivity
     private fun launchCreateActivity() {
-        val intent = Intent(activity, CreateEstateActivity::class.java)
+        val intent = Intent(activity, CreateEditEstateActivity::class.java)
         startActivity(intent)
     }
 

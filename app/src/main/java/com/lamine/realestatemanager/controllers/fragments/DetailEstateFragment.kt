@@ -22,7 +22,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
-import com.lamine.realestatemanager.controllers.activities.CreateEstateActivity
+import com.lamine.realestatemanager.controllers.activities.CreateEditEstateActivity
 import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
@@ -190,7 +190,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
 
     // To launch CreateActivity
     private fun launchCreateActivity(id: Long?) {
-        val intent = Intent(activity, CreateEstateActivity::class.java)
+        val intent = Intent(activity, CreateEditEstateActivity::class.java)
         if (id != null) {
             intent.putExtra("property", propertyId)
         }

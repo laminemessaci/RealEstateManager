@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Handler
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
@@ -67,7 +66,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configureNavDrawer()
         configureNavView()
         getTheBundle()
-
     }
 
     //Get intent bundle
@@ -84,7 +82,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // Check if device is a tablet
     private fun defineIsTablet() {
-        if (activity_main_detail_frame_layout != null || activity_main_frame_100_layout != null || activity_main_detail_frame_layout != null) {
+        if (activity_main_detail_frame_layout != null || activity_main_100_frame_layout != null) {
             isTablet = true
         }
     }
@@ -189,7 +187,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             DATA -> {
                 title = resources.getString(R.string.welcome_title)
                 text = resources.getString(R.string.welcome_text)
-                intent = Intent(this, CreateEstateActivity::class.java)
+                intent = Intent(this, CreateEditEstateActivity::class.java)
             }
             OPEN_MAPS -> {
                 title = resources.getString(R.string.open_maps_title)
@@ -263,12 +261,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 
-
     // To launch Search
     private fun launchSearchFragment() {
         if (!isDisplaySearch) {
             if (isTablet) {
-                launchFragment(FRAGMENT_SEARCH, 0, R.id.activity_main_frame_100_layout, null)
+                launchFragment(FRAGMENT_SEARCH, 0, R.id.activity_main_100_frame_layout, null)
             } else {
                 launchFragment(FRAGMENT_SEARCH, 0, R.id.activity_main_frame_layout, null)
             }
@@ -281,7 +278,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (Utils.isLocationEnabled(this)) {
             // Open search fragment
             if (isTablet) {
-                launchFragment(FRAGMENT_MAP, 0, R.id.activity_main_frame_100_layout, null)
+                launchFragment(FRAGMENT_MAP, 0, R.id.activity_main_100_frame_layout, null)
             } else {
                 launchFragment(FRAGMENT_MAP, 0, R.id.activity_main_frame_layout, null)
             }
@@ -299,7 +296,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.activity_main_drawer_simulator -> launchMortGageSimulator()
-           // R.id.activity_main_drawer_create -> launchCreateActivity()
+            // R.id.activity_main_drawer_create -> launchCreateActivity()
             //R.id.activity_main_drawer_search -> launchSearchFragment()
             R.id.activity_main_drawer_prefs -> launchSettingsFragment()
             R.id.activity_main_drawer_logout -> showAlertDialogCloseApp()
@@ -310,8 +307,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // Open settings fragment
     private fun launchSettingsFragment() {
+
         if (isTablet) {
-            launchFragment(FRAGMENT_SETTINGS, 0, R.id.activity_main_frame_100_layout, null)
+            launchFragment(FRAGMENT_SETTINGS, 0, R.id.activity_main_100_frame_layout, null)
         } else {
             launchFragment(FRAGMENT_SETTINGS, 0, R.id.activity_main_frame_layout, null)
         }
@@ -319,7 +317,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // To launch Loan Simulator
     private fun launchMortGageSimulator() {
-        launchFragment(FRAGMENT_MORT_GAGE, 0, R.id.activity_main_frame_layout, null)
+        //launchFragment(FRAGMENT_MORT_GAGE, 0, R.id.activity_main_frame_layout, null)
+        if (isTablet) {
+            launchFragment(FRAGMENT_MORT_GAGE, 0, R.id.activity_main_100_frame_layout, null)
+        } else {
+            launchFragment(FRAGMENT_SETTINGS, 0, R.id.activity_main_frame_layout, null)
+        }
     }
 
     // OnBackPressed function
@@ -330,12 +333,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             if (isTablet) {
 
                 if (isDetail) {
-                    //showAlertDialogCloseApp()
-                    isDetail = false
                     this.finish()
+                    isDetail = false
+
                 } else checkBackStack(2)
 
-            } else  checkBackStack(1)
+            } else checkBackStack(1)
 
         }
         isDisplaySearch = false
@@ -345,8 +348,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun checkBackStack(i: Int) {
         if (supportFragmentManager.backStackEntryCount <= i) {
             showAlertDialogCloseApp()
-        }
-        else {
+        } else {
             if (refreshCount > 0) {
                 while (supportFragmentManager.backStackEntryCount > 2) {
                     supportFragmentManager.popBackStackImmediate(
@@ -378,7 +380,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val id: Long
         launchFragment(FRAGMENT_LIST, 0, R.id.activity_main_frame_layout, it)
         if (isTablet) {
-
             if (it != null) {
                 id = it[0].id
                 refreshCount = +1
@@ -413,6 +414,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun launchFragment(tag: String, propId: Long, frameLayout: Int, it: List<Property>?) {
 
         var fragment: Fragment = when (tag) {
+
             FRAGMENT_LIST -> EstateListFragment.newInstance(it)
             FRAGMENT_SEARCH -> SearchFragment.newInstance()
             FRAGMENT_MAP -> MapsFragment.newInstance()
@@ -439,9 +441,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (isTablet) {
             val detailFragment = DetailEstateFragment.newInstance(property.id)
             supportFragmentManager.beginTransaction()
-                .replace(R.id.activity_main_frame_100_layout, detailFragment)
+                .replace(R.id.activity_main_100_frame_layout, detailFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null)
+                //.addToBackStack(null)
                 .commit()
 
         } else {
@@ -450,7 +452,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_frame_layout, detailFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null)
+                //.addToBackStack(null)
                 .commit()
         }
     }
