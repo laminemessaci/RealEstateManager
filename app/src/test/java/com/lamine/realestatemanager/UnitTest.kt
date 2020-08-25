@@ -1,5 +1,6 @@
 package com.lamine.realestatemanager
 
+import com.lamine.realestatemanager.utils.Utils
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -9,9 +10,11 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class UnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun convertDollarToEuroTest() {
+        assertEquals(8.0, Utils.convertDollarToEuro(10.0), 0.01)
     }
+
+
 }

@@ -207,6 +207,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         }
     }
 
+
     // ViewModel initialisation
     private fun initViewModelFactory() {
         this.propertyViewModel = ViewModelProviders.of(this,

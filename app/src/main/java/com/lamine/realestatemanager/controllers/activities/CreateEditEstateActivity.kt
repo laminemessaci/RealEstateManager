@@ -12,19 +12,17 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
@@ -32,7 +30,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.lamine.realestatemanager.BuildConfig
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
-import com.lamine.realestatemanager.controllers.fragments.DetailEstateFragment
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.*
@@ -44,12 +41,14 @@ import com.lamine.realestatemanager.view.DetailPictureAdapter
 import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableObserver
 import kotlinx.android.synthetic.main.activity_create_estate.*
+import kotlinx.android.synthetic.main.activity_create_estate.type_spinner
+import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.picture_title_dialogue.view.*
 import java.io.IOException
 import java.util.*
 
 
-class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
+class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     val listOfTypes = arrayOf("Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 
@@ -125,7 +124,6 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
     }
 
 
-
     // To check internet and location
     private fun checkDeviceServices() {
         if (!Utils.isInternetAvailable(this)) {
@@ -182,7 +180,7 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
             isEdit = true
         } else {
             property = Property()
-            checkbox_available.isChecked = true
+            checkbox_available.isClickable = true
         }
     }
 
@@ -227,7 +225,7 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
             this.apartNumber = property.address?.apartmentNumber!!
             apart_number.isVisible = true
             edit_apart_nbr.isVisible = true
-            edit_apart_nbr.setText(apartNumber.toString())
+            edit_apart_nbr.editText?.setText(apartNumber.toString())
         }
         initWidgets()
     }
@@ -237,30 +235,33 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
         configureRecyclerView()
         val spinnerPosition: Int = listOfTypes.indexOf(typeOfProperty)
         type_spinner.setSelection(spinnerPosition)
-        if (property.livingSpace != null) edit_surface.setText(surface.toString())
-        if (numberOfRooms != 0) edit_nbr_rooms.setText(numberOfRooms.toString())
-        if (numberOfBed != 0) edit_nbr_bed.setText(numberOfBed.toString())
-        if (numberOfBath != 0) edit_nbr_bath.setText(numberOfBath.toString())
+
+        if (property.livingSpace != null) edit_surface.editText?.setText(surface.toString())
+        if (numberOfRooms != 0) edit_nbr_rooms.editText?.setText(numberOfRooms.toString())
+        if (numberOfBed != 0) edit_nbr_bed.editText?.setText(numberOfBed.toString())
+        if (numberOfBath != 0) edit_nbr_bath.editText?.setText(numberOfBath.toString())
         if (property.address != null) {
-            edit_address.setText(property.address!!.address)
+            edit_address.editText?.setText(property.address!!.address)
         } else {
             address = Address()
         }
-        if (property.realtor != null) edit_realtor.setText(realtorName)
-        if (property.description != null) edit_description.setText(description)
-        if (property.price != null) picker_price.setText(price.toString())
-        if (property.dateOfSale != null) picker_sold_date.text = soldDate
-        if (property.dateOfEntry != null) picker_entry_date.text = entryDate
+        if (property.realtor != null) edit_realtor.editText?.setText(realtorName)
+        if (property.description != null) edit_description.editText?.setText(description)
+        if (property.price != null) picker_price.editText?.setText(price.toString())
+        if (property.dateOfSale != null) picker_sold_date.editText?.setText(soldDate)
+        if (property.dateOfEntry != null) picker_entry_date.editText?.setText(entryDate)
         initCheckbox()
         if (property.status != null && property.status == true) {
             checkbox_available.isChecked = true
         } else {
             checkbox_sold.isChecked = true
         }
-        if (city.isNotEmpty()) edit_city.setText(city)
-        if (postalCode.isNotEmpty()) edit_postal_code.setText(postalCode)
-        if (country.isNotEmpty()) edit_country.setText(country)
-        if (additionalAddress.isNotEmpty()) edit_additional_address.setText(additionalAddress)
+        if (city.isNotEmpty()) edit_city.editText?.setText(city)
+        if (postalCode.isNotEmpty()) edit_postal_code.editText?.setText(postalCode)
+        if (country.isNotEmpty()) edit_country.editText?.setText(country)
+        if (additionalAddress.isNotEmpty()) edit_additional_address.editText?.setText(
+            additionalAddress
+        )
         configureRecyclerView()
     }
 
@@ -310,13 +311,13 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
 
     // Date picker to sold date
     private fun configureDatePickerSold() {
-        picker_sold_date.setOnClickListener {
+        picker_sold_date.editText?.setOnClickListener {
             val dpd = DatePickerDialog(
                 this,
-                DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                { _, year, monthOfYear, dayOfMonth ->
                     // Display Selected date in TextView
-                    picker_sold_date.text = Utils.getStringDate(year, dayOfMonth, monthOfYear)
-                    soldDate = picker_sold_date.text.toString()
+                    picker_sold_date.editText?.setText (Utils.getStringDate(year, dayOfMonth, monthOfYear))
+                    soldDate = picker_sold_date.editText?.text.toString()
                     sold = false
                     checkbox_available.isChecked = false
                     checkbox_sold.isChecked = true
@@ -329,7 +330,7 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
         }
         picker_sold_date.setOnLongClickListener {
             soldDate = ""
-            picker_sold_date.text = soldDate
+            picker_sold_date.editText?.setText(soldDate)
             true
         }
     }
@@ -337,14 +338,14 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
     //// Date picker to entry date
     private fun configureDatePickerEntry() {
         entryDate = Utils.getStringDate(year, month, day)
-        picker_entry_date.text = Utils.getTodayDate()
-        picker_entry_date.setOnClickListener {
+        picker_entry_date.editText?.setText(Utils.getTodayDate())
+        picker_entry_date.editText?.setOnClickListener {
             val dpd = DatePickerDialog(
                 this,
-                DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                { _, year, monthOfYear, dayOfMonth ->
                     // Display Selected date in TextView
-                    picker_entry_date.text = Utils.getStringDate(year, dayOfMonth, monthOfYear)
-                    entryDate = picker_entry_date.text.toString()
+                    picker_entry_date.editText?.setText(Utils.getStringDate(year, dayOfMonth, monthOfYear))
+                    entryDate = picker_entry_date.editText?.text.toString()
                 },
                 year,
                 month,
@@ -352,9 +353,9 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
             )
             dpd.show()
         }
-        picker_entry_date.setOnLongClickListener {
+        picker_entry_date.editText?.setOnLongClickListener {
             entryDate = ""
-            picker_entry_date.text = entryDate
+            picker_entry_date.editText?.setText(entryDate)
             true
         }
 
@@ -363,277 +364,119 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
 
     // Realtor name configuration
     private fun configureRealtorName() {
-        edit_realtor.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                realtorName = edit_realtor.text.toString().replace(" ", "")
-            }
-        })
+        edit_realtor.editText?.doOnTextChanged { _, _, _, _ ->
+            realtorName = edit_realtor.editText?.text.toString().replace(" ", "")
+        }
     }
 
     // Price config
     private fun configurePrice() {
-        picker_price.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                val priceStr: String = picker_price.text.toString()
-                if (priceStr.isNotEmpty()) price = priceStr.toDouble()
-            }
-        })
+        picker_price.editText?.doOnTextChanged { _, _, _, _ ->
+            val priceStr: String = picker_price.editText?.text.toString()
+            if (priceStr.isNotEmpty()) price = priceStr.toDouble()
+        }
     }
 
     // Description config
     private fun configureDescription() {
-        edit_description.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                description = edit_description.text.toString()
-            }
-        })
+        edit_description.editText?.doOnTextChanged { _, _, _, _ ->
+            description = edit_description.editText?.text.toString()
+        }
     }
 
     // Address config
     private fun configureAddress() {
-        edit_address.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
+        edit_address.editText?.doOnTextChanged { _, _, _, _ ->
+            address = Address()
+            address.address = edit_address.editText?.text.toString()
+        }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                address = Address()
-                address.address = edit_address.text.toString()
-            }
-        })
     }
 
     // City config
     private fun configureCity() {
-        edit_city.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                city = edit_city.text.toString().replace(" ", "")
-            }
-        })
+        edit_city.editText?.doOnTextChanged { _, _, _, _ ->
+            city = edit_city.editText?.text.toString().replace(" ", "")
+        }
     }
 
     // Postal Code config
     private fun configurePostalCode() {
-        edit_postal_code.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                postalCode = edit_postal_code.text.toString().replace(" ", "")
-            }
-        })
+        edit_postal_code.editText?.doOnTextChanged { _, _, _, _ ->
+            postalCode = edit_postal_code.editText?.text.toString().replace(" ", "")
+        }
     }
 
 
     // Country config
     private fun configureCountry() {
-        edit_country.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                country = edit_country.text.toString().replace(" ", "")
-            }
-        })
+        edit_country.editText?.doOnTextChanged { _, _, _, _ ->
+            country = edit_country.editText?.text.toString().replace(" ", "")
+        }
     }
 
     // Additional address config
     private fun configureEditAddress() {
-        edit_additional_address.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                additionalAddress = edit_additional_address.text.toString()
-            }
-        })
+        edit_additional_address.editText?.doOnTextChanged { _, _, _, _ ->
+            additionalAddress = edit_additional_address.editText?.text.toString()
+        }
     }
 
     // Number of rooms config
     private fun configureNumRooms() {
-        edit_nbr_rooms.addTextChangedListener(object : TextWatcher {
 
-            override fun afterTextChanged(s: Editable) {}
-
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
+        edit_nbr_rooms.editText?.doOnTextChanged { _, _, _, _ ->
+            val nbrRoomsStr: String = edit_nbr_rooms.editText?.text.toString()
+            if (nbrRoomsStr.isNotEmpty()) {
+                numberOfRooms = nbrRoomsStr.toInt()
             }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                val nbrRoomsStr: String = edit_nbr_rooms.text.toString()
-                if (nbrRoomsStr.isNotEmpty()) {
-                    numberOfRooms = nbrRoomsStr.toInt()
-                }
-            }
-        })
+        }
     }
 
     // Number of bed config
     private fun configureNumBed() {
-        edit_nbr_bed.addTextChangedListener(object : TextWatcher {
-
-            override fun afterTextChanged(s: Editable) {}
-
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
+        edit_nbr_bed.editText?.doOnTextChanged { _, _, _, _ ->
+            val nbrBedStr: String = edit_nbr_bed.editText?.text.toString()
+            if (nbrBedStr.isNotEmpty()) {
+                numberOfBed = nbrBedStr.toInt()
             }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                val nbrBedStr: String = edit_nbr_bed.text.toString()
-                if (nbrBedStr.isNotEmpty()) {
-                    numberOfBed = nbrBedStr.toInt()
-                }
-            }
-        })
+        }
     }
 
     // Number of bathrooms config
     private fun configureNumBath() {
-        edit_nbr_bath.addTextChangedListener(object : TextWatcher {
 
-            override fun afterTextChanged(s: Editable) {}
-
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
+        edit_nbr_bath.editText?.doOnTextChanged { _, _, _, _ ->
+            val nbrBathStr: String = edit_nbr_bath.editText?.text.toString()
+            if (nbrBathStr.isNotEmpty()) {
+                numberOfBath = nbrBathStr.toInt()
             }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                val nbrBathStr: String = edit_nbr_bath.text.toString()
-                if (nbrBathStr.isNotEmpty()) {
-                    numberOfBath = nbrBathStr.toInt()
-                }
-            }
-        })
+        }
     }
 
     // Apart number config
     private fun configureNumApart() {
-        edit_apart_nbr.addTextChangedListener(object : TextWatcher {
 
-            override fun afterTextChanged(s: Editable) {}
-
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
+        edit_apart_nbr.editText?.doOnTextChanged { _, _, _, _ ->
+            val nbrApartStr: String = edit_apart_nbr.editText?.text.toString()
+            if (nbrApartStr.isNotEmpty()) {
+                apartNumber = nbrApartStr.toInt()
             }
-
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                val nbrApartStr: String = edit_apart_nbr.text.toString()
-                if (nbrApartStr.isNotEmpty()) {
-                    apartNumber = nbrApartStr.toInt()
-                }
-            }
-        })
+        }
     }
 
     // Living space config
     private fun configureSurface() {
-        edit_surface.addTextChangedListener(object : TextWatcher {
 
-            override fun afterTextChanged(s: Editable) {}
-
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
+        edit_surface.editText?.doOnTextChanged { _, _, _, _ ->
+            val surfaceStr: String = edit_surface.editText?.text.toString()
+            if (surfaceStr.isNotEmpty()) {
+                surface = surfaceStr.toInt()
             }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                val surfaceStr: String = edit_surface.text.toString()
-                if (surfaceStr.isNotEmpty()) {
-                    surface = surfaceStr.toInt()
-                }
-            }
-        })
+        }
     }
 
 
@@ -655,11 +498,11 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
         typeOfProperty = listOfTypes[position]
         if (typeOfProperty == "Apartment") {
-            apart_number.isVisible = true
-            edit_apart_nbr.isVisible = true
+            apart_number?.isVisible = true
+            edit_apart_nbr?.isVisible = true
         } else {
-            apart_number.isVisible = false
-            edit_apart_nbr.isVisible = false
+            apart_number?.isVisible = false
+            edit_apart_nbr?.isVisible = false
             apartNumber = 0
         }
     }
@@ -678,7 +521,7 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
             sold = true
             checkbox_sold.isChecked = false
             soldDate = ""
-            picker_sold_date.text = soldDate
+            picker_sold_date.editText?.setText(soldDate)
         }
         checkbox_sold.setOnClickListener {
             sold = false
@@ -841,20 +684,20 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
 
     // Get latitude/longitude from address input
     private fun getLocationFromAddress(strAddress: String?): LatLng? {
-        val ERROR_GEOCODER_ADDRESS : LatLng? = null
+        val ERROR_GEOCODER_ADDRESS: LatLng? = null
 
-        return try{
+        return try {
             val coder = Geocoder(this)
             val address: List<android.location.Address>?
             val latlng: LatLng?
             address = coder.getFromLocationName(strAddress, 3)
 
-                val location = address[0]
-                latlng = LatLng(location.latitude, location.longitude)
+            val location = address[0]
+            latlng = LatLng(location.latitude, location.longitude)
 
-                latlng
+            latlng
 
-        }catch (e: IOException){
+        } catch (e: IOException) {
             e.printStackTrace()
             ERROR_GEOCODER_ADDRESS
         }

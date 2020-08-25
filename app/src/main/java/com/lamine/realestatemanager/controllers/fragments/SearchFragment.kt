@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.lamine.realestatemanager.R
@@ -188,7 +189,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val dpd = context?.let { it1 ->
                 DatePickerDialog(
                     it1,
-                    DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                    { _, year, monthOfYear, dayOfMonth ->
                         /* Display Selected date in TextView */
                         picker_sold.text = Utils.getStringDate(year, dayOfMonth, monthOfYear)
                         maxDate = picker_sold.text.toString()
@@ -209,7 +210,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val dpd = context?.let { it1 ->
                 DatePickerDialog(
                     it1,
-                    DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                    { _, year, monthOfYear, dayOfMonth ->
                         // Display Selected date in TextView
                         picker_entry.text = Utils.getStringDate(year, dayOfMonth, monthOfYear)
                         entryDate = picker_entry.text.toString()
@@ -254,40 +255,18 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure country editText
     private fun configureCountry() {
-        edt_country.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                country = edt_country.text.toString().replace(" ", "")
-            }
-        })
+        edt_country.editText?.doOnTextChanged{_,_,_,_->
+            country = edt_country.editText?.text.toString().replace(" ", "")
+        }
     }
 
     // To configure postal code editText
     private fun configurePostalCode() {
-        edit_postl_code.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                postalCode = edit_postl_code.text.toString().replace(" ", "")
-            }
-        })
+        edit_postl_code.editText?.doOnTextChanged{_,_,_,_->
+            postalCode = edit_postl_code.editText?.text.toString().replace(" ", "")
+        }
     }
 
     // To configure Price SeekBar
@@ -301,21 +280,10 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure town editText
     private fun configureEditTown() {
-        edit_town.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                city = edit_town.text.toString().replace(" ", "")
-            }
-        })
+        edit_town.editText?.doOnTextChanged{_,_,_,_->
+            city = edit_town.editText?.text.toString().replace(" ", "")
+        }
     }
 
     // To configure images number editText

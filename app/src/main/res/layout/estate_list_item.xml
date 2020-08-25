@@ -27,7 +27,7 @@
         app:barrierDirection="right"
         app:constraint_referenced_ids="estate_picture"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/estate_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         app:layout_constraintStart_toEndOf="@+id/barrier"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/estate_town"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
         app:layout_constraintStart_toEndOf="@+id/barrier"
         app:layout_constraintTop_toBottomOf="@+id/estate_type" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/estate_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

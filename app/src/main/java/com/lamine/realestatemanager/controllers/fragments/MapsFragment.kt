@@ -226,7 +226,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         }
     }
 
-
     // Request new location
     private fun requestNewLocationData() {
         if (progressBar != null) {
