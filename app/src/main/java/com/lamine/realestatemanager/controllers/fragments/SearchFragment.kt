@@ -149,14 +149,14 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure asked bathrooms number
     private fun configureNbrBathrooms() {
-        edit_bath.addTextChangedListener(object : TextWatcher {
+        edit_bath.editText?.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                val nbrBathStr: String = edit_bath.text.toString()
+                val nbrBathStr: String = edit_bath.editText?.text.toString()
                 if (nbrBathStr.isNotEmpty()) {
                     numberOfBath = nbrBathStr.toInt()
                 }
@@ -166,7 +166,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure asked realtor name
     private fun configureRealtorName() {
-        edt_realtor.addTextChangedListener(object : TextWatcher {
+        edt_realtor.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(
                 s: CharSequence, start: Int,
@@ -178,21 +178,21 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
-                realtorName = edt_realtor.text.toString().replace(" ", "")
+                realtorName = edt_realtor.editText?.text.toString().replace(" ", "")
             }
         })
     }
 
     // To configure asked sold date
     private fun configureDateSold() {
-        picker_sold.setOnClickListener {
+        picker_sold.editText?.setOnClickListener {
             val dpd = context?.let { it1 ->
                 DatePickerDialog(
                     it1,
                     { _, year, monthOfYear, dayOfMonth ->
                         /* Display Selected date in TextView */
-                        picker_sold.text = Utils.getStringDate(year, dayOfMonth, monthOfYear)
-                        maxDate = picker_sold.text.toString()
+                        picker_sold.editText?.setText(Utils.getStringDate(year, dayOfMonth, monthOfYear))
+                        maxDate = picker_sold.editText?.text.toString()
                     },
                     year,
                     month,
@@ -205,15 +205,15 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure asked entry date
     private fun configureDateEntry() {
-        picker_entry.text = Utils.getTodayDate()
-        picker_entry.setOnClickListener {
+        picker_entry.editText?.setText (Utils.getTodayDate())
+        picker_entry.editText?.setOnClickListener {
             val dpd = context?.let { it1 ->
                 DatePickerDialog(
                     it1,
                     { _, year, monthOfYear, dayOfMonth ->
                         // Display Selected date in TextView
-                        picker_entry.text = Utils.getStringDate(year, dayOfMonth, monthOfYear)
-                        entryDate = picker_entry.text.toString()
+                        picker_entry.editText?.setText( Utils.getStringDate(year, dayOfMonth, monthOfYear))
+                        entryDate = picker_entry.editText?.text.toString()
                     },
                     year,
                     month,
@@ -223,7 +223,6 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             dpd?.show()
         }
     }
-
 
     // To configure asked bed number
     private fun configureSeekBarBeds() {
@@ -288,7 +287,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure images number editText
     private fun configureNbrOfImages() {
-        edit_nbr_images.addTextChangedListener(object : TextWatcher {
+        edit_nbr_images.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(
                 s: CharSequence, start: Int,
@@ -300,7 +299,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
-                val nbrImgStr: String = edit_nbr_images.text.toString()
+                val nbrImgStr: String = edit_nbr_images.editText?.text.toString()
                 if (nbrImgStr.isNotEmpty()) {
                     numberOfImages = nbrImgStr.toInt()
                 }

@@ -14,6 +14,7 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -485,17 +486,17 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
         type_spinner!!.onItemSelectedListener = this
         // Create an ArrayAdapter using a simple spinner layout and languages array
         val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, listOfTypes)
+
         // Set layout to use when the list of choices appear
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Set Adapter to Spinner
         type_spinner!!.adapter = aa
+
+
     }
 
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        typeOfProperty = "Manor"
-    }
 
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         typeOfProperty = listOfTypes[position]
         if (typeOfProperty == "Apartment") {
             apart_number?.isVisible = true
@@ -506,6 +507,12 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
             apartNumber = 0
         }
     }
+
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        typeOfProperty = "Manor"
+    }
+
 
     // Checkbox clicks
     private fun configureCheckBoxClick() {

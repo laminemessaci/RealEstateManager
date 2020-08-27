@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#2AA57A</item>
         <item name="colorPrimaryDark">#15616D</item>
-        <item name="colorAccent">@color/colorRed</item>
+        <item name="colorAccent">@color/colorGreen</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -21,5 +21,12 @@
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@android:color/white</item>
     </style>
+
+    <!-- TOOLBAR THEME -->
+    <style name="TextFieldTheme" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- Color of the title text in the Toolbar -->
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+
 
 </resources>

@@ -195,7 +195,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                 // for ActivityCompat#requestPermissions for more details.
                 return
             }
-            map.setMyLocationEnabled(true);
+            map.setMyLocationEnabled(true)
         }
     }
 
