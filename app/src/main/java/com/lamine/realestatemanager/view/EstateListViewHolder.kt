@@ -17,6 +17,7 @@ import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
 import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.Prefs
+import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.estate_list_item.view.*
 import java.text.NumberFormat
 import java.util.*
@@ -41,16 +42,22 @@ class EstateListViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun bind(property: Property, clickListener: (Property) -> Unit, position: Int) {
-        val prefs:Prefs= Prefs.get(RealEstateManagerApplication.getContext())
-        currencyFormat =
-            if(prefs.foreignCurrency) NumberFormat.getCurrencyInstance(Locale.FRANCE) else NumberFormat.getCurrencyInstance(Locale.US)
-        currencyFormat.maximumFractionDigits = 0
+        val prefs: Prefs = Prefs.get(RealEstateManagerApplication.getContext())
+        if (prefs.foreignCurrency) {
+            currencyFormat = NumberFormat.getCurrencyInstance(Locale.FRANCE)
+            currencyFormat.maximumFractionDigits = 0
+            mPriceView?.text = currencyFormat.format(property.price)
+        } else {
+            currencyFormat = NumberFormat.getCurrencyInstance(Locale.US)
+            currencyFormat.maximumFractionDigits = 0
+            mPriceView?.text = currencyFormat.format(Utils.convertEuroToDollar(property.price!!))
+        }
 
         index = RealEstateManagerApplication.getLastItemClicked()
 
         mTypeView?.text = property.type
         mTownView?.text = property.address?.city
-        mPriceView?.text = currencyFormat.format(property.price)
+        // mPriceView?.text = currencyFormat.format(property.price)
         //get image from storage
         if (property.pictures != null && property.pictures!!.isNotEmpty()) {
             Log.e("test estate list vh", (property.pictures?.get(0)?.picturePath))
@@ -65,10 +72,10 @@ class EstateListViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             mSoldTextView.visibility = View.VISIBLE
         }
         itemView.setOnClickListener {
-            if(index!=-1) RealEstateManagerApplication.setLastItemClicked(position)
+            if (index != -1) RealEstateManagerApplication.setLastItemClicked(position)
             clickListener(property)
         }
-        if(index!=-1)setItemColor(position)
+        if (index != -1) setItemColor(position)
     }
 
     //To set item and view color

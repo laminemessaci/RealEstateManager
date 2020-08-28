@@ -23,6 +23,7 @@ class EstateListAdapter(private val list: List<Property>, private val clickListe
         val property: Property = list[position]
         holder.bind(property, clickListener, position)
 //        notifyAdapter()
+
     }
 
     override fun getItemCount(): Int = list.size

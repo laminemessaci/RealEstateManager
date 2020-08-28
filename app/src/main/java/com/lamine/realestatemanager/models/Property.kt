@@ -14,7 +14,6 @@ import kotlinx.android.parcel.Parcelize
 data class Property(
     @PrimaryKey(autoGenerate = true)
     var id: Long,
-
     var type: String,
     var description: String?,
     var price: Double?,
