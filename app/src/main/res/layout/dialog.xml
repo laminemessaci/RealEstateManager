@@ -23,6 +23,7 @@
             android:text="@string/monthly_payment"
             android:textColor="#000"
             app:layout_constraintStart_toStartOf="parent"
+            app:startIconDrawable="@drawable/ic_money_black"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -30,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
+            android:textStyle="bold"
             android:layout_column="1"
             android:layout_gravity="fill_horizontal"
             android:layout_marginStart="24dp"
@@ -54,6 +56,7 @@
             android:id="@+id/total_payment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:padding="10dp"
@@ -79,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="67dp"
         android:layout_marginTop="16dp"
-        android:text=""
+        android:text="Convert ?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialogButtonOK"

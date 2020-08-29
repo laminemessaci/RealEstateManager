@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:text="@string/type_choice_tv"
                 android:textColor="@android:color/black"
@@ -251,6 +252,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
+                android:textColor="@color/color_black"
                 android:text="Points of Interests"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -336,6 +338,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/color_black"
                 android:text="Status"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -398,6 +401,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Pictures"
+                android:textColor="@color/color_black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.098"
@@ -580,9 +584,10 @@
                 android:layout_marginTop="20dp"
                 android:hint="Realtor"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.482"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/line10">
+                app:layout_constraintTop_toBottomOf="@+id/line10"
+                app:startIconDrawable="@drawable/ic_realtor">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
