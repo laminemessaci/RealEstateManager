@@ -321,7 +321,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (isTablet) {
             launchFragment(FRAGMENT_MORT_GAGE, 0, R.id.activity_main_100_frame_layout, null)
         } else {
-            launchFragment(FRAGMENT_SETTINGS, 0, R.id.activity_main_frame_layout, null)
+            launchFragment(FRAGMENT_MORT_GAGE, 0, R.id.activity_main_frame_layout, null)
         }
     }
 

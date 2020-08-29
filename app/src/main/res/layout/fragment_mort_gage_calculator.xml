@@ -1,14 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".controllers.fragments.MortGageCalculatorFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Mort Gage Calculator" />
+        android:background="@color/light_grey"
+        android:columnCount="1"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp">
 
-</FrameLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPurchasePrice"
+                    android:layout_width="match_parent"
+                    style="@style/TextFieldTheme"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:maxLength="11"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="LabelFor" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewPurchasePrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:elevation="2dp"
+                    android:hint="@string/purchase_price"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/editTextPurchasePrice"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/editTextPurchasePrice"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:targetApi="lollipop" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextDownPaymentAmount"
+                    android:layout_width="match_parent"
+                    style="@style/TextFieldTheme"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:digits="0123456789"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextPurchasePrice"
+                    tools:ignore="LabelFor" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewDownPaymentAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:elevation="2dp"
+                    android:hint="@string/Enter_contribution"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/editTextDownPaymentAmount"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/editTextDownPaymentAmount"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:targetApi="lollipop" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextInterestRate"
+                    style="@style/TextFieldTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:digits="0123456789"
+                    android:ems="10"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextDownPaymentAmount"
+                    tools:ignore="LabelFor" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewInterestRate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:elevation="2dp"
+                    android:hint="@string/interest_rate"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/editTextInterestRate"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/editTextInterestRate"
+                    tools:targetApi="lollipop" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/duration1"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextInterestRate" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 1"
+                    app:layout_constraintStart_toEndOf="@+id/duration"
+                    app:layout_constraintTop_toTopOf="@+id/duration" />
+
+                <com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar
+                    android:id="@+id/loan_seekBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_marginTop="15dp"
+                    android:inputType="number"
+                    android:max="35"
+                    android:progress="1"
+                    app:bar_color="@color/colorPrimary"
+                    app:bar_highlight_color="@color/orange_red"
+                    app:corner_radius="5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/duration"
+                    app:max_value="30"
+                    app:min_value="0"
+                    app:right_thumb_color="@color/colorRed"
+                    app:steps="1" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/calculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:contentDescription="fabs to search property"
+        android:text="Calculate"
+        app:icon="@drawable/ic_calculate" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -79,8 +79,7 @@
                     android:layout_height="match_parent"
                     android:ellipsize="end"
                     android:inputType="number"
-                    android:textSize="13dp"
-                    app:boxBackgroundColor="#CECECE" />
+                    android:textSize="13dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
