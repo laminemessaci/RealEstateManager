@@ -118,5 +118,6 @@ Do you want to access the wifi settings?</string>
     <string name="total_payment">Total Payement</string>
     <string name="convertEuro">Convert to Euro</string>
     <string name="convertDollar">Convert to $</string>
+    <string name="calculator">Simulator</string>
 
 </resources>

@@ -6,12 +6,13 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialog
 import androidx.fragment.app.Fragment
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
+import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.utils.Prefs
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.fragment_mort_gage_calculator.*
@@ -50,18 +51,19 @@ class MortGageCalculatorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.calculator)
         getForeign()
         initViews()
     }
 
     private fun getForeign() {
         prefs = Prefs.get(RealEstateManagerApplication.getContext())
-        foreign = prefs.foreignCurrency
+        foreign = prefs.getForeignCurrency()
         currencyFormat =
-            if (prefs.foreignCurrency) NumberFormat.getCurrencyInstance(Locale.FRANCE) else NumberFormat.getCurrencyInstance(
+            if (foreign) NumberFormat.getCurrencyInstance(Locale.FRANCE) else NumberFormat.getCurrencyInstance(
                 Locale.US
             )
-        if (prefs.foreignCurrency) {
+        if (foreign) {
             isDollars = false
         }
     }
@@ -115,22 +117,23 @@ class MortGageCalculatorFragment : Fragment() {
                 currencyFormat.format(totalStr)
 
             val dialogBtnConvert =
-                dialog.findViewById<View>(R.id.dialogButtonConvert) as FloatingActionButton?
+                dialog.findViewById<View>(R.id.dialogButtonConvert) as Button?
             dialogBtnConvert!!.setOnClickListener {
                 if (isDollars) {
                     currencyFormat = NumberFormat.getCurrencyInstance(Locale.FRANCE)
+                    dialogBtnConvert.setText(R.string.convertDollar)
                     if (monthlyEuro.isEmpty()) {
                         monthlyEuro = (Utils.convertDollarToEuro(monthlyStr)).toString()
                         totalEuro = (Utils.convertDollarToEuro(totalStr)).toString()
                     }
                     monthlyPaymentTV?.text = currencyFormat.format(monthlyEuro.toDouble())
                     totalPaymentTV?.text = currencyFormat.format(totalEuro.toDouble())
-                    //dialogBtnConvert.setText(R.string.convertDollar)
+
                     isDollars = false
                 } else {
                     if (monthlyEuro.isEmpty()) {
-                        monthlyEuro = (Utils.convertEuroToDollar(monthlyStr)).toString()
-                        totalEuro = (Utils.convertEuroToDollar(totalStr)).toString()
+                        monthlyEuro = monthlyStr.toString()
+                        totalEuro = totalStr.toString()
                     }
                     currencyFormat = NumberFormat.getCurrencyInstance(Locale.US)
                     monthlyPaymentTV?.text =
@@ -141,14 +144,14 @@ class MortGageCalculatorFragment : Fragment() {
                         currencyFormat.format(
                             Utils.convertEuroToDollar(totalEuro.toDouble())
                         )
-                    // dialogBtnConvert.setText(R.string.convertEuro)
+                    dialogBtnConvert.setText(R.string.convertEuro)
                     isDollars = true
                 }
             }
 
 
             val dialogButtonOk =
-                dialog.findViewById<View>(R.id.dialogButtonOK) as FloatingActionButton?
+                dialog.findViewById<View>(R.id.dialogButtonOK) as Button?
             dialogButtonOk!!.setOnClickListener { dialog.dismiss() }
 
             dialog.show()
@@ -198,7 +201,7 @@ class MortGageCalculatorFragment : Fragment() {
     }
 
     // To calculate monthly payment
-    fun getMonthlyPayment(
+    private fun getMonthlyPayment(
         interestRate: Double,
         purchaseAmount: Double,
         contribution: Double,

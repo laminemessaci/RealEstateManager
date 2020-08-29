@@ -120,6 +120,7 @@ Do you want to access the wifi settings?</string>
     <string name="property_search">Search Properties</string>
     <string name="property_setting">Setting</string>
     <string name="convertDollar">Convert to $</string>
+    <string name="calculator">Simulator</string>
 
 
 </resources>

@@ -35,9 +35,7 @@ public class Utils {
      *
      * @param dollars <-- to convert dollar to euro
      */
-    public static double convertDollarToEuro(double dollars) {
-        return Math.round(dollars * 0.812);
-    }
+    public static double convertDollarToEuro(double dollars) { return Math.round(dollars * 0.812); }
 
     // Euros to dollars conversion
     public static double convertEuroToDollar(double euros) {

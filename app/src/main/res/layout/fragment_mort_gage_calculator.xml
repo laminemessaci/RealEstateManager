@@ -5,11 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/calculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:contentDescription="fabs to search property"
+        android:text="Calculate"
+        app:icon="@drawable/ic_calculate" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/light_grey"
         android:columnCount="1"
         android:paddingLeft="10dp"
@@ -19,23 +28,28 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="9dp"
+            tools:layout_editor_absoluteY="85dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextPurchasePrice"
-                    android:layout_width="match_parent"
                     style="@style/TextFieldTheme"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="124dp"
                     android:digits="0123456789"
                     android:ems="10"
                     android:importantForAutofill="no"
                     android:inputType="numberDecimal"
                     android:maxLength="11"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="LabelFor" />
@@ -58,8 +72,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextDownPaymentAmount"
-                    android:layout_width="match_parent"
                     style="@style/TextFieldTheme"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill_horizontal"
                     android:layout_marginTop="5dp"
@@ -134,6 +148,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" 1"
+                    android:textColor="@color/colorGreen"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/duration"
                     app:layout_constraintTop_toTopOf="@+id/duration" />
 
@@ -146,17 +162,18 @@
                     android:inputType="number"
                     android:max="35"
                     android:progress="1"
-                    app:bar_color="@color/colorPrimary"
-                    app:bar_highlight_color="@color/orange_red"
+                    app:bar_color="@color/white"
+                    app:bar_highlight_color="@color/colorGreen"
                     app:corner_radius="5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/duration"
+                    app:left_thumb_color="@color/colorPrimary"
+                    app:left_thumb_color_pressed="#F2026A2D"
                     app:max_value="30"
                     app:min_value="0"
-                    app:right_thumb_color="@color/colorRed"
+                    app:right_thumb_color="@color/colorGreen"
                     app:steps="1" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -166,16 +183,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/calculate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:contentDescription="fabs to search property"
-        android:text="Calculate"
-        app:icon="@drawable/ic_calculate" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

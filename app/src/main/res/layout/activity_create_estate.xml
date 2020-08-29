@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/light_grey"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/light_grey">
 
 
     <androidx.core.widget.NestedScrollView
@@ -24,9 +24,7 @@
             android:layout_height="match_parent"
             app:layout_constraintTop_toBottomOf="@id/scrollView">
 
-
             <!-- ESTATE TYPE -->
-
             <TextView
                 android:id="@+id/tvType"
                 android:layout_width="wrap_content"
@@ -160,10 +158,10 @@
                 android:layout_marginTop="28dp"
                 android:text="Address"
                 android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_location_city_black_18dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintHorizontal_bias="0.163"
                 app:layout_constraintStart_toStartOf="parent"
-                app:drawableStartCompat="@drawable/ic_location_city_black_18dp"
                 app:layout_constraintTop_toBottomOf="@+id/edit_surface" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -264,7 +262,7 @@
                 android:id="@+id/checkbox_school"
                 android:layout_width="85dp"
                 android:layout_height="47dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 android:text="School"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -276,7 +274,7 @@
                 android:id="@+id/checkbox_train_station"
                 android:layout_width="84dp"
                 android:layout_height="43dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:text="Train station"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -288,10 +286,10 @@
                 android:id="@+id/checkbox_park"
                 android:layout_width="89dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:text="Park"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.521"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkbox_train_station"
                 tools:ignore="MissingConstraints" />
@@ -300,7 +298,7 @@
                 android:id="@+id/checkbox_shops"
                 android:layout_width="84dp"
                 android:layout_height="43dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="5dp"
                 android:text="Shops"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -312,7 +310,7 @@
                 android:id="@+id/checkbox_subway"
                 android:layout_width="88dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:text="Subway"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.504"
@@ -324,7 +322,7 @@
                 android:id="@+id/checkbox_airport"
                 android:layout_width="88dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:text="Airport"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -557,8 +555,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:inputType="date"
                     android:layout_height="55dp"
+                    android:inputType="date"
                     android:textSize="13dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -653,8 +651,6 @@
         android:contentDescription="fabs to edit property"
         android:text="Save"
         app:icon="@drawable/ic_validate" />
-
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
