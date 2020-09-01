@@ -11,17 +11,19 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 @Entity(tableName = "Address")
-data class Address(@PrimaryKey @ColumnInfo(name = "addressId")var addressId:Long,
-                   var address:String?,
-                   var sector:String?,
-                   var apartmentNumber:Int?,
-                   var city:String?,
-                   var postalCode:String?,
-                   var country:String?,
-                   var lat:Double?,
-                   var lng:Double?,
-                   var additionalAddress:String?) :
+data class Address(
+    @PrimaryKey @ColumnInfo(name = "addressId") var addressId: Long,
+    var address: String?,
+    var sector: String?,
+    var apartmentNumber: Int?,
+    var city: String?,
+    var postalCode: String?,
+    var country: String?,
+    var lat: Double?,
+    var lng: Double?,
+    var additionalAddress: String?
+) :
     Parcelable {
-    constructor() : this(0, "", "",0,"","","",0.0,0.0,"")
+    constructor() : this(0, "", "", 0, "", "", "", 0.0, 0.0, "")
 
 }

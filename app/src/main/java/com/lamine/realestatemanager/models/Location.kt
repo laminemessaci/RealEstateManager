@@ -10,8 +10,9 @@ class Location {
 
     @SerializedName("lat")
     @Expose
-    var lat:Double  = 0.0
+    var lat: Double = 0.0
+
     @SerializedName("lng")
     @Expose
-    var lng:Double = 0.0
+    var lng: Double = 0.0
 }

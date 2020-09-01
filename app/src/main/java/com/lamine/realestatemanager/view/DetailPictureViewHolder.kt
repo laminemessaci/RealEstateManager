@@ -28,7 +28,7 @@ class DetailPictureViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
             )
         }
         itemView.setOnClickListener {
-            val position:Int = adapterPosition
+            val position: Int = adapterPosition
             clickListener(position)
         }
     }

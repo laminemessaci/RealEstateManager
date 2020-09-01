@@ -19,11 +19,12 @@ class PropertyContentProvider : ContentProvider() {
 
 
     override fun insert(p0: Uri, p1: ContentValues?): Uri? {
-        if (context != null && p1 != null){
-            val index = RealEstateDatabase.getInstance(context!!).propertyDao().insertProperty(Property().fromContentValues(p1))
-            if (index != 0L){
-                context!!.contentResolver.notifyChange(p0,null)
-                return ContentUris.withAppendedId(p0,index)
+        if (context != null && p1 != null) {
+            val index = RealEstateDatabase.getInstance(context!!).propertyDao()
+                .insertProperty(Property().fromContentValues(p1))
+            if (index != 0L) {
+                context!!.contentResolver.notifyChange(p0, null)
+                return ContentUris.withAppendedId(p0, index)
             }
         }
         throw IllegalArgumentException("Failed to insert row into $p0")
@@ -37,10 +38,11 @@ class PropertyContentProvider : ContentProvider() {
         p3: Array<out String>?,
         p4: String?
     ): Cursor? {
-        if (context != null){
-            val index:Long = ContentUris.parseId(p0)
-            val cursor = RealEstateDatabase.getInstance(context!!).propertyDao().getPropertyWithCursor(index)
-            cursor.setNotificationUri(context!!.contentResolver,p0)
+        if (context != null) {
+            val index: Long = ContentUris.parseId(p0)
+            val cursor =
+                RealEstateDatabase.getInstance(context!!).propertyDao().getPropertyWithCursor(index)
+            cursor.setNotificationUri(context!!.contentResolver, p0)
             return cursor
         }
         throw IllegalArgumentException("Failed to query row for uri $p0")

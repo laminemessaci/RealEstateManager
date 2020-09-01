@@ -1,9 +1,9 @@
 package com.lamine.realestatemanager.controllers.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
@@ -20,7 +20,7 @@ class StartUpActivity : AppCompatActivity() {
         deletIfExist()
         Handler().postDelayed({
             lanchMainActivity()
-        }, 800)
+        }, 500)
     }
 
     private fun lanchMainActivity() {
@@ -32,13 +32,12 @@ class StartUpActivity : AppCompatActivity() {
     private fun deletIfExist() {
         propertyViewModel = ViewModelProviders.of(
             this,
-            this.let {DataInjection.Injection.provideViewModelFactory(it) }
+            this.let { DataInjection.Injection.provideViewModelFactory(it) }
         ).get(PropertyViewModel::class.java)
-        Thread{
-            propertyViewModel.deleteProperty(10001)
+        Thread {
+            propertyViewModel.deleteProperty(2001)
         }.start()
     }
-
 
 }
 

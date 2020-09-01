@@ -11,17 +11,21 @@ import java.util.concurrent.Executor
 /**
  *Created by Lamine MESSACI on 05/08/2020.
  */
-class PropertyViewModel(private val mPropertyDataRepository: PropertyDataRepository,
-                        private  val executor: Executor): ViewModel() {
+class PropertyViewModel(
+    private val mPropertyDataRepository: PropertyDataRepository,
+    private val executor: Executor
+) : ViewModel() {
     ///// --- PROPERTY --- /////
 
     // --- GET ---
     fun getAllProperty(): LiveData<List<Property>> {
         return mPropertyDataRepository.getProperties()
     }
+
     fun getProperty(propertyId: Long): LiveData<Property> {
         return mPropertyDataRepository.getProperty(propertyId)
     }
+
     // --- CREATE ---
     fun createProperty(property: Property?) {
         executor.execute { mPropertyDataRepository.createProperty(property) }
@@ -38,9 +42,9 @@ class PropertyViewModel(private val mPropertyDataRepository: PropertyDataReposit
     }
 
     //// --- SEARCH --- ////
-    fun getPropertyByArgs(queryString:String) : LiveData<List<Property>>{
+    fun getPropertyByArgs(queryString: String): LiveData<List<Property>> {
         val query = SimpleSQLiteQuery(queryString)
-        Log.e("get properties by args","Query : ${query.sql}")
+        Log.e("get properties by args", "Query : ${query.sql}")
         return mPropertyDataRepository.getPropertyByArgs(query)
     }
 }

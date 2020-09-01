@@ -231,7 +231,7 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
         if (property.address!!.lng != null) lng = property.address!!.lng!!
         if (property.address?.apartmentNumber != 0) {
             this.apartNumber = property.address?.apartmentNumber!!
-           // apart_number.isVisible = true
+            // apart_number.isVisible = true
             edit_apart_nbr.isVisible = true
             edit_apart_nbr.editText?.setText(apartNumber.toString())
         }

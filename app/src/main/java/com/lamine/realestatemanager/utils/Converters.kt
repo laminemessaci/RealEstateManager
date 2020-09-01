@@ -16,17 +16,19 @@ import java.util.*
 class Converters {
 
     private var gson = Gson()
+
     @TypeConverter
     fun stringToSomeObjectList(data: String?): List<Picture?>? {
-        if(data == null){
+        if (data == null) {
             return Collections.emptyList()
         }
-        val listType: Type = object : TypeToken<List<Picture?>?>(){}.type
-        return  gson.fromJson(data, listType)
+        val listType: Type = object : TypeToken<List<Picture?>?>() {}.type
+        return gson.fromJson(data, listType)
     }
-     @TypeConverter
-     fun someObjectListToString( someObjects: List<Picture?>?) :String {
-         return gson.toJson(someObjects)
-     }
+
+    @TypeConverter
+    fun someObjectListToString(someObjects: List<Picture?>?): String {
+        return gson.toJson(someObjects)
+    }
 
 }

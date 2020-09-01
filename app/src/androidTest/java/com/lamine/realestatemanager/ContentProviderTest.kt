@@ -42,7 +42,7 @@ class ContentProviderTest {
     private val address = "4 Avenue Jean Jaurès, 46100 Figeac France"
 
     // DATA SET FOR TEST
-    private val estateId: Long = 10001
+    private val estateId: Long = 2001
     private val estateId2: Long = 10000
 
     //Root test

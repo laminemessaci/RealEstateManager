@@ -24,7 +24,6 @@ import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.Constant.ConstantVal.listOfSearchTypes
 import com.lamine.realestatemanager.utils.SearchUtils
 import com.lamine.realestatemanager.utils.Utils
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import java.util.*
 
@@ -90,6 +89,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             throw RuntimeException("$context must implement OnSearchFragmentListener")
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -189,7 +189,13 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     it1,
                     { _, year, monthOfYear, dayOfMonth ->
                         /* Display Selected date in TextView */
-                        picker_sold.editText?.setText(Utils.getStringDate(year, dayOfMonth, monthOfYear))
+                        picker_sold.editText?.setText(
+                            Utils.getStringDate(
+                                year,
+                                dayOfMonth,
+                                monthOfYear
+                            )
+                        )
                         maxDate = picker_sold.editText?.text.toString()
                     },
                     year,
@@ -203,14 +209,20 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure asked entry date
     private fun configureDateEntry() {
-        picker_entry.editText?.setText (Utils.getTodayDate())
+        picker_entry.editText?.setText(Utils.getTodayDate())
         picker_entry.editText?.setOnClickListener {
             val dpd = context?.let { it1 ->
                 DatePickerDialog(
                     it1,
                     { _, year, monthOfYear, dayOfMonth ->
                         // Display Selected date in TextView
-                        picker_entry.editText?.setText( Utils.getStringDate(year, dayOfMonth, monthOfYear))
+                        picker_entry.editText?.setText(
+                            Utils.getStringDate(
+                                year,
+                                dayOfMonth,
+                                monthOfYear
+                            )
+                        )
                         entryDate = picker_entry.editText?.text.toString()
                     },
                     year,
@@ -253,7 +265,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
     // To configure country editText
     private fun configureCountry() {
 
-        edt_country.editText?.doOnTextChanged{_,_,_,_->
+        edt_country.editText?.doOnTextChanged { _, _, _, _ ->
             country = edt_country.editText?.text.toString().replace(" ", "")
         }
     }
@@ -261,7 +273,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
     // To configure postal code editText
     private fun configurePostalCode() {
 
-        edit_postl_code.editText?.doOnTextChanged{_,_,_,_->
+        edit_postl_code.editText?.doOnTextChanged { _, _, _, _ ->
             postalCode = edit_postl_code.editText?.text.toString().replace(" ", "")
         }
     }
@@ -278,7 +290,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
     // To configure town editText
     private fun configureEditTown() {
 
-        edit_town.editText?.doOnTextChanged{_,_,_,_->
+        edit_town.editText?.doOnTextChanged { _, _, _, _ ->
             city = edit_town.editText?.text.toString().replace(" ", "")
         }
     }

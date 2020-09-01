@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     EstateListFragment.OnFragmentInteractionListener,
     MapsFragment.OnMapsFragmentListener, SearchFragment.OnSearchFragmentListener {
 
-    private lateinit var propertyViewModel:PropertyViewModel
 
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
@@ -70,7 +69,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configureNavView()
         getTheBundle()
     }
-
 
     //Get intent bundle
     @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")

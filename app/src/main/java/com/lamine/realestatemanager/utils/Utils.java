@@ -35,7 +35,9 @@ public class Utils {
      *
      * @param dollars <-- to convert dollar to euro
      */
-    public static double convertDollarToEuro(double dollars) { return Math.round(dollars * 0.812); }
+    public static double convertDollarToEuro(double dollars) {
+        return Math.round(dollars * 0.812);
+    }
 
     // Euros to dollars conversion
     public static double convertEuroToDollar(double euros) {
@@ -67,12 +69,12 @@ public class Utils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             network = Objects.requireNonNull(connectivityManager).getActiveNetwork();
             NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
-            if (capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)){
+            if (capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
                 isInternet = true;
             }
-        }else{
+        } else {
             NetworkInfo activeNetwork = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
-            if (activeNetwork != null && activeNetwork.isConnected()){
+            if (activeNetwork != null && activeNetwork.isConnected()) {
                 isInternet = true;
             }
         }

@@ -11,8 +11,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity(tableName = "Picture")
-data class Picture(@PrimaryKey(autoGenerate = true)var id:Long,
-                   var pictureName:String?,
-                   var picturePath:String?) :
-    Parcelable {constructor() : this(0, "", "")
+data class Picture(
+    @PrimaryKey(autoGenerate = true) var id: Long,
+    var pictureName: String?,
+    var picturePath: String?
+) :
+    Parcelable {
+    constructor() : this(0, "", "")
 }

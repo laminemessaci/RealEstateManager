@@ -164,7 +164,6 @@ class MortGageCalculatorFragment : Fragment() {
     }
 
 
-
     // Get textWatcher
     private fun getEditableTextWatcher(textView: TextView, type: String): TextWatcher? {
         return object : TextWatcher {
