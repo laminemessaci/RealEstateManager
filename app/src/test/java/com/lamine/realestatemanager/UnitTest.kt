@@ -200,5 +200,4 @@ class UnitTest {
         assertNotNull(Utils.getPropertyPosition(propertyList))
     }
 
-
 }

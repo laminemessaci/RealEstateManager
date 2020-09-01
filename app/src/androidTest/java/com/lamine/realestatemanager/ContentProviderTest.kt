@@ -89,7 +89,7 @@ class ContentProviderTest {
         assertEquals("Manor", cursor?.getString(cursor.getColumnIndexOrThrow("type")))
 
         //for clean database
-       // db.query(SimpleSQLiteQuery("DELETE FROM property WHERE id = $estateId"))
+       db.query(SimpleSQLiteQuery("DELETE FROM property WHERE id = $estateId"))
     }
 
     // Create property to test
@@ -191,7 +191,9 @@ class ContentProviderTest {
             .assertNoErrors()
             .assertNoTimeout()
             .awaitTerminalEvent()
-        val geocodeInfo = testObserver.values()[0]
+        //val geocodeInfo = testObserver.values()[0]
+        val geocodeInfo = testObserver.values().get(0)
+
         assertEquals("OK", geocodeInfo.status)
     }
 }

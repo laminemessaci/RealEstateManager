@@ -24,7 +24,7 @@ class PropertyDataRepository (private val propertyDao: PropertyDao){
     fun updateProperty(property: Property?){propertyDao.updateProperty(property!!)}
 
     //-------------- DELETE -----------//
-    fun deleteProperty(number: Long) {
-        propertyDao.deleteProperty(number)
+    fun deleteProperty(l: Long) {
+        propertyDao.deleteProperty(l)
     }
 }
