@@ -1,11 +1,14 @@
 package com.lamine.realestatemanager.utils
 
+import com.google.android.gms.maps.model.LatLng
+
 /**
  *Created by Lamine MESSACI on 19/08/2020.
  */
 class Constant {
 
     object ConstantVal{
+        val ERROR_GEOCODER_ADDRESS: LatLng? = null
         val listOfTypes = arrayOf("Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
         val listOfSearchTypes = arrayOf("ALL", "Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
         const val TEXT_DATE = "dd/MM/yyyy"

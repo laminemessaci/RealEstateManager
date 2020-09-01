@@ -21,6 +21,7 @@ import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.Property
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.listOfSearchTypes
 import com.lamine.realestatemanager.utils.SearchUtils
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,9 +35,6 @@ import java.util.*
  * create an instance of this fragment.
  */
 class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
-
-    val listOfSearchTypes =
-        arrayOf("ALL", "Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 
     private var mListener: OnSearchFragmentListener? = null
     private lateinit var propertyViewModel: PropertyViewModel

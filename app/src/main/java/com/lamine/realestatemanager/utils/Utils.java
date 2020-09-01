@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import static com.lamine.realestatemanager.utils.Constant.ConstantVal.TEXT_DATE;
+
 /**
  * Created by Philippe on 21/02/2018.
  */
 
 public class Utils {
-
-    private static final String TEXT_DATE = "dd/MM/yyyy" ;
 
     /**
      * Conversion d'un prix d'un bien immobilier (Dollars vers Euros)

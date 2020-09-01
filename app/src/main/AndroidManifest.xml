@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.lamine.realestatemanager">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -26,8 +25,7 @@
             android:authorities="com.lamine.openclassrooms.realestatemanager.provider"
             android:exported="false" />
 
-        <activity android:name="com.lamine.realestatemanager.controllers.activities.CreateEditEstateActivity">
-        </activity>
+        <activity android:name="com.lamine.realestatemanager.controllers.activities.CreateEditEstateActivity"></activity>
 
         <activity android:name="com.lamine.realestatemanager.controllers.activities.MainActivity">
             <intent-filter>

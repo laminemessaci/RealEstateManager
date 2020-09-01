@@ -14,7 +14,6 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -34,6 +33,8 @@ import com.lamine.realestatemanager.RealEstateManagerApplication
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.*
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.ERROR_GEOCODER_ADDRESS
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.listOfTypes
 import com.lamine.realestatemanager.utils.CreateEstateUtils
 import com.lamine.realestatemanager.utils.NotificationClass
 import com.lamine.realestatemanager.utils.RealEstateStream
@@ -45,13 +46,13 @@ import kotlinx.android.synthetic.main.activity_create_estate.*
 import kotlinx.android.synthetic.main.activity_create_estate.type_spinner
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.picture_title_dialogue.view.*
+import kotlinx.android.synthetic.main.toolbar.*
 import java.io.IOException
 import java.util.*
 
 
 class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
-    val listOfTypes = arrayOf("Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 
     // 1 - FOR DATA
     private var isEdit: Boolean = false
@@ -99,6 +100,7 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_estate)
+        configureToolbar()
         checkDeviceServices()
         initViewModelFactory()
         getTheBundle()
@@ -124,6 +126,11 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
 
     }
 
+    // Toolbar configuration
+    private fun configureToolbar() {
+        setSupportActionBar(toolbar)
+        toolbar.setTitle("Create Property")
+    }
 
     // To check internet and location
     private fun checkDeviceServices() {
@@ -224,7 +231,7 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
         if (property.address!!.lng != null) lng = property.address!!.lng!!
         if (property.address?.apartmentNumber != 0) {
             this.apartNumber = property.address?.apartmentNumber!!
-            apart_number.isVisible = true
+           // apart_number.isVisible = true
             edit_apart_nbr.isVisible = true
             edit_apart_nbr.editText?.setText(apartNumber.toString())
         }
@@ -317,7 +324,13 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
                 this,
                 { _, year, monthOfYear, dayOfMonth ->
                     // Display Selected date in TextView
-                    picker_sold_date.editText?.setText (Utils.getStringDate(year, dayOfMonth, monthOfYear))
+                    picker_sold_date.editText?.setText(
+                        Utils.getStringDate(
+                            year,
+                            dayOfMonth,
+                            monthOfYear
+                        )
+                    )
                     soldDate = picker_sold_date.editText?.text.toString()
                     sold = false
                     checkbox_available.isChecked = false
@@ -345,7 +358,13 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
                 this,
                 { _, year, monthOfYear, dayOfMonth ->
                     // Display Selected date in TextView
-                    picker_entry_date.editText?.setText(Utils.getStringDate(year, dayOfMonth, monthOfYear))
+                    picker_entry_date.editText?.setText(
+                        Utils.getStringDate(
+                            year,
+                            dayOfMonth,
+                            monthOfYear
+                        )
+                    )
                     entryDate = picker_entry_date.editText?.text.toString()
                 },
                 year,
@@ -691,7 +710,6 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
 
     // Get latitude/longitude from address input
     private fun getLocationFromAddress(strAddress: String?): LatLng? {
-        val ERROR_GEOCODER_ADDRESS: LatLng? = null
 
         return try {
             val coder = Geocoder(this)

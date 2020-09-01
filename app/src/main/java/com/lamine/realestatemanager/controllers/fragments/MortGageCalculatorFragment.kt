@@ -116,6 +116,7 @@ class MortGageCalculatorFragment : Fragment() {
             totalPaymentTV?.text =
                 currencyFormat.format(totalStr)
 
+
             val dialogBtnConvert =
                 dialog.findViewById<View>(R.id.dialogButtonConvert) as Button?
             dialogBtnConvert!!.setOnClickListener {
@@ -147,6 +148,8 @@ class MortGageCalculatorFragment : Fragment() {
                     dialogBtnConvert.setText(R.string.convertEuro)
                     isDollars = true
                 }
+
+
             }
 
 
@@ -156,7 +159,11 @@ class MortGageCalculatorFragment : Fragment() {
 
             dialog.show()
         }
+
+
     }
+
+
 
     // Get textWatcher
     private fun getEditableTextWatcher(textView: TextView, type: String): TextWatcher? {
@@ -201,7 +208,7 @@ class MortGageCalculatorFragment : Fragment() {
     }
 
     // To calculate monthly payment
-    private fun getMonthlyPayment(
+    fun getMonthlyPayment(
         interestRate: Double,
         purchaseAmount: Double,
         contribution: Double,
