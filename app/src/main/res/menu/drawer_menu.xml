@@ -5,6 +5,11 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/activity_main_drawer_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/item_home" />
+
+        <item
             android:id="@+id/activity_main_drawer_simulator"
             android:icon="@drawable/ic_calculator"
             android:title="@string/item_estate_loan_simulator" />

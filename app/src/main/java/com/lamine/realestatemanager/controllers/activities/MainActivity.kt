@@ -309,7 +309,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.activity_main_drawer_simulator -> launchMortGageSimulator()
-            // R.id.activity_main_drawer_create -> launchCreateActivity()
+            R.id.activity_main_drawer_home -> configureAndShowFragmentList(propertiesList)
             //R.id.activity_main_drawer_search -> launchSearchFragment()
             R.id.activity_main_drawer_prefs -> launchSettingsFragment()
             R.id.activity_main_drawer_logout -> showAlertDialogCloseApp()

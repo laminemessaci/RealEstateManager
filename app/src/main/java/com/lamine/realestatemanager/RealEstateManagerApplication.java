@@ -3,6 +3,10 @@ package com.lamine.realestatemanager;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.multidex.MultiDex;
+
+import java.nio.channels.MulticastChannel;
+
 /**
  * Created by Lamine MESSACI on 01/08/2020.
  */
@@ -42,4 +46,11 @@ public class RealEstateManagerApplication extends Application {
         super.onCreate();
         sApplication = this;
     }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
 }
