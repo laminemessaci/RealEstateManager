@@ -39,7 +39,7 @@ class ContentProviderTest {
     private var telephonyManager: TelephonyManager? = null
     private lateinit var context: Context
     private val apiKey = BuildConfig.GoogleSecAPIKEY
-    private val address = "4 Avenue Jean Jaurès, 46100 Figeac France"
+    private val address = "72 Rue Haroun Tazieff, 76620 Le Havre France"
 
     // DATA SET FOR TEST
     private val estateId: Long = 2001
@@ -134,7 +134,7 @@ class ContentProviderTest {
             .assertNoTimeout()
             .awaitTerminalEvent()
         val geocodeInfo = testObserver.values()[0]
-        if (geocodeInfo.status == "OK") {
+        if (geocodeInfo != null) {
             assertEquals(true, Utils.isInternetAvailable(context))
         } else {
             assertEquals(false, Utils.isInternetAvailable(context))
@@ -191,9 +191,8 @@ class ContentProviderTest {
             .assertNoErrors()
             .assertNoTimeout()
             .awaitTerminalEvent()
-        //val geocodeInfo = testObserver.values()[0]
-        val geocodeInfo = testObserver.values().get(0)
+        val geocodeInfo = testObserver.values()[0]
 
-        assertEquals("OK", geocodeInfo.status)
+        assertNotNull(geocodeInfo)
     }
 }

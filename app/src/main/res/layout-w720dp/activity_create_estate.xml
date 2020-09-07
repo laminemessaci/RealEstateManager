@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/light_grey"
     android:layout_height="match_parent">
     <!--Toolbar -->
     <include
@@ -24,24 +25,25 @@
         app:layout_constraintVertical_bias="1.0">
 
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="?attr/actionBarSize"
+            app:helperText="*Required"
             app:layout_constraintTop_toBottomOf="@id/scrollView">
 
             <!-- ESTATE TYPE -->
+
             <TextView
                 android:id="@+id/tvType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:textStyle="bold"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/type_choice_tv"
                 android:textColor="@android:color/black"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/constraint_detail" />
 
@@ -49,8 +51,8 @@
                 android:id="@+id/type_spinner"
                 android:layout_width="130dp"
                 android:layout_height="26dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
                 android:popupBackground="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvType" />
@@ -59,10 +61,12 @@
                 android:id="@+id/ligne1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="104dp"
+                android:layout_marginEnd="25dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/type_spinner"
                 app:layout_constraintTop_toBottomOf="@+id/type_spinner"
                 tools:ignore="MissingConstraints" />
@@ -70,15 +74,18 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_surface"
                 style="@style/TextFieldTheme"
-                android:layout_width="140dp"
+                android:layout_width="145dp"
                 android:layout_height="75dp"
+                android:layout_marginTop="60dp"
                 android:hint="Surface: M2"
-                app:helperText="*Required"
                 android:maxLines="1"
+                app:helperText="*Required"
+                app:layout_constraintBottom_toTopOf="@+id/ligne1"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.363"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ligne1"
+                app:layout_constraintHorizontal_bias="0.062"
+                app:layout_constraintStart_toEndOf="@+id/edit_nbr_rooms"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.763"
                 app:startIconDrawable="@drawable/baseline_settings_overscan_24"
                 tools:ignore="MissingConstraints">
 
@@ -94,15 +101,18 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_nbr_rooms"
                 style="@style/TextFieldTheme"
-                android:layout_width="140dp"
-                android:layout_height="75dp"
+                android:layout_width="145dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="10dp"
                 android:hint="Nbr of rooms"
                 android:maxLines="1"
                 app:helperText="*Required"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.446"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/ligne1"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_surface"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.293"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/type_spinner"
+                app:layout_constraintVertical_bias="0.909"
                 app:startIconDrawable="@drawable/baseline_home_black_24"
                 tools:ignore="MissingConstraints">
 
@@ -118,11 +128,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_apart_nbr"
                 android:layout_width="96dp"
-                android:layout_height="55dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="20dp"
                 android:hint="Apt N°"
                 android:maxLines="1"
-                android:visibility="gone"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/ligne1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -131,7 +143,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:inputType="number"
                     android:textSize="13dp"
@@ -143,13 +155,12 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_address"
                 style="@style/TextFieldTheme"
-                android:layout_width="350dp"
-                android:layout_height="75dp"
+                android:layout_width="344dp"
+                android:layout_height="74dp"
                 android:layout_marginTop="16dp"
                 android:hint="Street N°, name of the street "
                 app:helperText="*Required"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.409"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_address"
                 app:startIconDrawable="@drawable/ic_location"
@@ -167,26 +178,26 @@
                 style="@style/TextFieldTheme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
                 android:text="Address"
                 android:textStyle="bold"
                 app:drawableStartCompat="@drawable/ic_location_city_black_18dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.163"
+                app:layout_constraintHorizontal_bias="0.092"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_surface" />
+                app:layout_constraintTop_toBottomOf="@+id/ligne1" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_city"
                 style="@style/TextFieldTheme"
-                android:layout_width="140dp"
-                android:layout_height="75dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="292dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="16dp"
                 android:hint="City"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.372"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_address"
+                app:helperText="*Required"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.515"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/edit_postal_code"
                 app:startIconDrawable="@drawable/ic_city_black"
                 tools:ignore="MissingConstraints">
 
@@ -200,15 +211,15 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_postal_code"
                 style="@style/TextFieldTheme"
-                android:layout_width="140dp"
-                android:layout_height="75dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="293dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="40dp"
                 android:hint="Postal Code"
                 app:helperText="*Required"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintHorizontal_bias="0.515"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/edit_address"
+                app:layout_constraintTop_toBottomOf="@+id/ligne1"
                 tools:ignore="MissingConstraints">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -221,15 +232,14 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_country"
                 style="@style/TextFieldTheme"
-                android:layout_width="140dp"
-                android:layout_height="75dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="343dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="16dp"
                 android:hint="Country"
                 app:helperText="*Required"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.363"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_city"
+                app:layout_constraintTop_toBottomOf="@+id/edit_address"
                 app:startIconDrawable="@drawable/ic_country"
                 tools:ignore="MissingConstraints">
 
@@ -243,13 +253,13 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_additional_address"
                 style="@style/TextFieldTheme"
-                android:layout_width="350dp"
-                android:layout_height="55dp"
+                android:layout_width="686dp"
+                android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:hint="@string/additional_address_tv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.409"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/edit_city"
+                app:layout_constraintHorizontal_bias="0.517"
+                app:layout_constraintStart_toStartOf="@+id/edit_country"
                 app:layout_constraintTop_toBottomOf="@+id/edit_country"
                 tools:ignore="MissingConstraints">
 
@@ -258,30 +268,18 @@
                     android:layout_height="wrap_content"
                     android:textSize="13dp" />
 
-                <View
-                    android:id="@+id/line8"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="25dp"
-                    android:background="@color/colorPrimary"
-                    app:layout_constraintTop_toBottomOf="@+id/edit_additional_address"
-                    tools:ignore="DuplicateIds" />
-
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_points_interests"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:textColor="@color/color_black"
+                android:layout_marginTop="32dp"
                 android:text="Points of Interests"
+                android:textColor="@color/color_black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.325"
+                app:layout_constraintHorizontal_bias="0.125"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edit_additional_address" />
 
@@ -289,10 +287,10 @@
                 android:id="@+id/checkbox_school"
                 android:layout_width="85dp"
                 android:layout_height="47dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="6dp"
                 android:text="School"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.288"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_points_interests"
                 tools:ignore="MissingConstraints" />
@@ -301,10 +299,10 @@
                 android:id="@+id/checkbox_train_station"
                 android:layout_width="84dp"
                 android:layout_height="43dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="6dp"
                 android:text="Train station"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.29"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkbox_school"
                 tools:ignore="MissingConstraints" />
@@ -313,10 +311,10 @@
                 android:id="@+id/checkbox_park"
                 android:layout_width="89dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="6dp"
                 android:text="Park"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.521"
+                app:layout_constraintHorizontal_bias="0.292"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/checkbox_train_station"
                 tools:ignore="MissingConstraints" />
@@ -325,23 +323,24 @@
                 android:id="@+id/checkbox_shops"
                 android:layout_width="84dp"
                 android:layout_height="43dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="6dp"
                 android:text="Shops"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.264"
+                app:layout_constraintStart_toEndOf="@+id/checkbox_school"
                 app:layout_constraintTop_toBottomOf="@+id/tv_points_interests"
                 tools:ignore="MissingConstraints" />
+
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/checkbox_subway"
                 android:layout_width="88dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:text="Subway"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.504"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.273"
+                app:layout_constraintStart_toEndOf="@+id/checkbox_train_station"
                 app:layout_constraintTop_toBottomOf="@+id/checkbox_shops"
                 tools:ignore="MissingConstraints" />
 
@@ -349,27 +348,26 @@
                 android:id="@+id/checkbox_airport"
                 android:layout_width="88dp"
                 android:layout_height="44dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="6dp"
                 android:text="Airport"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.247"
+                app:layout_constraintStart_toEndOf="@+id/checkbox_park"
                 app:layout_constraintTop_toBottomOf="@+id/checkbox_subway"
                 tools:ignore="MissingConstraints" />
-
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/color_black"
+                android:layout_marginTop="32dp"
                 android:text="Status"
+                android:textColor="@color/color_black"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.094"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkbox_park" />
+                app:layout_constraintHorizontal_bias="0.126"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/edit_additional_address" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/checkbox_available"
@@ -379,7 +377,7 @@
                 android:text="Available"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.236"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
                 app:layout_constraintTop_toBottomOf="@+id/tv_status"
                 tools:ignore="MissingConstraints" />
 
@@ -391,25 +389,38 @@
                 android:layout_marginTop="20dp"
                 android:text="Sold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.76"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.734"
+                app:layout_constraintStart_toEndOf="@+id/checkbox_available"
                 app:layout_constraintTop_toBottomOf="@+id/tv_status"
                 tools:ignore="MissingConstraints" />
+
+            <View
+                android:id="@+id/line42"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_available"
+                tools:ignore="DuplicateIds"
+                tools:layout_editor_absoluteX="28dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_description"
                 style="@style/TextFieldTheme"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
                 android:hint="@string/description_tv"
                 app:helperText="*Required"
                 app:helperTextEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.492"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkbox_available"
+                app:layout_constraintTop_toBottomOf="@+id/line42"
                 app:startIconDrawable="@drawable/baseline_description_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -477,8 +488,8 @@
                 android:id="@+id/line8"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
+
+                android:layout_marginTop="20dp" android:layout_marginStart="25dp"
                 android:layout_marginEnd="25dp"
                 android:background="@color/colorPrimary"
                 app:layout_constraintTop_toBottomOf="@+id/button_gallery"
@@ -489,13 +500,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.50121653" />
+                app:layout_constraintGuide_percent="0.51" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/picker_price"
                 style="@style/TextFieldTheme"
-                android:layout_width="140dp"
-                android:layout_height="75dp"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:hint="Price"
                 app:helperText="*Required"
@@ -517,10 +528,11 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_nbr_bed"
                 style="@style/TextFieldTheme"
-                android:layout_width="140dp"
-                android:layout_height="75dp"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:hint="@string/nbr_of_bedrooms"
+                app:helperText="*Required"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -550,8 +562,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/picker_entry_date"
                 style="@style/TextFieldTheme"
-                android:layout_width="140dp"
-                android:layout_height="75dp"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:hint="@string/entry_date_tv"
                 app:helperText="*Required"
@@ -564,7 +576,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:inputType="date"
                     android:textSize="13dp" />
 
@@ -573,8 +585,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/picker_sold_date"
                 style="@style/TextFieldTheme"
-                android:layout_width="140dp"
-                android:layout_height="75dp"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:hint="@string/sold_date_tv"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -586,7 +598,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:inputType="date"
                     android:textSize="13dp" />
 
@@ -606,8 +618,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_realtor"
                 style="@style/TextFieldTheme"
-                android:layout_width="140dp"
-                android:layout_height="75dp"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:hint="Realtor"
                 app:helperText="*Required"
@@ -628,8 +640,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_nbr_bath"
                 style="@style/TextFieldTheme"
-                android:layout_width="140dp"
-                android:layout_height="75dp"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
                 android:layout_marginTop="20dp"
                 android:hint="Number of bathrooms"
                 app:helperText="*Required"

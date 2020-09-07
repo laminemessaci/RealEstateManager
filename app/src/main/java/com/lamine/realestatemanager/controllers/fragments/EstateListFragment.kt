@@ -161,7 +161,7 @@ class EstateListFragment : Fragment() {
 
     //Init viewModel
     private fun initViewModelFactory() {
-        this.propertyViewModel = ViewModelProviders.of(this,
+        this.propertyViewModel = ViewModelProviders.of(activity!!,
             activity?.applicationContext?.let {
                 DataInjection.Injection.provideViewModelFactory(
                     it

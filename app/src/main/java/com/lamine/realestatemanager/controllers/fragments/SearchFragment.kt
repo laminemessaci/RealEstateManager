@@ -147,38 +147,22 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure asked bathrooms number
     private fun configureNbrBathrooms() {
-        edit_bath.editText?.addTextChangedListener(object : TextWatcher {
 
-            override fun afterTextChanged(s: Editable) {}
-
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                val nbrBathStr: String = edit_bath.editText?.text.toString()
-                if (nbrBathStr.isNotEmpty()) {
-                    numberOfBath = nbrBathStr.toInt()
-                }
+        edit_bath.editText?.doOnTextChanged { _, _, _, _ ->
+            val nbrBathStr: String = edit_bath.editText?.text.toString()
+            if (nbrBathStr.isNotEmpty()) {
+                numberOfBath = nbrBathStr.toInt()
             }
-        })
+        }
     }
 
     // To configure asked realtor name
     private fun configureRealtorName() {
-        edt_realtor.editText?.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                realtorName = edt_realtor.editText?.text.toString().replace(" ", "")
-            }
-        })
+        edt_realtor.editText?.doOnTextChanged { _, _, _, _ ->
+            realtorName = edt_realtor.editText?.text.toString().replace(" ", "")
+        }
+
     }
 
     // To configure asked sold date
@@ -224,10 +208,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
                             )
                         )
                         entryDate = picker_entry.editText?.text.toString()
-                    },
-                    year,
-                    month,
-                    day
+                    }, year, month, day
                 )
             }
             dpd?.show()

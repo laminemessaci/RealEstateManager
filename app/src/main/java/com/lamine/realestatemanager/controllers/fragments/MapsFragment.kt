@@ -134,8 +134,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         disposable =
             realEstateStream.streamFetchGeocodeInfo(addressStr, BuildConfig.GoogleSecAPIKEY)
                 .subscribeWith(object : DisposableObserver<GeocodeInfo?>() {
-                    override fun onNext(t: GeocodeInfo) {
-                        geoLocation = t
+                    override fun onNext(location: GeocodeInfo) {
+                        geoLocation = location
                     }
 
                     override fun onError(e: Throwable) {
@@ -156,6 +156,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
         property.address?.lat = lat
         property.address?.lng = lng
         propertyViewModel.updateProperty(property)
+        Log.i("location: ", propertyViewModel.updateProperty(property).toString())
     }
 
     // To add markers on map
@@ -234,6 +235,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
             override fun onLocationResult(locationResult: LocationResult?) {
                 locationResult ?: return
                 for (location in locationResult.locations) {
+                    Log.e("location update ", " $location")
                     getLocation(location)
                     if (progressBar != null) {
                         progressBar.visibility = View.GONE
@@ -256,13 +258,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                 )
             } != PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return
         }
         fusedLocationClient.requestLocationUpdates(

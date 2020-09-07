@@ -121,6 +121,7 @@ Do you want to access the wifi settings?</string>
     <string name="property_setting">Setting</string>
     <string name="convertDollar">Convert to $</string>
     <string name="calculator">Simulator</string>
+    <string name="max_date_tv">Max date</string>
 
 
 </resources>

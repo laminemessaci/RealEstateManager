@@ -715,7 +715,7 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
             val coder = Geocoder(this)
             val address: List<android.location.Address>?
             val latlng: LatLng?
-            address = coder.getFromLocationName(strAddress, 3)
+            address = coder.getFromLocationName(strAddress, 1)
 
             val location = address[0]
             latlng = LatLng(location.latitude, location.longitude)
@@ -732,7 +732,7 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
     // To set values in object
     private fun setValuesInProperty() {
         progressBar_create.visibility = View.GONE
-        //Log.e("restls.get(0) est :  ${geoLocation.results?.indexOf(0)}","Results !" )
+        //Log.e("restls.get(0) est :  ${geoLocation.results?.get(0)}","Results !" )
         //lat = geoLocation.results?.get(0)?.geometry?.location?.lat!!
         //lng = geoLocation.results?.get(0)?.geometry?.location?.lng!!
         //lat = 49.52267

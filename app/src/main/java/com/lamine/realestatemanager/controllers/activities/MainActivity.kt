@@ -257,10 +257,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 launchSearchFragment()
                 return true
             }
+            R.id.menu_create -> {
+                // Open create activity
+                launchCreateActivity()
+                return true
+            }
 
         }
         return super.onOptionsItemSelected(item)
     }
+    // To launch CreateActivity
+    private fun launchCreateActivity() {
+        val intent = Intent(this, CreateEditEstateActivity::class.java)
+        startActivity(intent)
+    }
+
 
 
     // To launch Search
