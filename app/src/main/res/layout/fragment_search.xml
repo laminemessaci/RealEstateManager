@@ -14,6 +14,7 @@
         android:text="Search"
         app:icon="@drawable/ic_search_black" />
 
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"

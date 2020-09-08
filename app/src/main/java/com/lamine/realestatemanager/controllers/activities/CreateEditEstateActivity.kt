@@ -14,6 +14,7 @@ import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -32,7 +33,10 @@ import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
-import com.lamine.realestatemanager.models.*
+import com.lamine.realestatemanager.models.Address
+import com.lamine.realestatemanager.models.GeocodeInfo
+import com.lamine.realestatemanager.models.Picture
+import com.lamine.realestatemanager.models.Property
 import com.lamine.realestatemanager.utils.Constant.ConstantVal.ERROR_GEOCODER_ADDRESS
 import com.lamine.realestatemanager.utils.Constant.ConstantVal.listOfTypes
 import com.lamine.realestatemanager.utils.CreateEstateUtils
@@ -94,7 +98,6 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
     private var lng: Double = 0.0
     private lateinit var alertDialog: AlertDialog
     private val checkClass = CreateEstateUtils()
-    private val location: Location = Location()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,6 +133,18 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
     private fun configureToolbar() {
         setSupportActionBar(toolbar)
         toolbar.setTitle("Create Property")
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                this.finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     // To check internet and location
@@ -726,7 +741,6 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
             e.printStackTrace()
             ERROR_GEOCODER_ADDRESS
         }
-
     }
 
     // To set values in object

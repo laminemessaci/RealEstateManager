@@ -266,12 +266,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         return super.onOptionsItemSelected(item)
     }
+
     // To launch CreateActivity
     private fun launchCreateActivity() {
         val intent = Intent(this, CreateEditEstateActivity::class.java)
         startActivity(intent)
     }
-
 
 
     // To launch Search
@@ -310,7 +310,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (menuItem.itemId) {
             R.id.activity_main_drawer_simulator -> launchMortGageSimulator()
             R.id.activity_main_drawer_home -> configureAndShowFragmentList(propertiesList)
-            //R.id.activity_main_drawer_search -> launchSearchFragment()
             R.id.activity_main_drawer_prefs -> launchSettingsFragment()
             R.id.activity_main_drawer_logout -> showAlertDialogCloseApp()
         }
@@ -330,7 +329,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // To launch Loan Simulator
     private fun launchMortGageSimulator() {
-        //launchFragment(FRAGMENT_MORT_GAGE, 0, R.id.activity_main_frame_layout, null)
         if (isTablet) {
             launchFragment(FRAGMENT_MORT_GAGE, 0, R.id.activity_main_100_frame_layout, null)
         } else {
@@ -340,6 +338,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // OnBackPressed function
     override fun onBackPressed() {
+
         if (activity_main_drawer_layout.isDrawerOpen(GravityCompat.START)) {
             activity_main_drawer_layout.closeDrawer(GravityCompat.START)
         } else {
@@ -355,6 +354,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         }
         isDisplaySearch = false
+
     }
 
     // To manage fragment back stack

@@ -25,6 +25,7 @@ import com.lamine.realestatemanager.utils.Constant.ConstantVal.listOfSearchTypes
 import com.lamine.realestatemanager.utils.SearchUtils
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
 
@@ -101,7 +102,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).supportActionBar?.title = getString(R.string.property_search)
+        configureToolbar()
         initViewModel()
         configureTypes()
         configureEditTown()
@@ -118,6 +119,13 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
         configureSeekBarPrice()
         configureButtonSearch()
         configureSeekBarBeds()
+    }
+
+    // Toolbar configuration
+    private fun configureToolbar() {
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.property_search)
+        //toolbar.setTitle("Create Property")
+        //(activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     // ViewModel initialisation

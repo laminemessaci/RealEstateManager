@@ -9,10 +9,9 @@ import com.lamine.realestatemanager.utils.Converters
 import com.lamine.realestatemanager.utils.CreateEstateUtils
 import com.lamine.realestatemanager.utils.SearchUtils
 import com.lamine.realestatemanager.utils.Utils
-import org.junit.Assert
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Test
-
-import org.junit.Assert.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -163,11 +162,11 @@ class UnitTest {
     @Test
     fun makeQueryTest(){
         val queryToCompare = "SELECT * FROM Property WHERE type = 'Manor' AND livingSpace >= 35 AND livingSpace <= 935 " +
-                "AND rooms >= 3 AND rooms <= 38 AND city = 'Livernon' AND postalCode = '46320' " +
+                "AND rooms >= 3 AND rooms <= 38 AND city = 'Le Havre' AND postalCode = '76620' " +
                 "AND country = 'France' AND school = 1 AND status = 1 AND price >= 238000 AND price <= 3357000"
         val searchUtils = SearchUtils()
         assertEquals(queryToCompare, searchUtils.makeQuery("Manor", 35, 935,
-            3, 38, "Livernon", "46320", "France",
+            3, 38, "Le Havre", "76620", "France",
             shops = false,
             airport = false,
             park = false,

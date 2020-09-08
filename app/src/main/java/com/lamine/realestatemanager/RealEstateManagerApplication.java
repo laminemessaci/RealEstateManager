@@ -5,8 +5,6 @@ import android.content.Context;
 
 import androidx.multidex.MultiDex;
 
-import java.nio.channels.MulticastChannel;
-
 /**
  * Created by Lamine MESSACI on 01/08/2020.
  */

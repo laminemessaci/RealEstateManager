@@ -44,6 +44,7 @@ class EstateListFragment : Fragment() {
                 }
             }
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

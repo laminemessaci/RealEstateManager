@@ -93,9 +93,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private fun getForeign() {
         val prefs: Prefs = Prefs.get(RealEstateManagerApplication.getContext())
         currencyFormat =
-            if (prefs.foreignCurrency) NumberFormat.getCurrencyInstance(Locale.FRANCE) else NumberFormat.getCurrencyInstance(
-                Locale.US
-            )
+            if (prefs.foreignCurrency) NumberFormat.getCurrencyInstance(Locale.FRANCE) else NumberFormat.getCurrencyInstance(Locale.US)
     }
 
 
@@ -259,13 +257,5 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private fun onItemClicked(position: Int) {
         Log.d("test", position.toString())
     }
-
-    // override fun onMapsInteraction(idProperty: Long) {
-    //     //val intent = Intent (t, DetailEstateFragment::class.java)
-    // }
-
-    // override fun onMapsInteraction(property: Property) {
-//
-    // }
 
 }

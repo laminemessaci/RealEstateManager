@@ -21,11 +21,13 @@ import com.lamine.realestatemanager.utils.RealEstateStream
 import com.lamine.realestatemanager.utils.Utils
 import io.reactivex.observers.TestObserver
 import org.hamcrest.CoreMatchers.notNullValue
+import org.junit.After
 import org.junit.Assert
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.io.IOException
 
 
 @RunWith(AndroidJUnit4::class)
@@ -60,6 +62,16 @@ class ContentProviderTest {
             .getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
     }
 
+    @After
+    @Throws(IOException::class)
+    fun closeDatabase()
+    {
+        db.close()
+    }
+
+
+
+
     // Check ContentProvider when no item inserted
     @Test
     fun getItemsWhenNoItemInserted() {
@@ -89,7 +101,7 @@ class ContentProviderTest {
         assertEquals("Manor", cursor?.getString(cursor.getColumnIndexOrThrow("type")))
 
         //for clean database
-       db.query(SimpleSQLiteQuery("DELETE FROM property WHERE id = $estateId"))
+       //db.query(SimpleSQLiteQuery("DELETE FROM property WHERE id = $estateId"))
     }
 
     // Create property to test
@@ -179,7 +191,7 @@ class ContentProviderTest {
             9, 4, 2, address, 200000.0, "Julien",
             "16-03-2020", "", true, propertyToSend, "NEW YORK", "NY 10007", "United States"
         )
-        Assert.assertEquals(propertyToSend, propertyToReturn)
+        assertEquals(propertyToSend, propertyToReturn)
     }
 
     // Http test
