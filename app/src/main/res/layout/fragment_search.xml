@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".controllers.fragments.SearchFragment"
-    android:background="@color/light_grey">
+    android:layout_height="match_parent">
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/button_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:contentDescription="fabs to search property"
+        android:text="Search"
+        app:icon="@drawable/ic_search_black" />
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:focusable="true"
-        android:descendantFocusability="beforeDescendants">
+        app:layout_anchor="@+id/scrollView"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="80dp"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/scrollView">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,8 +45,8 @@
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/type_spinner"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_width="125dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:popupBackground="@android:color/white"
@@ -50,7 +61,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/type_spinner"
                 tools:layout_editor_absoluteX="25dp" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/apart_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,7 +74,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvSurfaceMin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,10 +82,11 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/surface_tv_min"
                 android:textColor="@android:color/black"
+                app:drawableStartCompat="@drawable/baseline_settings_overscan_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvSurfaceResultMin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,12 +94,12 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="120dp"
                 android:hint="@string/_0"
-                android:textStyle="bold"
                 android:textColor="@color/colorGreen"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/tvSurfaceMin"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvSurfaceM2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -100,30 +112,31 @@
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
 
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvSurfaceMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
                 android:text="@string/surface_tv_max"
                 android:textColor="@android:color/black"
+                app:drawableStartCompat="@drawable/baseline_settings_overscan_24"
                 app:layout_constraintEnd_toStartOf="@+id/tvSurfaceResultMax"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvSurfaceResultMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
                 android:hint="@string/_0"
-                android:textStyle="bold"
                 android:textColor="@color/colorGreen"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/tvSurfaceM2Max"
                 app:layout_constraintTop_toBottomOf="@+id/line1" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvSurfaceM2Max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -138,22 +151,21 @@
                 android:id="@+id/seekBar_surface"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:corner_radius="10"
-                app:min_value="0"
-                app:max_value="1000"
-                app:steps="5"
-                app:bar_color="@color/colorGreen"
-                app:bar_highlight_color="@color/white"
-                app:right_thumb_color="@color/colorPrimary"
-                app:left_thumb_color="@color/colorPrimary"
-                app:left_thumb_color_pressed="@color/colorPrimaryDark"
-                android:layout_marginTop="12dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="25dp"
                 android:inputType="number"
+                app:bar_highlight_color="@color/colorGreen"
+                app:corner_radius="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSurfaceM2"
+                app:left_thumb_color="@color/colorPrimary"
+                app:left_thumb_color_pressed="#F2026A2D"
+                app:max_value="1000"
+                app:min_value="0"
+                app:right_thumb_color="@color/colorPrimary"
+                app:steps="5"
                 tools:targetApi="lollipop" />
 
             <View
@@ -164,18 +176,34 @@
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_nbr_rooms"
                 tools:layout_editor_absoluteX="0dp" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextFieldTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:text="Adress"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/edit_city"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line2"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_rooms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+
                 android:text="@string/nbr_of_rooms_min"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_surface" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/room_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -183,11 +211,12 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="120dp"
                 android:hint="@string/_0"
-                android:textColor="@color/orange_red"
+                android:textColor="@color/colorGreen"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/tv_rooms"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_surface" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_rooms_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -198,14 +227,15 @@
                 app:layout_constraintEnd_toStartOf="@+id/room_max"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_surface" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/room_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:hint="@string/_0"
-                android:textColor="@color/orange_red"
+                android:textColor="@color/colorGreen"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_surface" />
 
@@ -213,104 +243,81 @@
                 android:id="@+id/seekBar_nbr_rooms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:corner_radius="10"
-                app:min_value="1"
-                app:max_value="40"
-                app:bar_color="@color/colorGreen"
-                app:bar_highlight_color="@color/orange_red"
-                app:right_thumb_color="@color/colorRed"
-                app:left_thumb_color="@color/colorRed"
-                app:left_thumb_color_pressed="#4C2D1A"
-                android:layout_marginTop="12dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="25dp"
                 android:inputType="number"
+                app:bar_highlight_color="@color/colorGreen"
+                app:corner_radius="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_rooms" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_rooms"
+                app:left_thumb_color="@color/colorPrimary"
+                app:left_thumb_color_pressed="#F2026A2D"
+                app:max_value="40"
+                app:min_value="1"
+                app:right_thumb_color="@color/colorPrimaryDark" />
 
 
-            <TextView
-                android:id="@+id/tv_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/city_tv"
-                android:textColor="@android:color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/line2" />
-
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_town"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/white"
-                android:gravity="center"
-                android:inputType="textCapWords"
-                android:hint="@string/city_example"
-                android:textColor="@android:color/black"
+                style="@style/TextFieldTheme"
+                android:layout_width="115dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="52dp"
+                android:hint="City"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.285"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_city"
-                app:layout_constraintWidth_percent="0.4"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/line2"
+                tools:ignore="MissingConstraints">
 
-            <TextView
-                android:id="@+id/tv_postal_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/post_code_tv"
-                android:textColor="@android:color/black"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/line2" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="13dp" />
 
-            <EditText
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_postl_code"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/white"
-                android:gravity="center"
-                android:hint="@string/post_code_example"
-                android:inputType="textPostalAddress"
-                android:textColor="@android:color/black"
+                style="@style/TextFieldTheme"
+                android:layout_width="115dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="52dp"
+                android:hint="Postal Code"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.822"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/tv_postal_code"
-                app:layout_constraintWidth_percent="0.4"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/line2"
+                tools:ignore="MissingConstraints">
 
-            <TextView
-                android:id="@+id/tv_country"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/country_tv"
-                android:textColor="@android:color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_postl_code" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="13dp" />
 
-            <EditText
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_country"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/TextFieldTheme"
+                android:layout_width="115dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="20dp"
-                android:background="@android:color/white"
-                android:gravity="center"
-                android:hint="@string/country_example"
-                android:inputType="textCapWords"
-                android:textColor="@android:color/black"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                android:hint="Country"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.500"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_country"
-                app:layout_constraintWidth_percent="0.4"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/edit_town"
+                tools:ignore="MissingConstraints">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <View
                 android:id="@+id/line4"
@@ -320,22 +327,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/edt_country"
                 tools:layout_editor_absoluteX="0dp" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_Points_interests"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/points_of_interest"
                 android:textColor="@android:color/black"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line4" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_school"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_width="79dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/school"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -343,11 +351,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_Points_interests"
                 tools:targetApi="lollipop" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_shops"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/shops"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -356,45 +364,45 @@
                 tools:targetApi="lollipop" />
 
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_park"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_width="81dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/parc"
                 app:layout_constraintStart_toStartOf="@+id/check_school"
                 app:layout_constraintTop_toBottomOf="@+id/check_train_station"
                 tools:targetApi="lollipop" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_train_station"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_width="79dp"
+                android:layout_height="46dp"
+                android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/train_station"
                 app:layout_constraintStart_toStartOf="@+id/check_school"
                 app:layout_constraintTop_toBottomOf="@+id/check_school"
                 tools:targetApi="lollipop" />
 
-            <CheckBox
+
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_subway"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/subway"
                 app:layout_constraintStart_toStartOf="@+id/check_shops"
                 app:layout_constraintTop_toBottomOf="@+id/check_school"
                 tools:targetApi="lollipop" />
 
-
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_airport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="@string/airport"
                 app:layout_constraintStart_toStartOf="@+id/check_subway"
@@ -411,7 +419,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/check_airport"
                 tools:layout_editor_absoluteX="16dp" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -419,10 +427,11 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/status"
                 android:textColor="@android:color/black"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line5" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_available"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -434,7 +443,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_status"
                 tools:targetApi="lollipop" />
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/check_sold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -464,7 +473,7 @@
                 app:layout_constraintGuide_percent="0.5" />
 
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_price_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -475,18 +484,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line8" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/price_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
                 android:hint="@string/_0"
-                android:textColor="@color/orange_red"
+                android:textColor="@color/colorGreen"
                 app:layout_constraintStart_toEndOf="@id/tv_price_min"
                 app:layout_constraintTop_toBottomOf="@+id/line8" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_price_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -496,14 +505,14 @@
                 app:layout_constraintEnd_toStartOf="@+id/price_max"
                 app:layout_constraintTop_toBottomOf="@+id/line8" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/price_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:hint="@string/_0"
-                android:textColor="@color/orange_red"
+                android:textColor="@color/colorGreen"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/line8" />
 
@@ -511,48 +520,49 @@
                 android:id="@+id/seekBar_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:corner_radius="10"
-                app:min_value="0"
-                app:max_value="20000000"
-                app:steps="1000"
-                app:bar_color="@color/colorGreen"
-                app:bar_highlight_color="@color/orange_red"
-                app:left_thumb_color="@color/colorRed"
-                app:right_thumb_color="@color/colorRed"
-                app:left_thumb_color_pressed="#4C2D1A"
-                android:layout_marginTop="12dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="25dp"
                 android:inputType="number"
+                app:bar_color="@color/light_grey"
+                app:bar_highlight_color="@color/colorGreen"
+                app:corner_radius="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_price_min" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_price_min"
+                app:left_thumb_color="@color/colorPrimary"
+                app:left_thumb_color_pressed="#F2026A2D"
+                app:max_value="1000000"
+                app:min_value="0"
+                app:right_thumb_color="@color/colorPrimaryDark"
+                app:steps="10000" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_nbr_bed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/bedrooms_min"
-                android:layout_marginStart="20dp"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_price" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/bedroom_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="120dp"
                 android:hint="@string/_0"
-                android:textColor="@color/orange_red"
+                android:textColor="@color/colorGreen"
                 app:layout_constraintStart_toEndOf="@id/tv_nbr_bed"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_price" />
 
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_nbr_bed_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -563,14 +573,15 @@
                 app:layout_constraintEnd_toStartOf="@+id/bedroom_max"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_price" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/bedroom_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:textStyle="bold"
                 android:hint="@string/_0"
-                android:textColor="@color/orange_red"
+                android:textColor="@color/colorGreen"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_price" />
 
@@ -578,21 +589,21 @@
                 android:id="@+id/seekBar_nbr_bed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:corner_radius="10"
-                app:min_value="1"
-                app:max_value="20"
-                app:bar_color="@color/colorGreen"
-                app:bar_highlight_color="@color/orange_red"
-                app:left_thumb_color="@color/colorRed"
-                app:right_thumb_color="@color/colorRed"
-                app:left_thumb_color_pressed="#4C2D1A"
-                android:layout_marginTop="12dp"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="25dp"
                 android:inputType="number"
+                app:bar_color="@color/white"
+                app:bar_highlight_color="@color/colorGreen"
+                app:corner_radius="10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nbr_bed" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_nbr_bed"
+                app:left_thumb_color="@color/colorPrimary"
+                app:left_thumb_color_pressed="#F2026A2D"
+                app:max_value="20"
+                app:min_value="1"
+                app:right_thumb_color="@color/colorPrimary" />
 
             <View
                 android:id="@+id/line9"
@@ -602,51 +613,45 @@
                 app:layout_constraintTop_toBottomOf="@+id/seekBar_nbr_bed"
                 tools:layout_editor_absoluteX="25dp" />
 
-            <TextView
-                android:id="@+id/tv_entry_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/entry_date_tv"
-                android:textColor="@android:color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/line9" />
-
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/picker_entry"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                style="@style/TextFieldTheme"
+                android:layout_width="124dp"
+                android:layout_height="63dp"
                 android:layout_marginTop="20dp"
-                android:background="@android:color/white"
-                android:gravity="center"
-                android:textColor="@android:color/black"
+                android:hint="@string/entry_date_tv"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.506"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_entry_date" />
+                app:layout_constraintTop_toBottomOf="@+id/line9"
+                tools:ignore="MissingConstraints,UnknownId">
 
-            <TextView
-                android:id="@+id/tv_sold_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/max_date_tv"
-                android:textColor="@android:color/black"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/line9" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textSize="13dp" />
 
-            <TextView
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/picker_sold"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                style="@style/TextFieldTheme"
+                android:layout_width="120dp"
+                android:layout_height="61dp"
                 android:layout_marginTop="20dp"
-                android:background="@android:color/white"
-                android:gravity="center"
-                android:textColor="@android:color/black"
+                android:hint="@string/max_date_tv"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/tv_sold_date" />
+                app:layout_constraintTop_toBottomOf="@+id/line9"
+                tools:ignore="MissingConstraints,UnknownId">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <View
                 android:id="@+id/line10"
@@ -657,112 +662,88 @@
                 android:layout_marginEnd="25dp"
                 app:layout_constraintTop_toBottomOf="@+id/picker_entry" />
 
-            <TextView
-                android:id="@+id/tv_realtor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/realtor_tv"
-                android:textColor="@android:color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/line10" />
-
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edt_realtor"
-                android:layout_width="200dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="30dp"
+                style="@style/TextFieldTheme"
+                android:layout_width="121dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="20dp"
-                android:background="@android:color/white"
-                android:gravity="center"
-                android:inputType="textPersonName"
-                android:hint="@string/name_example"
-                android:textColor="@android:color/black"
+                android:hint="Realtor name"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_realtor"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/line10">
 
-            <TextView
-                android:id="@+id/tv_nbr_bath"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/nbr_of_bathrooms"
-                android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toTopOf="@+id/line10" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="textPersonName"
+                    android:textSize="13dp" />
 
-            <EditText
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_bath"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
+                style="@style/TextFieldTheme"
+                android:layout_width="131dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="20dp"
-                android:background="@android:color/white"
-                android:hint="@string/_0"
-                android:inputType="number"
+                android:hint="Number of bathrooms"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nbr_bath"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/line10">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="number"
+                    android:textSize="13sp"
+                    tools:ignore="MissingConstraints" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <View
                 android:id="@+id/line11"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginStart="25dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                app:layout_constraintTop_toBottomOf="@+id/edt_realtor" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_realtor"
+                tools:layout_editor_absoluteX="25dp" />
 
-            <TextView
-                android:id="@+id/tv_nbr_images"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/images_min"
-                android:textColor="@android:color/black"
-                app:layout_constraintEnd_toEndOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/line11" />
-
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edit_nbr_images"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
+                style="@style/TextFieldTheme"
+                android:layout_width="123dp"
+                android:layout_height="62dp"
                 android:layout_marginTop="20dp"
-                android:background="@android:color/white"
-                android:hint="@string/_0"
-                android:inputType="number"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                android:hint="Min Number of img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nbr_images"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toBottomOf="@+id/edt_realtor"
+                app:layout_goneMarginTop="40dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="number"
+                    android:textSize="13sp"
+                    tools:ignore="MissingConstraints" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <View
                 android:id="@+id/line12"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="60dp"
                 android:layout_marginEnd="25dp"
                 app:layout_constraintTop_toBottomOf="@+id/edit_nbr_images" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/button_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:contentDescription="fabs to search property"
-        android:text="Search"
-        app:icon="@drawable/ic_search_black" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -11,6 +11,7 @@ class GeocodeInfo {
     @SerializedName("results")
     @Expose
     var results: List<Result>? = null
+
     @SerializedName("status")
     @Expose
     var status: String? = null

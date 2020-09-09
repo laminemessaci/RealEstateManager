@@ -19,10 +19,10 @@ interface PropertyDao {
     fun getAllProperties(): LiveData<List<Property>>
 
     @Query("SELECT * from property WHERE id = :propertyId")
-    fun getProperty(propertyId:Long): LiveData<Property>
+    fun getProperty(propertyId: Long): LiveData<Property>
 
     @RawQuery(observedEntities = [Property::class])
-    fun getPropertyByArgs(query: SupportSQLiteQuery) : LiveData<List<Property>>
+    fun getPropertyByArgs(query: SupportSQLiteQuery): LiveData<List<Property>>
 
     @Insert(onConflict = REPLACE)
     fun insertProperty(property: Property): Long

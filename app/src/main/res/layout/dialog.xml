@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    android:padding="20dp"
+    app:layout_anchor="@+id/constraintLayout"
+    app:layout_anchorGravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/monthly_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="@string/monthly_payment"
+            android:textColor="#000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:startIconDrawable="@drawable/ic_money_black"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/monthly_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:textStyle="bold"
+            android:layout_column="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginStart="24dp"
+            android:padding="10dp"
+            android:textColor="#000"
+            app:layout_constraintStart_toEndOf="@+id/monthly_text"
+            app:layout_constraintTop_toTopOf="@+id/monthly_text" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/total_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="24dp"
+            android:padding="10dp"
+            android:text="@string/total_payment"
+            android:textColor="#000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/monthly_text" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/total_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:padding="10dp"
+            android:textColor="#000"
+            app:layout_constraintStart_toEndOf="@+id/total_text"
+            app:layout_constraintTop_toBottomOf="@+id/monthly_text" />
+
+    <Button
+        android:id="@+id/dialogButtonOK"
+        android:layout_width="wrap_content"
+        android:layout_height="67dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_text"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/dialogButtonConvert"
+        android:layout_width="wrap_content"
+        android:layout_height="67dp"
+        android:layout_marginTop="16dp"
+        android:text="Convert ?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogButtonOK"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -33,15 +32,15 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/maisonbois" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="220dp"
                 android:gravity="center"
                 android:text="Description"
-                android:layout_gravity="center_horizontal"
+                android:textColor="@android:color/white"
                 android:textSize="25sp"
-                android:layout_marginTop="220dp"
                 android:textStyle="bold" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -69,7 +68,7 @@
                 android:layout_height="wrap_content"
                 tools:ignore="MissingConstraints">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_view_detail_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,7 +97,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/constraint1">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_view_detail_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -106,19 +105,19 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:text="@string/detail_description"
-                    android:textStyle="bold"
                     android:textSize="@dimen/my_value"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_description_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:textColor="@color/color_black"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="8dp"
+                    android:textColor="@color/color_black"
                     android:textSize="@dimen/mini_size"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -148,7 +147,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_surface"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -160,7 +159,7 @@
                     app:layout_constraintStart_toEndOf="@id/icon_surface"
                     app:layout_constraintTop_toTopOf="@+id/icon_surface" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_surface"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -185,7 +184,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_surface" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_nbr_of_rooms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -197,13 +196,13 @@
                     app:layout_constraintStart_toEndOf="@id/icon_nbr_of_rooms"
                     app:layout_constraintTop_toTopOf="@+id/icon_nbr_of_rooms" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_nbr_of_rooms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:textColor="@color/color_black"
                     android:layout_marginTop="4dp"
+                    android:textColor="@color/color_black"
                     android:textSize="13sp"
                     app:layout_constraintStart_toStartOf="@id/tv_surface"
                     app:layout_constraintTop_toBottomOf="@+id/tv_nbr_of_rooms" />
@@ -221,7 +220,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_nbr_of_rooms" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_nbr_bathrooms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -233,13 +232,13 @@
                     app:layout_constraintStart_toEndOf="@id/icon_nbr_bathrooms"
                     app:layout_constraintTop_toTopOf="@+id/icon_nbr_bathrooms" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_nbr_bathrooms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:textColor="@color/color_black"
                     android:layout_marginTop="4dp"
+                    android:textColor="@color/color_black"
                     android:textSize="@dimen/mini_size"
                     app:layout_constraintStart_toStartOf="@id/tv_surface"
                     app:layout_constraintTop_toBottomOf="@+id/tv_nbr_bathrooms" />
@@ -258,7 +257,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_nbr_bathrooms" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_nbr_bedrooms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -270,7 +269,7 @@
                     app:layout_constraintStart_toEndOf="@id/icon_nbr_bedrooms"
                     app:layout_constraintTop_toTopOf="@+id/icon_nbr_bedrooms" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_nbr_bedrooms"
                     android:layout_width="wrap_content"
                     android:layout_height="14dp"
@@ -292,7 +291,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_nbr_bedrooms" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -304,7 +303,7 @@
                     app:layout_constraintStart_toEndOf="@id/icon_price"
                     app:layout_constraintTop_toTopOf="@+id/icon_price" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_price"
                     android:layout_width="wrap_content"
                     android:layout_height="14dp"
@@ -325,19 +324,19 @@
                     app:layout_constraintTop_toBottomOf="@+id/text_price" />
 
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_Points_interests"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/points_of_interest"
-                    android:textStyle="bold"
                     android:textColor="@android:color/black"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/line4" />
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkbox_school"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -358,7 +357,7 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.5" />
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkbox_shops"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -371,7 +370,7 @@
                     tools:targetApi="lollipop" />
 
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkbox_park"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -382,7 +381,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/checkbox_train_station"
                     tools:targetApi="lollipop" />
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkbox_train_station"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -393,7 +392,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/checkbox_school"
                     tools:targetApi="lollipop" />
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkbox_subway"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -405,7 +404,7 @@
                     tools:targetApi="lollipop" />
 
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkbox_airport"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -438,7 +437,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/tv_location"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -450,18 +449,18 @@
                     app:layout_constraintStart_toStartOf="@+id/text_location_num_street"
                     app:layout_constraintTop_toTopOf="@+id/icon_location" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_location_num_street"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/color_black"
                     android:layout_marginEnd="48dp"
+                    android:textColor="@color/color_black"
                     android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_location" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_location_additional"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -471,7 +470,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_location_num_street" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_location_num_type"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -480,7 +479,7 @@
                     app:layout_constraintStart_toStartOf="@id/text_location_num_street"
                     app:layout_constraintTop_toBottomOf="@id/text_location_additional" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_location_town"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -490,7 +489,7 @@
                     app:layout_constraintStart_toStartOf="@id/text_location_num_type"
                     app:layout_constraintTop_toBottomOf="@id/text_location_num_type" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_location_cp"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -500,7 +499,7 @@
                     app:layout_constraintStart_toStartOf="@id/text_location_town"
                     app:layout_constraintTop_toBottomOf="@id/text_location_town" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_location_country"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -521,7 +520,7 @@
                     app:layout_constraintStart_toStartOf="@+id/icon_location"
                     app:layout_constraintTop_toBottomOf="@+id/text_nbr_bedrooms" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -533,7 +532,7 @@
                     app:layout_constraintStart_toEndOf="@id/icon_type"
                     app:layout_constraintTop_toTopOf="@+id/icon_type" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -544,19 +543,19 @@
                     app:layout_constraintStart_toStartOf="@id/tv_location"
                     app:layout_constraintTop_toBottomOf="@+id/tv_type" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/status"
-                    android:textStyle="bold"
                     android:textColor="@android:color/black"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/line5" />
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkboxAvailable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -568,7 +567,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_status"
                     tools:targetApi="lollipop" />
 
-                <CheckBox
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkboxSold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -580,7 +579,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_status"
                     tools:targetApi="lollipop" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_entryDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -590,7 +589,7 @@
                     app:layout_constraintStart_toStartOf="@+id/checkboxAvailable"
                     app:layout_constraintTop_toBottomOf="@+id/checkboxSold" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/picker_entryDate"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -601,7 +600,7 @@
                     app:layout_constraintStart_toStartOf="@+id/tv_entryDate"
                     app:layout_constraintTop_toBottomOf="@+id/tv_entryDate" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_soldDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -613,7 +612,7 @@
                     app:layout_constraintStart_toStartOf="@+id/guideline"
                     app:layout_constraintTop_toBottomOf="@+id/checkboxSold" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/picker_soldDate"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
@@ -636,7 +635,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/picker_entryDate" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_realtor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -647,7 +646,7 @@
                     app:layout_constraintStart_toEndOf="@id/icon_realtor"
                     app:layout_constraintTop_toTopOf="@+id/icon_realtor" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/text_realtor"
                     android:layout_width="wrap_content"
                     android:layout_height="14dp"
@@ -702,6 +701,5 @@
         android:contentDescription="fabs to edit property"
         android:text="Edit"
         app:icon="@drawable/ic_edit" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

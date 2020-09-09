@@ -8,8 +8,10 @@ import com.lamine.realestatemanager.models.Picture
 /**
  *Created by Lamine MESSACI on 06/08/2020.
  */
-class DetailPictureAdapter (private val list: List<Picture>, private val clickListener: (Int) -> Unit)
-    : RecyclerView.Adapter<DetailPictureViewHolder>() {
+class DetailPictureAdapter(
+    private val list: List<Picture>,
+    private val clickListener: (Int) -> Unit
+) : RecyclerView.Adapter<DetailPictureViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailPictureViewHolder {
         val inflater = LayoutInflater.from(parent.context)

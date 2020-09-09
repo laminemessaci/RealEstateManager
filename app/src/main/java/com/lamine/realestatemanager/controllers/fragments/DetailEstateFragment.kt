@@ -22,7 +22,7 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
-import com.lamine.realestatemanager.controllers.activities.CreateEstateActivity
+import com.lamine.realestatemanager.controllers.activities.CreateEditEstateActivity
 import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
@@ -34,7 +34,7 @@ import java.text.NumberFormat
 import java.util.*
 
 
-class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener{
+class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var property: Property
     private var propertyId: Long = 0
@@ -93,9 +93,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private fun getForeign() {
         val prefs: Prefs = Prefs.get(RealEstateManagerApplication.getContext())
         currencyFormat =
-            if (prefs.foreignCurrency) NumberFormat.getCurrencyInstance(Locale.FRANCE) else NumberFormat.getCurrencyInstance(
-                Locale.US
-            )
+            if (prefs.foreignCurrency) NumberFormat.getCurrencyInstance(Locale.FRANCE) else NumberFormat.getCurrencyInstance(Locale.US)
     }
 
 
@@ -190,7 +188,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
 
     // To launch CreateActivity
     private fun launchCreateActivity(id: Long?) {
-        val intent = Intent(activity, CreateEstateActivity::class.java)
+        val intent = Intent(activity, CreateEditEstateActivity::class.java)
         if (id != null) {
             intent.putExtra("property", propertyId)
         }
@@ -206,6 +204,7 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
                 DetailPictureAdapter(property.pictures!!) { position: Int -> onItemClicked(position) }
         }
     }
+
 
     // ViewModel initialisation
     private fun initViewModelFactory() {
@@ -258,13 +257,5 @@ class DetailEstateFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private fun onItemClicked(position: Int) {
         Log.d("test", position.toString())
     }
-
-   // override fun onMapsInteraction(idProperty: Long) {
-   //     //val intent = Intent (t, DetailEstateFragment::class.java)
-   // }
-
-   // override fun onMapsInteraction(property: Property) {
-//
-   // }
 
 }

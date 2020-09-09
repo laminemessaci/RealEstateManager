@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--Toolbar -->
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_anchor="@+id/scrollView"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            app:helperText="*Required"
+            app:layout_constraintTop_toBottomOf="@id/scrollView">
+
+            <!-- ESTATE TYPE -->
+
+            <TextView
+                android:id="@+id/tvType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/type_choice_tv"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/constraint_detail" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/type_spinner"
+                android:layout_width="130dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:popupBackground="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvType" />
+
+            <View
+                android:id="@+id/ligne1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="104dp"
+                android:layout_marginEnd="25dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/type_spinner"
+                app:layout_constraintTop_toBottomOf="@+id/type_spinner"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_surface"
+                style="@style/TextFieldTheme"
+                android:layout_width="145dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="60dp"
+                android:hint="Surface: M2"
+                android:maxLines="1"
+                app:helperText="*Required"
+                app:layout_constraintBottom_toTopOf="@+id/ligne1"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.062"
+                app:layout_constraintStart_toEndOf="@+id/edit_nbr_rooms"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.763"
+                app:startIconDrawable="@drawable/baseline_settings_overscan_24"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:inputType="number"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_nbr_rooms"
+                style="@style/TextFieldTheme"
+                android:layout_width="145dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="10dp"
+                android:hint="Nbr of rooms"
+                android:maxLines="1"
+                app:helperText="*Required"
+                app:layout_constraintBottom_toBottomOf="@+id/edit_surface"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.293"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/type_spinner"
+                app:layout_constraintVertical_bias="0.909"
+                app:startIconDrawable="@drawable/baseline_home_black_24"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:inputType="number"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_apart_nbr"
+                android:layout_width="96dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginLeft="20dp"
+                android:hint="Apt N°"
+                android:maxLines="1"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/ligne1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:inputType="number"
+                    android:textSize="13dp"
+                    app:boxBackgroundColor="#CECECE" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_address"
+                style="@style/TextFieldTheme"
+                android:layout_width="344dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="16dp"
+                android:hint="Street N°, name of the street "
+                app:helperText="*Required"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_address"
+                app:startIconDrawable="@drawable/ic_location"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_address"
+                style="@style/TextFieldTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_location_city_black_18dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.092"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ligne1" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_city"
+                style="@style/TextFieldTheme"
+                android:layout_width="292dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="16dp"
+                android:hint="City"
+                app:helperText="*Required"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.515"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/edit_postal_code"
+                app:startIconDrawable="@drawable/ic_city_black"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_postal_code"
+                style="@style/TextFieldTheme"
+                android:layout_width="293dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="40dp"
+                android:hint="Postal Code"
+                app:helperText="*Required"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.515"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/ligne1"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_country"
+                style="@style/TextFieldTheme"
+                android:layout_width="343dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="16dp"
+                android:hint="Country"
+                app:helperText="*Required"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_address"
+                app:startIconDrawable="@drawable/ic_country"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_additional_address"
+                style="@style/TextFieldTheme"
+                android:layout_width="686dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:hint="@string/additional_address_tv"
+                app:layout_constraintEnd_toEndOf="@+id/edit_city"
+                app:layout_constraintHorizontal_bias="0.517"
+                app:layout_constraintStart_toStartOf="@+id/edit_country"
+                app:layout_constraintTop_toBottomOf="@+id/edit_country"
+                tools:ignore="MissingConstraints">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_points_interests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Points of Interests"
+                android:textColor="@color/color_black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.125"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_additional_address" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_school"
+                android:layout_width="85dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="6dp"
+                android:text="School"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.288"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_points_interests"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_train_station"
+                android:layout_width="84dp"
+                android:layout_height="43dp"
+                android:layout_marginTop="6dp"
+                android:text="Train station"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.29"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_school"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_park"
+                android:layout_width="89dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="6dp"
+                android:text="Park"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.292"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_train_station"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_shops"
+                android:layout_width="84dp"
+                android:layout_height="43dp"
+                android:layout_marginTop="6dp"
+                android:text="Shops"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.264"
+                app:layout_constraintStart_toEndOf="@+id/checkbox_school"
+                app:layout_constraintTop_toBottomOf="@+id/tv_points_interests"
+                tools:ignore="MissingConstraints" />
+
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_subway"
+                android:layout_width="88dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="8dp"
+                android:text="Subway"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.273"
+                app:layout_constraintStart_toEndOf="@+id/checkbox_train_station"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_shops"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_airport"
+                android:layout_width="88dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="6dp"
+                android:text="Airport"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.247"
+                app:layout_constraintStart_toEndOf="@+id/checkbox_park"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_subway"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Status"
+                android:textColor="@color/color_black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.126"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/edit_additional_address" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_available"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Available"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.236"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv_status"
+                tools:ignore="MissingConstraints" />
+
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/checkbox_sold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Sold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.734"
+                app:layout_constraintStart_toEndOf="@+id/checkbox_available"
+                app:layout_constraintTop_toBottomOf="@+id/tv_status"
+                tools:ignore="MissingConstraints" />
+
+            <View
+                android:id="@+id/line42"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@+id/checkbox_available"
+                tools:ignore="DuplicateIds"
+                tools:layout_editor_absoluteX="28dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_description"
+                style="@style/TextFieldTheme"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:hint="@string/description_tv"
+                app:helperText="*Required"
+                app:helperTextEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line42"
+                app:startIconDrawable="@drawable/baseline_description_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/estate_ed_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:inputType="textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_pictures"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Pictures"
+                android:textColor="@color/color_black"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.098"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edit_description"
+                tools:ignore="UnknownId" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/create_picture_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:color/tab_indicator_text"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pictures" />
+
+            <ImageButton
+                android:id="@+id/button_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorPrimary"
+                android:contentDescription="@string/image"
+                android:gravity="start"
+                android:src="@drawable/ic_collections_white_36dp"
+                android:text="@string/pictures_gallery"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.307"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/create_picture_recycler_view" />
+
+            <ImageButton
+                android:id="@+id/button_take_picture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorPrimary"
+                android:contentDescription="@string/image"
+                android:gravity="start"
+                android:src="@drawable/ic_add_a_photo_white_36dp"
+                android:text="@string/pictures_camera"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.535"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/create_picture_recycler_view" />
+
+            <View
+                android:id="@+id/line8"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+
+                android:layout_marginTop="20dp" android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintTop_toBottomOf="@+id/button_gallery"
+                tools:ignore="DuplicateIds" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.51" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/picker_price"
+                style="@style/TextFieldTheme"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:hint="Price"
+                app:helperText="*Required"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line8"
+                app:startIconDrawable="@drawable/ic_money_black"
+                tools:ignore="MissingConstraints,UnknownId">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_nbr_bed"
+                style="@style/TextFieldTheme"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:hint="@string/nbr_of_bedrooms"
+                app:helperText="*Required"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/line8"
+                tools:ignore="MissingConstraints,UnknownId">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/line9"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:background="@color/colorPrimary"
+                app:layout_anchorGravity="bottom|center"
+                app:layout_constraintTop_toBottomOf="@+id/picker_price" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/picker_entry_date"
+                style="@style/TextFieldTheme"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:hint="@string/entry_date_tv"
+                app:helperText="*Required"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line9"
+                app:startIconDrawable="@drawable/ic_calendar_black"
+                tools:ignore="MissingConstraints,UnknownId">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/picker_sold_date"
+                style="@style/TextFieldTheme"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:hint="@string/sold_date_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/line9"
+                app:startIconDrawable="@drawable/ic_calendar_black"
+                tools:ignore="MissingConstraints,UnknownId">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/line10"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:background="@color/colorPrimary"
+                app:layout_anchorGravity="bottom|center"
+                app:layout_constraintTop_toBottomOf="@+id/picker_entry_date" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_realtor"
+                style="@style/TextFieldTheme"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:hint="Realtor"
+                app:helperText="*Required"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.482"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line10"
+                app:startIconDrawable="@drawable/ic_realtor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:textSize="13dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_nbr_bath"
+                style="@style/TextFieldTheme"
+                android:layout_width="300dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="20dp"
+                android:hint="Number of bathrooms"
+                app:helperText="*Required"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/line10">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textSize="13sp"
+                    tools:ignore="MissingConstraints" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/line11"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="25dp"
+                android:background="@color/colorPrimary"
+                app:layout_anchorGravity="bottom|center"
+                app:layout_constraintTop_toBottomOf="@+id/edit_realtor" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar_create"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_create"
+        tools:ignore="UnusedAttribute" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/extended_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:contentDescription="fabs to edit property"
+        android:text="Save"
+        app:icon="@drawable/ic_validate" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

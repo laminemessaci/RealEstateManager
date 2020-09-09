@@ -5,6 +5,10 @@
         android:icon="@drawable/ic_map_black"
         android:title="@string/map_title"
         app:showAsAction="always"/>
+    <item android:id="@+id/menu_create"
+        android:icon="@drawable/ic_add_white_18dp"
+        android:title="@string/item_create_title"
+        app:showAsAction="always"/>
 
     <item android:id="@+id/menu_search"
         android:icon="@drawable/ic_search_black"

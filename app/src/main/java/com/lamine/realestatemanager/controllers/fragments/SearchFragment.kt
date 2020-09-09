@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.lamine.realestatemanager.R
@@ -20,10 +21,11 @@ import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
 import com.lamine.realestatemanager.models.Property
+import com.lamine.realestatemanager.utils.Constant.ConstantVal.listOfSearchTypes
 import com.lamine.realestatemanager.utils.SearchUtils
 import com.lamine.realestatemanager.utils.Utils
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
 
@@ -33,9 +35,6 @@ import java.util.*
  * create an instance of this fragment.
  */
 class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
-
-    val listOfSearchTypes =
-        arrayOf("ALL", "Manor", "House", "Castle", "Flat", "Loft", "Apartment", "Duplex")
 
     private var mListener: OnSearchFragmentListener? = null
     private lateinit var propertyViewModel: PropertyViewModel
@@ -91,6 +90,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
             throw RuntimeException("$context must implement OnSearchFragmentListener")
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -102,7 +102,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as MainActivity).supportActionBar?.title = getString(R.string.property_search)
+        configureToolbar()
         initViewModel()
         configureTypes()
         configureEditTown()
@@ -119,6 +119,13 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
         configureSeekBarPrice()
         configureButtonSearch()
         configureSeekBarBeds()
+    }
+
+    // Toolbar configuration
+    private fun configureToolbar() {
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.property_search)
+        //toolbar.setTitle("Create Property")
+        //(activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     // ViewModel initialisation
@@ -148,50 +155,40 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure asked bathrooms number
     private fun configureNbrBathrooms() {
-        edit_bath.addTextChangedListener(object : TextWatcher {
 
-            override fun afterTextChanged(s: Editable) {}
-
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                val nbrBathStr: String = edit_bath.text.toString()
-                if (nbrBathStr.isNotEmpty()) {
-                    numberOfBath = nbrBathStr.toInt()
-                }
+        edit_bath.editText?.doOnTextChanged { _, _, _, _ ->
+            val nbrBathStr: String = edit_bath.editText?.text.toString()
+            if (nbrBathStr.isNotEmpty()) {
+                numberOfBath = nbrBathStr.toInt()
             }
-        })
+        }
     }
 
     // To configure asked realtor name
     private fun configureRealtorName() {
-        edt_realtor.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                realtorName = edt_realtor.text.toString().replace(" ", "")
-            }
-        })
+        edt_realtor.editText?.doOnTextChanged { _, _, _, _ ->
+            realtorName = edt_realtor.editText?.text.toString().replace(" ", "")
+        }
+
     }
 
     // To configure asked sold date
     private fun configureDateSold() {
-        picker_sold.setOnClickListener {
+        picker_sold.editText?.setOnClickListener {
             val dpd = context?.let { it1 ->
                 DatePickerDialog(
                     it1,
-                    DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                    { _, year, monthOfYear, dayOfMonth ->
                         /* Display Selected date in TextView */
-                        picker_sold.text = Utils.getStringDate(year, dayOfMonth, monthOfYear)
-                        maxDate = picker_sold.text.toString()
+                        picker_sold.editText?.setText(
+                            Utils.getStringDate(
+                                year,
+                                dayOfMonth,
+                                monthOfYear
+                            )
+                        )
+                        maxDate = picker_sold.editText?.text.toString()
                     },
                     year,
                     month,
@@ -204,25 +201,27 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure asked entry date
     private fun configureDateEntry() {
-        picker_entry.text = Utils.getTodayDate()
-        picker_entry.setOnClickListener {
+        picker_entry.editText?.setText(Utils.getTodayDate())
+        picker_entry.editText?.setOnClickListener {
             val dpd = context?.let { it1 ->
                 DatePickerDialog(
                     it1,
-                    DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                    { _, year, monthOfYear, dayOfMonth ->
                         // Display Selected date in TextView
-                        picker_entry.text = Utils.getStringDate(year, dayOfMonth, monthOfYear)
-                        entryDate = picker_entry.text.toString()
-                    },
-                    year,
-                    month,
-                    day
+                        picker_entry.editText?.setText(
+                            Utils.getStringDate(
+                                year,
+                                dayOfMonth,
+                                monthOfYear
+                            )
+                        )
+                        entryDate = picker_entry.editText?.text.toString()
+                    }, year, month, day
                 )
             }
             dpd?.show()
         }
     }
-
 
     // To configure asked bed number
     private fun configureSeekBarBeds() {
@@ -254,40 +253,18 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure country editText
     private fun configureCountry() {
-        edt_country.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                country = edt_country.text.toString().replace(" ", "")
-            }
-        })
+        edt_country.editText?.doOnTextChanged { _, _, _, _ ->
+            country = edt_country.editText?.text.toString().replace(" ", "")
+        }
     }
 
     // To configure postal code editText
     private fun configurePostalCode() {
-        edit_postl_code.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                postalCode = edit_postl_code.text.toString().replace(" ", "")
-            }
-        })
+        edit_postl_code.editText?.doOnTextChanged { _, _, _, _ ->
+            postalCode = edit_postl_code.editText?.text.toString().replace(" ", "")
+        }
     }
 
     // To configure Price SeekBar
@@ -301,26 +278,15 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure town editText
     private fun configureEditTown() {
-        edit_town.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable) {}
-            override fun beforeTextChanged(
-                s: CharSequence, start: Int,
-                count: Int, after: Int
-            ) {
-            }
 
-            override fun onTextChanged(
-                s: CharSequence, start: Int,
-                before: Int, count: Int
-            ) {
-                city = edit_town.text.toString().replace(" ", "")
-            }
-        })
+        edit_town.editText?.doOnTextChanged { _, _, _, _ ->
+            city = edit_town.editText?.text.toString().replace(" ", "")
+        }
     }
 
     // To configure images number editText
     private fun configureNbrOfImages() {
-        edit_nbr_images.addTextChangedListener(object : TextWatcher {
+        edit_nbr_images.editText?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {}
             override fun beforeTextChanged(
                 s: CharSequence, start: Int,
@@ -332,7 +298,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
-                val nbrImgStr: String = edit_nbr_images.text.toString()
+                val nbrImgStr: String = edit_nbr_images.editText?.text.toString()
                 if (nbrImgStr.isNotEmpty()) {
                     numberOfImages = nbrImgStr.toInt()
                 }

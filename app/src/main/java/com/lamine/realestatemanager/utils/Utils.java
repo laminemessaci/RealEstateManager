@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import static com.lamine.realestatemanager.utils.Constant.ConstantVal.TEXT_DATE;
+
 /**
  * Created by Philippe on 21/02/2018.
  */
 
 public class Utils {
-
-    private static final String TEXT_DATE = "dd/MM/yyyy" ;
 
     /**
      * Conversion d'un prix d'un bien immobilier (Dollars vers Euros)
@@ -69,12 +69,12 @@ public class Utils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             network = Objects.requireNonNull(connectivityManager).getActiveNetwork();
             NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
-            if (capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)){
+            if (capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
                 isInternet = true;
             }
-        }else{
+        } else {
             NetworkInfo activeNetwork = Objects.requireNonNull(connectivityManager).getActiveNetworkInfo();
-            if (activeNetwork != null && activeNetwork.isConnected()){
+            if (activeNetwork != null && activeNetwork.isConnected()) {
                 isInternet = true;
             }
         }

@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +16,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.RealEstateManagerApplication
-import com.lamine.realestatemanager.controllers.activities.CreateEstateActivity
+import com.lamine.realestatemanager.controllers.activities.CreateEditEstateActivity
 import com.lamine.realestatemanager.controllers.activities.MainActivity
 import com.lamine.realestatemanager.controllers.viewModel.DataInjection
 import com.lamine.realestatemanager.controllers.viewModel.PropertyViewModel
@@ -25,7 +25,6 @@ import com.lamine.realestatemanager.utils.Utils
 import com.lamine.realestatemanager.view.EstateListAdapter
 import com.lamine.realestatemanager.view.ListPaddingDecoration
 import kotlinx.android.synthetic.main.fragment_estate_list.*
-import kotlinx.android.synthetic.main.fragment_estate_list.fab_add_property
 
 
 class EstateListFragment : Fragment() {
@@ -45,6 +44,7 @@ class EstateListFragment : Fragment() {
                 }
             }
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,9 +82,10 @@ class EstateListFragment : Fragment() {
             launchCreateActivity()
         }
     }
+
     // To launch CreateActivity
     private fun launchCreateActivity() {
-        val intent = Intent(activity, CreateEstateActivity::class.java)
+        val intent = Intent(activity, CreateEditEstateActivity::class.java)
         startActivity(intent)
     }
 
@@ -124,7 +125,7 @@ class EstateListFragment : Fragment() {
     // Get properties
     private fun getPropertiesAndConfigureRecyclerView() {
         // Observe the model
-        propertyViewModel.getAllProperty().observe(this, Observer { displayList(it!!)})
+        propertyViewModel.getAllProperty().observe(this, Observer { displayList(it!!) })
     }
 
     // To set list of properties in recyclerView
@@ -139,11 +140,11 @@ class EstateListFragment : Fragment() {
             estateListAdapter = adapter as EstateListAdapter
         }
         addItemDecoration()
-        if(!RealEstateManagerApplication.isSearch()){
+        if (!RealEstateManagerApplication.isSearch()) {
             recycler.post {
                 recycler.scrollToPosition(Utils.getPropertyPosition(listProperty))
             }
-        }else{
+        } else {
             RealEstateManagerApplication.setSearchCalls(false)
         }
     }
@@ -161,7 +162,7 @@ class EstateListFragment : Fragment() {
 
     //Init viewModel
     private fun initViewModelFactory() {
-        this.propertyViewModel = ViewModelProviders.of(this,
+        this.propertyViewModel = ViewModelProviders.of(activity!!,
             activity?.applicationContext?.let {
                 DataInjection.Injection.provideViewModelFactory(
                     it
@@ -173,7 +174,7 @@ class EstateListFragment : Fragment() {
     // Items listener
     private fun onItemClicked(property: Property) {
         mListener?.onFragmentListInteraction(property)
-        if (RealEstateManagerApplication.getLastItemClicked()!= -1) {
+        if (RealEstateManagerApplication.getLastItemClicked() != -1) {
             estateListAdapter.notifyAdapter()
         }
     }
