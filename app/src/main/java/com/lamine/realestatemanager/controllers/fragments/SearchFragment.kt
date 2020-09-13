@@ -25,7 +25,6 @@ import com.lamine.realestatemanager.utils.Constant.ConstantVal.listOfSearchTypes
 import com.lamine.realestatemanager.utils.SearchUtils
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.fragment_search.*
-import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
 
 
