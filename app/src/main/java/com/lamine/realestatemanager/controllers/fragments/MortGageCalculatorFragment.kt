@@ -58,7 +58,7 @@ class MortGageCalculatorFragment : Fragment() {
 
     private fun getForeign() {
         prefs = Prefs.get(RealEstateManagerApplication.getContext())
-        foreign = prefs.getForeignCurrency()
+        foreign = prefs.foreignCurrency
         currencyFormat =
             if (foreign) NumberFormat.getCurrencyInstance(Locale.FRANCE) else NumberFormat.getCurrencyInstance(
                 Locale.US

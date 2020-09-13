@@ -77,7 +77,7 @@ class EstateListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (activity as MainActivity).supportActionBar?.title = getString(R.string.property_list)
         getTheBundleIfExist()
-        fab_add_property.setOnClickListener() {
+        fab_add_property.setOnClickListener {
             // Open create activity
             launchCreateActivity()
         }

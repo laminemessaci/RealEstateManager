@@ -132,8 +132,8 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
     // Toolbar configuration
     private fun configureToolbar() {
         setSupportActionBar(toolbar)
-        toolbar.setTitle("Create Property")
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        toolbar.title = "Create Property"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }
 
@@ -744,7 +744,7 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
     // To set values in object
     private fun setValuesInProperty() {
         progressBar_create.visibility = View.GONE
-        val latLng: LatLng = this?.getLocationFromAddress(address.toString())!!
+        val latLng: LatLng = this.getLocationFromAddress(address.toString())!!
         lat = latLng.latitude
         lng = latLng.longitude
 

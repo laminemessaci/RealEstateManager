@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
@@ -42,7 +41,6 @@ import com.lamine.realestatemanager.utils.Constant.ConstantVal.OPEN_MAPS
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
-import kotlin.properties.Delegates
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,

@@ -20,7 +20,10 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
 import com.lamine.realestatemanager.BuildConfig
 import com.lamine.realestatemanager.R
 import com.lamine.realestatemanager.controllers.activities.MainActivity
@@ -187,7 +190,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
                 return
             }
 
-                map.setMyLocationEnabled(true)
+            map.isMyLocationEnabled = true
         }
     }
 
