@@ -734,9 +734,7 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
 
             val location = address[0]
             latlng = LatLng(location.latitude, location.longitude)
-
             latlng
-
         } catch (e: IOException) {
             e.printStackTrace()
             ERROR_GEOCODER_ADDRESS
@@ -746,11 +744,6 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
     // To set values in object
     private fun setValuesInProperty() {
         progressBar_create.visibility = View.GONE
-        //Log.e("restls.get(0) est :  ${geoLocation.results?.get(0)}","Results !" )
-        //lat = geoLocation.results?.get(0)?.geometry?.location?.lat!!
-        //lng = geoLocation.results?.get(0)?.geometry?.location?.lng!!
-        //lat = 49.52267
-        //lng = 0.091310
         val latLng: LatLng = this?.getLocationFromAddress(address.toString())!!
         lat = latLng.latitude
         lng = latLng.longitude
@@ -791,9 +784,22 @@ class CreateEditEstateActivity : AppCompatActivity(), AdapterView.OnItemSelected
     // Check empty values
     private fun checkValues() {
         if (checkClass.checkValueBeforeStoreProperty(
-                this, typeOfProperty, surface, numberOfRooms, numberOfBed,
-                numberOfBath, address, price, realtorName, entryDate, soldDate, sold, property,
-                city, postalCode, country
+                this,
+                typeOfProperty,
+                surface,
+                numberOfRooms,
+                numberOfBed,
+                numberOfBath,
+                address,
+                price,
+                realtorName,
+                entryDate,
+                soldDate,
+                sold,
+                property,
+                city,
+                postalCode,
+                country
             ).type == typeOfProperty
         ) {
             property = checkClass.checkValueBeforeStoreProperty(

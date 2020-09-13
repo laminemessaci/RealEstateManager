@@ -44,7 +44,7 @@ class ContentProviderTest {
     private val address = "72 Rue Haroun Tazieff, 76620 Le Havre France"
 
     // DATA SET FOR TEST
-    private val estateId: Long = 2001
+    private val estateId: Long = 20001
     private val estateId2: Long = 10000
 
     //Root test
@@ -101,7 +101,7 @@ class ContentProviderTest {
         assertEquals("Manor", cursor?.getString(cursor.getColumnIndexOrThrow("type")))
 
         //for clean database
-       //db.query(SimpleSQLiteQuery("DELETE FROM property WHERE id = $estateId"))
+       db.query(SimpleSQLiteQuery("DELETE FROM property WHERE id = $estateId"))
     }
 
     // Create property to test
@@ -186,8 +186,8 @@ class ContentProviderTest {
 
         val checkClass = CreateEstateUtils()
         val propertyToReturn: Property
-        propertyToReturn = checkClass.checkValueBeforeStoreProperty(
-            InstrumentationRegistry.getInstrumentation().context, "Manor", 300,
+        propertyToReturn = checkClass.checkValueBeforeStoreProperty(InstrumentationRegistry.getInstrumentation().context,
+            "Manor", 300,
             9, 4, 2, address, 200000.0, "Julien",
             "16-03-2020", "", true, propertyToSend, "NEW YORK", "NY 10007", "United States"
         )

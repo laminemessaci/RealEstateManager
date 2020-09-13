@@ -16,6 +16,7 @@ import java.util.concurrent.Executor
 class ViewModelFactory(
     private val propertyDataRepository: PropertyDataRepository,
     private val executor: Executor
+
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(PropertyViewModel::class.java)) {

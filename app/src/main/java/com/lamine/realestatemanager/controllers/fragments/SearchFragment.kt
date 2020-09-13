@@ -253,7 +253,6 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure country editText
     private fun configureCountry() {
-
         edt_country.editText?.doOnTextChanged { _, _, _, _ ->
             country = edt_country.editText?.text.toString().replace(" ", "")
         }
@@ -261,7 +260,6 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // To configure postal code editText
     private fun configurePostalCode() {
-
         edit_postl_code.editText?.doOnTextChanged { _, _, _, _ ->
             postalCode = edit_postl_code.editText?.text.toString().replace(" ", "")
         }
@@ -394,7 +392,7 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
 
         Log.e("***test args: ", query)
-        propertyViewModel.getPropertyByArgs(query).observe(this, androidx.lifecycle.Observer {
+        propertyViewModel.getPropertyByArgs(query).observe(activity!!, androidx.lifecycle.Observer {
             if (it!!.isNotEmpty()) {
                 getResult(it)
             } else {

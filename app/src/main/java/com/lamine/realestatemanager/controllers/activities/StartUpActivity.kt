@@ -35,7 +35,7 @@ class StartUpActivity : AppCompatActivity() {
             this.let { DataInjection.Injection.provideViewModelFactory(it) }
         ).get(PropertyViewModel::class.java)
         Thread {
-            propertyViewModel.deleteProperty(2001)
+            propertyViewModel.deleteProperty(20001)
         }.start()
     }
 

@@ -158,12 +158,12 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     // To add markers on map
     private fun addMarker(property: Property, lat: Double, lng: Double) {
-        val latLon = LatLng(lat, lng)
+        val latLont = LatLng(lat, lng)
         map.addMarker(
-            MarkerOptions().position(latLon).title(property.type)
+            MarkerOptions().position(latLont).title(property.type)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
         )
-        map.moveCamera(CameraUpdateFactory.newLatLng(latLon))
+        map.moveCamera(CameraUpdateFactory.newLatLng(latLont))
         gotoMyLocation()
     }
 
@@ -260,9 +260,11 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickList
 
     // Markers listener
     override fun onMarkerClick(p0: Marker?): Boolean {
+        
         p0?.let { getPropertyId(it) }
         return true
     }
+
 
     // Get propertyId from Marker
     private fun getPropertyId(marker: Marker) {

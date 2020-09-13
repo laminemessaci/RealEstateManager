@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
@@ -41,6 +42,7 @@ import com.lamine.realestatemanager.utils.Constant.ConstantVal.OPEN_MAPS
 import com.lamine.realestatemanager.utils.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
+import kotlin.properties.Delegates
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
@@ -57,17 +59,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var refreshCount: Int = 0
     private var isDisplaySearch = false
 
+    private var tagBundle = ""
+    private  var idBundle: Long = 0L
+    private lateinit var propertyBundle :Property
+
+    val BUNDLE_FRAGMENT_TAG = "BUNDLE_FRAGMENT_TAG"
+    val BUNDLE_FRAGMENT_ID = "BUNDLE_FRAGMENT_ID"
+    val BUNDLE_FRAGMENT_PROPERTY = "BUNDLE_FRAGMENT_PROPERTY"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         checkSelfPermissions()
         checkDeviceServices()
         configureToolbar()
         defineIsTablet()
         configureNavDrawer()
         configureNavView()
-        getTheBundle()
+       getTheBundle()
     }
 
     //Get intent bundle
@@ -405,12 +416,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // Show detail
     private fun configureAndShowFragmentDetail(property: Property) {
+        propertyBundle = property
         if (isTablet) {
             val detailFragment = DetailEstateFragment.newInstance(property.id)
             supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_detail_frame_layout, detailFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                //.addToBackStack(null)
+                .addToBackStack(null)
                 .commit()
 
         } else {
@@ -425,7 +437,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun launchFragment(tag: String, propId: Long, frameLayout: Int, it: List<Property>?) {
-
+          tagBundle = tag
+          idBundle = propId
         var fragment: Fragment = when (tag) {
 
             FRAGMENT_LIST -> EstateListFragment.newInstance(it)
@@ -456,7 +469,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_100_frame_layout, detailFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                //.addToBackStack(null)
+                .addToBackStack(null)
                 .commit()
 
         } else {
@@ -465,7 +478,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             supportFragmentManager.beginTransaction()
                 .replace(R.id.activity_main_frame_layout, detailFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                //.addToBackStack(null)
+                .addToBackStack(null)
                 .commit()
         }
     }
@@ -475,4 +488,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         configureAndShowFragmentList(it)
         isDisplaySearch = false
     }
+
+
+   // override fun onSaveInstanceState(outState: Bundle) {
+   //     outState.putString(BUNDLE_FRAGMENT_TAG,tagBundle )
+   //     outState.putLong(BUNDLE_FRAGMENT_ID, idBundle)
+   //     outState.putParcelable(BUNDLE_FRAGMENT_PROPERTY, propertyBundle)
+   //     super.onSaveInstanceState(outState)
+   // }
+//
+   // override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+   //     if (savedInstanceState != null && tagBundle != LIST_PROPERTY){
+   //         val tagBundle = savedInstanceState.getString(BUNDLE_FRAGMENT_TAG)
+   //         val idBundle = savedInstanceState.getLong(BUNDLE_FRAGMENT_ID)
+   //         if (tagBundle != null) {
+   //            this.launchFragment(tagBundle,idBundle, if (isTablet) R.id.activity_main_100_frame_layout
+   //            else R.id.activity_main_frame_layout, null )
+   //         }
+   //     }
+   //     super.onCreate(savedInstanceState, persistentState)
+   // }
 }
