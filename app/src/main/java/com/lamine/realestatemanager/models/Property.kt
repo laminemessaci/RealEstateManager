@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity
 @SuppressWarnings(RoomWarnings.PRIMARY_KEY_FROM_EMBEDDED_IS_DROPPED)
-data class Property(
+data class Property (
     @PrimaryKey(autoGenerate = true)
     var id: Long,
     var type: String,

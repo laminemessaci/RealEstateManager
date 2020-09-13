@@ -46,6 +46,7 @@ class UnitTest {
         assertEquals(dateStr, Utils.getStringDate(2020, 4, 3))
     }
 
+    //Pictures Conversion
     @Test
     fun checkConvertersList(){
         val picture = Picture(0, "dressing", "content://media/external/images/media/5620")
@@ -62,6 +63,8 @@ class UnitTest {
                 "\"picturePath\":\"content://media/external/images/media/5622\"}]"))
     }
 
+
+    // Monthly Payment Mort Gage Calculator
     @Test
     fun getMonthlyPaymentToTest(){
         val interestRate = 1.0
@@ -75,6 +78,8 @@ class UnitTest {
             duration),
             0.1)
     }
+
+    // Total  Mort Gage Calculator
     @Test
     fun getTotalLoanCalculatorTest(){
         val monthlyPayment = 416.81
@@ -83,6 +88,8 @@ class UnitTest {
         assertEquals(10003.45, calculatorFragment.getTotalPayment(monthlyPayment, duration),0.1)
     }
 
+
+    // Set values In Property (class CreateEstateUtils
     @Test
     fun setValuesInPropertyTest(){
         val address = Address(0, "75 PARK PLACE 8TH FLOOR   ", "",
@@ -148,6 +155,7 @@ class UnitTest {
         assertEquals(propertyToCompare, propertyToReturn)
     }
 
+    // Check Address elements  (class CreateEstateUtils
     @Test
     fun checkValuesToComposeAddress(){
         val checkClass = CreateEstateUtils()
@@ -159,6 +167,7 @@ class UnitTest {
         assertEquals(addressToCompare, checkClass.checksAddressElements(addressToSend, city, postalCode))
     }
 
+   // Query for SearchUtils
     @Test
     fun makeQueryTest(){
         val queryToCompare = "SELECT * FROM Property WHERE type = 'Manor' AND livingSpace >= 35 AND livingSpace <= 935 " +
